@@ -1,0 +1,1405 @@
+PLC Project (1): ArbiterPLC
+===========================
+
+    Project root: /home/travis/build/pcdshub/pmps-dev-arbiter/Arbiter
+    Project path: ArbiterPLC/ArbiterPLC.plcproj
+    TMC path:     ArbiterPLC/ArbiterPLC.tmc
+    AMS ID:       172.21.88.66.1.1
+    IP Address:   172.21.88.66 (* based on AMS ID)
+    Port:         851
+
+    Source files:
+        1.) ArbiterPLC/FFOTask.TcTTO
+        2.) ArbiterPLC/GVLs/GVL.TcGVL
+        3.) ArbiterPLC/GVLs/GVL_CheckBounds.TcGVL
+        4.) ArbiterPLC/ImplicitChecks/CheckBounds.TcPOU
+        5.) ArbiterPLC/ImplicitChecks/CheckRangeSigned.TcPOU
+        6.) ArbiterPLC/ImplicitChecks/CheckRangeUnsigned.TcPOU
+        7.) ArbiterPLC/PlcTask.TcTTO
+        8.) ArbiterPLC/POUs/Accelerator/FB_Hgvpu.TcPOU
+        9.) ArbiterPLC/POUs/Accelerator/FB_SXU.TcPOU
+        10.) ArbiterPLC/POUs/Accelerator/FB_UndulatorSegment.TcPOU
+        11.) ArbiterPLC/POUs/Fast_Faults_Evaluate.TcPOU
+        12.) ArbiterPLC/POUs/FB_eVSimulator.TcPOU
+        13.) ArbiterPLC/POUs/MachineSimulation.TcPOU
+        14.) ArbiterPLC/POUs/MAIN.TcPOU
+        15.) ArbiterPLC/POUs/PMPS_Arbiter.TcPOU
+
+    POUs:
+        1.) CheckBounds
+        2.) CheckRangeSigned
+        3.) CheckRangeUnsigned
+        4.) FB_Hgvpu
+        5.) FB_SXU
+        6.) FB_UndulatorSegment
+        7.) FB_eVSimulator
+        8.) Fast_Faults_Evaluate
+        9.) MAIN
+        10.) MachineSimulation
+        11.) PMPS_Arbiter
+
+    GVLs:
+        1.) GVL
+        2.) GVL_CheckBounds
+
+GVL: GVL
+--------
+
+File: ArbiterPLC/GVLs/GVL.TcGVL
+
+```vhdl
+VAR_GLOBAL
+   {attribute 'pytmc' := '
+    pv: ARBITER:K:Arbiter1
+    '}
+	g_fbArbiter1	:	FB_Arbiter(25);
+
+	ReqBP	:	ST_BeamParams; //Currently the placeholder for the fully arbitrated BP set
+	
+	//Example implementation of the FFO
+    (*
+    {attribute 'pytmc' := '
+    pv: ARBITER:K:FF1
+    '} *)
+	{attribute 'TcLinkTo' := '.q_xFastFaultOut:=TIIB[PMPS_FFO]^Channel 1^Output'}
+	g_FastFaultOutput1	:	FB_HardwareFFOutput;
+    
+	g_rTestingVelocity	:	LREAL := PMPS_GVL.VISIBLE_TEST_VELOCITY;
+    
+    AttemptReset    :   BOOL; // For testing
+END_VAR
+```
+
+
+GVL: GVL_CheckBounds
+--------------------
+
+File: ArbiterPLC/GVLs/GVL_CheckBounds.TcGVL
+
+```vhdl
+{attribute 'qualified_only'}
+VAR_GLOBAL
+    nTooLow : UDINT;
+    nTooHigh : UDINT;
+    nDivByZero : UDINT;
+END_VAR
+```
+
+
+POU: CheckBounds
+----------------
+
+File: ArbiterPLC/ImplicitChecks/CheckBounds.TcPOU
+
+```vhdl
+// Implicitly generated code : DO NOT EDIT
+FUNCTION CheckBounds : DINT
+VAR_INPUT
+	index, lower, upper: DINT;
+END_VAR
+// User defined local variables
+VAR
+    sMessageLow   : STRING := 'CheckBounds: Index too low (%d)';
+    sMessageHigh  : STRING := 'CheckBounds: Index too high (%d)';
+END_VAR
+// Index too low
+IF index < lower THEN
+    CheckBounds := lower;
+    // Increase global counter
+    GVL_CheckBounds.nTooLow := GVL_CheckBounds.nTooLow + 1;
+    // Log message
+    ADSLOGDINT(msgCtrlMask := ADSLOG_MSGTYPE_WARN,
+               msgFmtStr   := sMessageLow,
+               dintArg     := index);
+
+// Index too high
+ELSIF index > upper THEN
+    CheckBounds := upper;
+    // Increase global counter
+    GVL_CheckBounds.nTooHigh := GVL_CheckBounds.nTooHigh + 1;
+    // Log message
+    ADSLOGDINT(msgCtrlMask := ADSLOG_MSGTYPE_WARN,
+               msgFmtStr   := sMessageHigh,
+               dintArg     := index);
+
+// Index OK
+ELSE 
+    CheckBounds := index;
+END_IF
+{flow}
+
+END_FUNCTION
+```
+
+
+POU: CheckRangeSigned
+---------------------
+
+File: ArbiterPLC/ImplicitChecks/CheckRangeSigned.TcPOU
+
+```vhdl
+// Implicitly generated code : DO NOT EDIT
+FUNCTION CheckRangeSigned : DINT
+VAR_INPUT
+	value, lower, upper: DINT;
+END_VAR
+// Implicitly generated code : Only an Implementation suggestion
+
+IF (value < lower) THEN
+	CheckRangeSigned := lower;
+ELSIF(value > upper) THEN
+	CheckRangeSigned := upper;
+ELSE
+	CheckRangeSigned := value;
+END_IF
+{flow}
+
+END_FUNCTION
+```
+
+
+POU: CheckRangeUnsigned
+-----------------------
+
+File: ArbiterPLC/ImplicitChecks/CheckRangeUnsigned.TcPOU
+
+```vhdl
+// Implicitly generated code : DO NOT EDIT
+FUNCTION CheckRangeUnsigned : UDINT
+VAR_INPUT
+	value, lower, upper: UDINT;
+END_VAR
+// Implicitly generated code : Only an Implementation suggestion
+{noflow}
+IF (value < lower) THEN
+	CheckRangeUnsigned := lower;
+ELSIF(value > upper) THEN
+	CheckRangeUnsigned := upper;
+ELSE
+	CheckRangeUnsigned := value;
+END_IF
+{flow}
+
+END_FUNCTION
+```
+
+
+POU: FB_Hgvpu
+-------------
+
+File: ArbiterPLC/POUs/Accelerator/FB_Hgvpu.TcPOU
+
+```vhdl
+FUNCTION_BLOCK FB_Hgvpu
+VAR_INPUT
+	
+END_VAR
+
+VAR_OUTPUT
+END_VAR
+
+
+VAR
+    // From lcls-srv01: grep -e KDes  /u1/lcls/epics/ioc/data/ioc-undh-uc*/iocInfo/IOC.pvlist |sort
+
+    {attribute 'pytmc' := 'pv: 24; link: 2450:'}
+    fbSegment_24 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 25; link: 2550:'}
+    fbSegment_25 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 26; link: 2650:'}
+    fbSegment_26 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 27; link: 2750:'}
+    fbSegment_27 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 29; link: 2950:'}
+    fbSegment_29 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 30; link: 3050:'}
+    fbSegment_30 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 31; link: 3150:'}
+    fbSegment_31 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 32; link: 3250:'}
+    fbSegment_32 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 33; link: 3350:'}
+    fbSegment_33 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 34; link: 3450:'}
+    fbSegment_34 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 35; link: 3550:'}
+    fbSegment_35 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 36; link: 3650:'}
+    fbSegment_36 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 37; link: 3750:'}
+    fbSegment_37 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 38; link: 3850:'}
+    fbSegment_38 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 39; link: 3950:'}
+    fbSegment_39 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 40; link: 4050:'}
+    fbSegment_40 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 41; link: 4150:'}
+    fbSegment_41 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 42; link: 4250:'}
+    fbSegment_42 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 43; link: 4350:'}
+    fbSegment_43 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 44; link: 4450:'}
+    fbSegment_44 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 45; link: 4550:'}
+    fbSegment_45 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 46; link: 4650:'}
+    fbSegment_46 : FB_UndulatorSegment;
+    
+    fbSegment : ARRAY [iLowBound..iHighBound] OF POINTER TO FB_UndulatorSegment;
+    fbCurrentSegment : REFERENCE TO FB_UndulatorSegment;
+
+    iIndex : UDINT;
+
+    bInitialized : BOOL := FALSE;
+
+END_VAR
+
+VAR CONSTANT
+    iLowBound  : UDINT := 24;
+    iHighBound : UDINT := 46;
+END_VAR
+IF NOT bInitialized THEN
+
+    fbSegment[24] := ADR(fbSegment_24);
+    fbSegment[25] := ADR(fbSegment_25);
+    fbSegment[26] := ADR(fbSegment_26);
+    fbSegment[27] := ADR(fbSegment_27);
+    fbSegment[28] := 0;
+    fbSegment[29] := ADR(fbSegment_29);
+    fbSegment[30] := ADR(fbSegment_30);
+    fbSegment[31] := ADR(fbSegment_31);
+    fbSegment[32] := ADR(fbSegment_32);
+    fbSegment[33] := ADR(fbSegment_33);
+    fbSegment[34] := ADR(fbSegment_34);
+    fbSegment[35] := ADR(fbSegment_35);
+    fbSegment[36] := ADR(fbSegment_36);
+    fbSegment[37] := ADR(fbSegment_37);
+    fbSegment[38] := ADR(fbSegment_38);
+    fbSegment[39] := ADR(fbSegment_39);
+    fbSegment[40] := ADR(fbSegment_40);
+    fbSegment[41] := ADR(fbSegment_41);
+    fbSegment[42] := ADR(fbSegment_42);
+    fbSegment[43] := ADR(fbSegment_43);
+    fbSegment[44] := ADR(fbSegment_44);
+    fbSegment[45] := ADR(fbSegment_45);
+    fbSegment[46] := ADR(fbSegment_46);
+
+    bInitialized := TRUE;
+END_IF
+
+FOR iIndex := iLowBound TO iHighBound DO
+    IF fbSegment[iIndex] <> 0 THEN
+		fbCurrentSegment REF= fbSegment[iIndex]^;
+		fbCurrentSegment();
+    END_IF
+END_FOR
+
+END_FUNCTION_BLOCK
+```
+
+
+POU: FB_SXU
+-----------
+
+File: ArbiterPLC/POUs/Accelerator/FB_SXU.TcPOU
+
+```vhdl
+FUNCTION_BLOCK FB_SXU
+VAR_INPUT
+	
+END_VAR
+
+VAR_OUTPUT
+END_VAR
+
+
+
+VAR
+    // From lcls-srv01: grep -e KDes  /u1/lcls/epics/ioc/data/sioc-unds-uc*/iocInfo/IOC.pvlist |sort
+
+
+    {attribute 'pytmc' := 'pv: 26; link: 2650:'}
+    fbSegment_26 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 27; link: 2750:'}
+    fbSegment_27 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 28; link: 2850:'}
+    fbSegment_28 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 29; link: 2950:'}
+    fbSegment_29 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 30; link: 3050:'}
+    fbSegment_30 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 31; link: 3150:'}
+    fbSegment_31 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 32; link: 3250:'}
+    fbSegment_32 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 33; link: 3350:'}
+    fbSegment_33 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 34; link: 3450:'}
+    fbSegment_34 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 36; link: 3650:'}
+    fbSegment_36 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 37; link: 3750:'}
+    fbSegment_37 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 38; link: 3850:'}
+    fbSegment_38 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 39; link: 3950:'}
+    fbSegment_39 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 40; link: 4050:'}
+    fbSegment_40 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 41; link: 4150:'}
+    fbSegment_41 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 42; link: 4250:'}
+    fbSegment_42 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 43; link: 4350:'}
+    fbSegment_43 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 44; link: 4450:'}
+    fbSegment_44 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 45; link: 4550:'}
+    fbSegment_45 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 46; link: 4650:'}
+    fbSegment_46 : FB_UndulatorSegment;
+    
+    {attribute 'pytmc' := 'pv: 47; link: 4750:'}
+    fbSegment_47 : FB_UndulatorSegment;
+    
+
+
+    fbSegment : ARRAY [iLowBound..iHighBound] OF POINTER TO FB_UndulatorSegment;
+    fbCurrentSegment : REFERENCE TO FB_UndulatorSegment;
+
+    iIndex : UDINT;
+
+    bInitialized : BOOL := FALSE;
+
+END_VAR
+
+VAR CONSTANT
+    iLowBound  : UDINT := 26;
+    iHighBound : UDINT := 47;
+END_VAR
+IF NOT bInitialized THEN
+
+    fbSegment[26] := ADR(fbSegment_26);
+    fbSegment[27] := ADR(fbSegment_27);
+    fbSegment[28] := ADR(fbSegment_28);
+    fbSegment[29] := ADR(fbSegment_29);
+    fbSegment[30] := ADR(fbSegment_30);
+    fbSegment[31] := ADR(fbSegment_31);
+    fbSegment[32] := ADR(fbSegment_32);
+    fbSegment[33] := ADR(fbSegment_33);
+    fbSegment[34] := ADR(fbSegment_34);
+    fbSegment[35] := 0;
+    fbSegment[36] := ADR(fbSegment_36);
+    fbSegment[37] := ADR(fbSegment_37);
+    fbSegment[38] := ADR(fbSegment_38);
+    fbSegment[39] := ADR(fbSegment_39);
+    fbSegment[40] := ADR(fbSegment_40);
+    fbSegment[41] := ADR(fbSegment_41);
+    fbSegment[42] := ADR(fbSegment_42);
+    fbSegment[43] := ADR(fbSegment_43);
+    fbSegment[44] := ADR(fbSegment_44);
+    fbSegment[45] := ADR(fbSegment_45);
+    fbSegment[46] := ADR(fbSegment_46);
+    fbSegment[47] := ADR(fbSegment_47);
+
+    bInitialized := TRUE;
+END_IF
+
+FOR iIndex := iLowBound TO iHighBound DO
+    IF fbSegment[iIndex] <> 0 THEN
+		fbCurrentSegment REF= fbSegment[iIndex]^;
+		fbCurrentSegment();
+    END_IF
+END_FOR
+
+END_FUNCTION_BLOCK
+```
+
+
+POU: FB_UndulatorSegment
+------------------------
+
+File: ArbiterPLC/POUs/Accelerator/FB_UndulatorSegment.TcPOU
+
+```vhdl
+FUNCTION_BLOCK FB_UndulatorSegment
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	{attribute 'pytmc' := '
+		pv: KDes
+		link: KDes
+	'}
+	fbKDesired : FB_LREALFromEPICS;
+
+	{attribute 'pytmc' := '
+		pv: KAct
+		link: KAct
+	'}
+	fbKActual : FB_LREALFromEPICS;
+
+END_VAR
+fbKDesired();
+fbKActual();
+
+END_FUNCTION_BLOCK
+```
+
+
+POU: FB_eVSimulator
+-------------------
+
+File: ArbiterPLC/POUs/FB_eVSimulator.TcPOU
+
+```vhdl
+(* eV Simulator
+A. Wallace 2019-8-30
+
+Adds noise to the eV and changes eV position occasionally.
+*)
+FUNCTION_BLOCK FB_eVSimulator
+VAR_INPUT
+	NoiseLevel	:	REAL	:= 0; // eV Noise
+	ChangeTime : TIME := T#10S;
+END_VAR
+VAR_OUTPUT
+	eV	:	REAL := 300;
+END_VAR
+VAR
+	eVRange : REAL := 1600;
+	timer: TON;
+	eVRand	:	DRAND :=(Seed:=0);
+	NoiseRand : DRAND := (Seed:=0);
+END_VAR
+timer(in:=TRUE, PT:=ChangeTime);
+
+//Occasionally change eV
+IF timer.Q THEN
+	timer(in:=FALSE);
+	eVRand();
+	eV := LIMIT(0, eVRange*LREAL_TO_REAL(eVRand.Num), eVRange);
+END_IF
+
+// Noise generation
+NoiseRand();
+eV := eV + NoiseLevel*LREAL_TO_REAL(NoiseRand.Num);
+NoiseRand();
+eV := LIMIT(0, ev - NoiseLevel*LREAL_TO_REAL(NoiseRand.Num), eVRange);
+
+END_FUNCTION_BLOCK
+```
+
+
+POU: Fast_Faults_Evaluate
+-------------------------
+
+File: ArbiterPLC/POUs/Fast_Faults_Evaluate.TcPOU
+
+```vhdl
+PROGRAM Fast_Faults_Evaluate
+VAR
+END_VAR
+g_FastFaultOutput1.EvaluateOutput(i_xVeto:=PMPS_GVL.stCurrentBeamParameters.aStoppers[PMPS.L_Stopper.ST1]);
+
+END_PROGRAM
+```
+
+
+POU: MAIN
+---------
+
+File: ArbiterPLC/POUs/MAIN.TcPOU
+
+```vhdl
+PROGRAM MAIN
+VAR
+	Initialize	:	BOOL := TRUE;
+	
+	AttemptReset : TON := (PT:=T#500ms);
+    
+    DisplayStats : FB_CXSetTextDisplayUSB := (nPort:=28928);
+    fbFormat   : FB_FormatString;
+    bError     : BOOL;
+    nErrID     : UDINT;
+    sOut       : T_MaxString;   
+    
+    {attribute 'pytmc' := '
+		pv: TEST:LOGHANDLER:
+	'}
+	fbLogHandler	: FB_LogHandler;
+	
+	fbEcatDiag : FB_EcatDiagWrapper;
+
+	{attribute 'pytmc' := '
+		pv: Arbiter:Link:HGVPU
+		link: USEG:UNDH:
+	'}
+	fbHgvpu : FB_Hgvpu;
+	
+	{attribute 'pytmc' := '
+		pv: Arbiter:Link:SXU
+		link: USEG:UNDS:
+	'}
+	fbSxu : FB_SXU;
+	
+END_VAR
+//Arbiter PLC
+
+IF Initialize THEN
+	Initialize := FALSE;
+END_IF
+
+MachineSimulation();
+		
+PMPS_Arbiter();
+
+AttemptReset(IN:=GVL.g_FastFaultOutput1.xOK, Q=>GVL.g_FastFaultOutput1.i_xReset);
+
+(*
+DisplayStats.bExecute S= NOT DisplayStats.bBusy AND NOT DisplayStats.bError;
+DisplayStats.bExecute R= DisplayStats.bBusy OR DisplayStats.bError;
+
+DisplayStats.sLine1 := 'PMPS-ARBITER-K';
+fbFormat(sFormat := 'Fast Faults: %d', arg1:=F_ULINT(PMPS_GVL.AccumulatedFF), sOut=>DisplayStats.sLine2, bError => bError, nErrID => nErrID ); 
+
+DisplayStats(eMode:=E_CX2100_DisplayModesWr.eCX2100_WriteLines);
+*)
+
+fbEcatDiag();
+fbLogHandler();
+
+END_PROGRAM
+ACTION Initialize:
+
+END_ACTION
+```
+
+
+POU: MachineSimulation
+----------------------
+
+File: ArbiterPLC/POUs/MachineSimulation.TcPOU
+
+```vhdl
+PROGRAM MachineSimulation
+VAR
+	fbMachine	:	FB_MachineSimulator; //Simulates attenuator as well
+	fbeVSimulator : FB_eVSimulator := (NoiseLevel := 1);
+END_VAR
+// reV Simulator
+fbeVSimulator();
+
+// Machine simulator
+fbMachine(
+	i_stAssertedParams := ReqBP,
+	q_stMachineParams => PMPS_GVL.stCurrentBeamParameters,
+	i_xFault	:= NOT GVL.g_FastFaultOutput1.q_xFastFaultOut
+	);
+
+PMPS_GVL.stCurrentBeamParameters.neVRange := F_eVRangeCalculator(fbeVSimulator.eV, PMPS_GVL.stCurrentBeamParameters.neVRange);
+
+END_PROGRAM
+```
+
+
+POU: PMPS_Arbiter
+-----------------
+
+File: ArbiterPLC/POUs/PMPS_Arbiter.TcPOU
+
+```vhdl
+PROGRAM PMPS_Arbiter
+VAR
+	
+	fbPhotonEnergyWatcher	:	FB_PhotonEnergyWatcher;
+	
+	fbMPSInterface	:	FB_BeamClassOutputs;
+    
+    fbCuInterface	:	FB_CTLS_Outputs;
+	
+	(* Subsystem requests use this FB and a pragma link to pass their requests to the arbiter.
+	The fb is called on each cycle and updates the arbiter with the current BP set requested 
+	from the subsystem PLC.*)
+	//<TODO> make this so it does input and output to the IF
+	{attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[SubSysPLC1]^IO Inputs^RequestedBP; 
+                                .o_CurrentBP:=TIIB[SubSysPLC1]^IO Outputs^CurrentBP;
+                                .i_Connected:=TIIB[SubSysPLC1]^SYNC Inputs^External device not connected;
+                                .i_WcState:=TIIB[SubSysPLC1]^WcState^WcState;
+                                .i_TxPDOState:=TIIB[SubSysPLC1]^SYNC Inputs^TxPDO state;
+                                '}
+	fbSubSys1_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF0F);
+	
+	{attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[SubSysPLC2]^IO Inputs^RequestedBP;
+                                .i_xNewRequest:=TIIB[SubSysPLC2]^IO Inputs^xNewRequest; 
+                                .o_CurrentBP:=TIIB[SubSysPLC2]^IO Outputs^CurrentBP;
+                                .i_Connected:=TIIB[SubSysPLC2]^SYNC Inputs^External device not connected;
+                                .i_WcState:=TIIB[SubSysPLC2]^WcState^WcState;
+                                .i_TxPDOState:=TIIB[SubSysPLC2]^SYNC Inputs^TxPDO state;
+                                .i_TxPDOToggle:=TIIB[SubSysPLC2]^SYNC Inputs^TxPDO toggle;
+                                '}
+	fbSubSys2_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF10);
+    
+    fbBPRequestor : FB_BPRequestor;
+	
+	AttemptReset : TON := (PT:=T#1s);
+    
+    anothervar : bool;
+    testFF : FB_FastFault;
+    
+    logging_active : BOOL;
+    cycle : INT;
+    
+    {attribute 'pytmc' := '
+		pv: @(P):PhotonEnergy
+        link: ~
+	'}
+    fPhotonEnergy : REAL;
+    
+    {attribute 'pytmc' := '
+		pv: @(P):PhotonEnergySeverity
+        link: ~.SEVR
+	'}
+    iPhotonEnergySeverity : INT;
+	
+END_VAR
+// Updating arbiter with subsystem requests.
+fbSubSys1_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
+
+fbSubSys2_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
+
+// Example with attenuator peel-off
+//////////////////////////////////
+
+// Beam parameter requestor
+fbBPRequestor(Arbiter:=GVL.g_fbArbiter1);
+
+// Request beam class
+fbMPSInterface(nBeamClass := 5);
+
+// Request Cu beam rate
+fbCuInterface(i_ArbiterBP := ReqBP);
+
+
+// Keep an eye on the photon energy
+fbPhotonEnergyWatcher(i_stCurrentBeamParams	:= PMPS_GVL.stCurrentBeamParameters,
+					i_stRequestedBeamParams := ReqBP,
+					io_fbFFHWO:= GVL.g_FastFaultOutput1,
+                    i_xReset := GVL.AttemptReset);
+
+AttemptReset(IN:=fbPhotonEnergyWatcher.xPhotonEnergyWithinBounds, Q=>GVL.AttemptReset);
+
+// Trip a fast fault periodically
+testFF(io_fbFFHWO:= g_FastFaultOutput1);
+testFF.i_xOK := (cycle mod 1000) = 0;
+cycle := cycle + 1;
+
+g_FastFaultOutput1.EvaluateVetos();
+
+IF logging_active THEN
+    g_FastFaultOutput1.ExecuteLogging();
+END_IF
+
+END_PROGRAM
+```
+
+
+Symbols
+-------
+
+    .TCPADS_MAXUDP_BUFFSIZE : UDINT (4386112 32)
+    Constants.CompilerVersion : VERSION (17004416 64)
+    Constants.CompilerVersionNumeric : DWORD (17004576 32)
+    Constants.RuntimeVersion : VERSION (17004352 64)
+    Constants.RuntimeVersionNumeric : DWORD (17004544 32)
+    Constants.bFPUSupport : BOOL (17004512 8)
+    Constants.bLittleEndian : BOOL (15656368 8)
+    Constants.bSimulationMode : BOOL (15656376 8)
+    Constants.nPackMode : UINT (17004496 16)
+    Constants.nRegisterSize : WORD (17004480 16)
+    DefaultGlobals.fTimeStamp : LREAL (4096128 64)
+    DefaultGlobals.stSys : LCLS_General.ST_System (4096000 88)
+    GVL.AttemptReset : BOOL (15656352 8)
+    GVL.ReqBP : ST_BeamParams (16163648 1856)
+    GVL.g_FastFaultOutput1 : PMPS.FB_HardwareFFOutput (16165504 838720)
+    GVL.g_FastFaultOutput1.q_xFastFaultOut : BOOL (16165552 8)
+    GVL.g_fbArbiter1 : PMPS.FB_Arbiter (15793920 369728)
+    GVL.g_rTestingVelocity : LREAL (17004224 64)
+    GVL.nLangId_OnlineMonitoring : DINT (4388352 32)
+    GVL_CheckBounds.nDivByZero : UDINT (17004320 32)
+    GVL_CheckBounds.nTooHigh : UDINT (17004288 32)
+    GVL_CheckBounds.nTooLow : UDINT (15701472 32)
+    GVL_INTERNAL.UNINITIALIZED_CLASS_GUID : GUID (4388704 128)
+    GVL_Logger.TCPADS_MAXUDP_BUFFSIZE : UDINT (4097024 32)
+    GVL_Logger.cLogHost : STRING(15) (4096192 128)
+    GVL_Logger.fbRootLogger : LCLS_General.FB_LogMessage (4097056 80896)
+    GVL_Logger.iLogPort : UINT (4096096 16)
+    GVL_Logger.sIpTidbit : STRING(6) (4096320 56)
+    GVL_Logger.sPlcHostname : STRING(80) (4096376 648)
+    GVL_Param_TcUnit.MaxNumberOfAsserts : UINT (4481664 16)
+    GVL_Param_TcUnit.MaxNumberOfTestSuites : UINT (4481632 16)
+    GVL_Param_TcUnit.MaxNumberOfTestsForEachTestSuite : UINT (4481648 16)
+    GVL_TcUnit.AdsLogger : PMPS.TcUnit.FB_ADSLogStringMessageFifoQueue (4500320 4128864)
+    GVL_TcUnit.CurrentTestNameBeingCalled : Tc2_System.T_MaxString (4482240 2048)
+    GVL_TcUnit.CurrentTestSuiteBeingCalled : POINTER TO PMPS.TcUnit.FB_TestSuite (4482208 32)
+    GVL_TcUnit.IgnoreCurrentTest : BOOL (4481688 8)
+    GVL_TcUnit.NumberOfInitializedTestSuites : UINT (4484288 16)
+    GVL_TcUnit.TcUnitRunner : PMPS.TcUnit.FB_TcUnitRunner (4481696 512)
+    GVL_TcUnit.TestSuiteAddresses : ARRAY[1..500] OF POINTER TO PMPS.TcUnit.FB_TestSuite (4484320 16000)
+    GVL_TcUnit.TestSuiteIsRegistered : BOOL (4481680 8)
+    Global_Constants.EMPTY_EVENT_CLASS : GUID (4388000 128)
+    Global_Constants.EMPTY_EVENT_ID : UDINT (4388128 32)
+    Global_Constants.EMPTY_SEVERITY : TcEventSeverity (4384784 16)
+    Global_Constants.SUCCESS_EVENT : TcEventEntry (4388160 192)
+    Global_Variables.ADSIGRP_DEVICE_DATA : UDINT (4179648 32)
+    Global_Variables.ADSIGRP_IOIMAGE_CLEARI : UDINT (4179552 32)
+    Global_Variables.ADSIGRP_IOIMAGE_CLEARO : UDINT (4179584 32)
+    Global_Variables.ADSIGRP_IOIMAGE_RISIZE : UDINT (4179424 32)
+    Global_Variables.ADSIGRP_IOIMAGE_ROSIZE : UDINT (4179520 32)
+    Global_Variables.ADSIGRP_IOIMAGE_RWIB : UDINT (4179360 32)
+    Global_Variables.ADSIGRP_IOIMAGE_RWIOB : UDINT (4179616 32)
+    Global_Variables.ADSIGRP_IOIMAGE_RWIX : UDINT (4179392 32)
+    Global_Variables.ADSIGRP_IOIMAGE_RWOB : UDINT (4179456 32)
+    Global_Variables.ADSIGRP_IOIMAGE_RWOX : UDINT (4179488 32)
+    Global_Variables.ADSIGRP_SYMNAME : UDINT (4178944 32)
+    Global_Variables.ADSIGRP_SYMNOTE : UDINT (4179328 32)
+    Global_Variables.ADSIGRP_SYMTAB : UDINT (4178912 32)
+    Global_Variables.ADSIGRP_SYMVAL : UDINT (4178976 32)
+    Global_Variables.ADSIGRP_SYM_DOWNLOAD : UDINT (4179232 32)
+    Global_Variables.ADSIGRP_SYM_HNDBYNAME : UDINT (4179008 32)
+    Global_Variables.ADSIGRP_SYM_INFOBYNAME : UDINT (4179136 32)
+    Global_Variables.ADSIGRP_SYM_INFOBYNAMEEX : UDINT (4179200 32)
+    Global_Variables.ADSIGRP_SYM_RELEASEHND : UDINT (4179104 32)
+    Global_Variables.ADSIGRP_SYM_UPLOAD : UDINT (4179264 32)
+    Global_Variables.ADSIGRP_SYM_UPLOADINFO : UDINT (4179296 32)
+    Global_Variables.ADSIGRP_SYM_VALBYHND : UDINT (4179072 32)
+    Global_Variables.ADSIGRP_SYM_VALBYNAME : UDINT (4179040 32)
+    Global_Variables.ADSIGRP_SYM_VERSION : UDINT (4179168 32)
+    Global_Variables.ADSIOFFS_DEVDATA_ADSSTATE : UDINT (4179680 32)
+    Global_Variables.ADSIOFFS_DEVDATA_DEVSTATE : UDINT (4179712 32)
+    Global_Variables.ADSLOG_MSGTYPE_ERROR : DWORD (4180768 32)
+    Global_Variables.ADSLOG_MSGTYPE_HINT : DWORD (4180704 32)
+    Global_Variables.ADSLOG_MSGTYPE_LOG : DWORD (4180800 32)
+    Global_Variables.ADSLOG_MSGTYPE_MSGBOX : DWORD (4180832 32)
+    Global_Variables.ADSLOG_MSGTYPE_RESOURCE : DWORD (4180864 32)
+    Global_Variables.ADSLOG_MSGTYPE_STRING : DWORD (4180896 32)
+    Global_Variables.ADSLOG_MSGTYPE_WARN : DWORD (4180736 32)
+    Global_Variables.ADSSTATE_CONFIG : UINT (4178800 16)
+    Global_Variables.ADSSTATE_ERROR : UINT (4178736 16)
+    Global_Variables.ADSSTATE_EXCEPTION : UINT (4178864 16)
+    Global_Variables.ADSSTATE_IDLE : UINT (4178576 16)
+    Global_Variables.ADSSTATE_INCOMPATIBLE : UINT (4178848 16)
+    Global_Variables.ADSSTATE_INIT : UINT (4178608 16)
+    Global_Variables.ADSSTATE_INVALID : UINT (4178560 16)
+    Global_Variables.ADSSTATE_LOADCFG : UINT (4178688 16)
+    Global_Variables.ADSSTATE_MAXSTATES : UINT (4178880 16)
+    Global_Variables.ADSSTATE_POWERFAILURE : UINT (4178704 16)
+    Global_Variables.ADSSTATE_POWERGOOD : UINT (4178720 16)
+    Global_Variables.ADSSTATE_RECONFIG : UINT (4178816 16)
+    Global_Variables.ADSSTATE_RESET : UINT (4178592 16)
+    Global_Variables.ADSSTATE_RESUME : UINT (4178784 16)
+    Global_Variables.ADSSTATE_RUN : UINT (4178640 16)
+    Global_Variables.ADSSTATE_SAVECFG : UINT (4178672 16)
+    Global_Variables.ADSSTATE_SHUTDOWN : UINT (4178752 16)
+    Global_Variables.ADSSTATE_START : UINT (4178624 16)
+    Global_Variables.ADSSTATE_STOP : UINT (4178656 16)
+    Global_Variables.ADSSTATE_STOPPING : UINT (4178832 16)
+    Global_Variables.ADSSTATE_SUSPEND : UINT (4178768 16)
+    Global_Variables.AMSLOGGER_IGR_GENERAL : UDINT (4246560 32)
+    Global_Variables.AMSLOGGER_IOF_MODE : UDINT (4246592 32)
+    Global_Variables.AMSPORT_AMSLOGGER : UINT (4246624 16)
+    Global_Variables.AMSPORT_EVENTLOG : UINT (4178272 16)
+    Global_Variables.AMSPORT_LOGGER : UINT (4177968 16)
+    Global_Variables.AMSPORT_R0_CAM : UINT (4178496 16)
+    Global_Variables.AMSPORT_R0_CAMTOOL : UINT (4178512 16)
+    Global_Variables.AMSPORT_R0_CNC : UINT (4178384 16)
+    Global_Variables.AMSPORT_R0_IO : UINT (4178304 16)
+    Global_Variables.AMSPORT_R0_ISG : UINT (4178368 16)
+    Global_Variables.AMSPORT_R0_LINE : UINT (4178400 16)
+    Global_Variables.AMSPORT_R0_NC : UINT (4178320 16)
+    Global_Variables.AMSPORT_R0_NCSAF : UINT (4178336 16)
+    Global_Variables.AMSPORT_R0_NCSVB : UINT (4178352 16)
+    Global_Variables.AMSPORT_R0_PLC : UINT (4178416 16)
+    Global_Variables.AMSPORT_R0_PLC_RTS1 : UINT (4178432 16)
+    Global_Variables.AMSPORT_R0_PLC_RTS2 : UINT (4178448 16)
+    Global_Variables.AMSPORT_R0_PLC_RTS3 : UINT (4178464 16)
+    Global_Variables.AMSPORT_R0_PLC_RTS4 : UINT (4178480 16)
+    Global_Variables.AMSPORT_R0_RTIME : UINT (4178288 16)
+    Global_Variables.AMSPORT_R3_SCOPESERVER : UINT (4178544 16)
+    Global_Variables.AMSPORT_R3_SYSSERV : UINT (4178528 16)
+    Global_Variables.AMSPORT_TCPIPSRV : UINT (4383088 16)
+    Global_Variables.BOOTDATAFLAGS_PERSISTENT_INVALID : BYTE (4180936 8)
+    Global_Variables.BOOTDATAFLAGS_PERSISTENT_LOADED : BYTE (4180928 8)
+    Global_Variables.BOOTDATAFLAGS_RETAIN_INVALID : BYTE (4178896 8)
+    Global_Variables.BOOTDATAFLAGS_RETAIN_LOADED : BYTE (4096088 8)
+    Global_Variables.BOOTDATAFLAGS_RETAIN_REQUESTED : BYTE (4178904 8)
+    Global_Variables.CONNECT_MODE_ENABLEDBG : DWORD (4387104 32)
+    Global_Variables.DATE_AND_TIME_SECPERDAY : DWORD (4254240 32)
+    Global_Variables.DATE_AND_TIME_SECPERWEEK : DWORD (4259552 32)
+    Global_Variables.DBG_OUTPUT_FILE : DWORD (4265824 32)
+    Global_Variables.DBG_OUTPUT_LOG : DWORD (4265792 32)
+    Global_Variables.DBG_OUTPUT_NONE : DWORD (4265760 32)
+    Global_Variables.DBG_OUTPUT_VISU : DWORD (4265856 32)
+    Global_Variables.DEFAULT_ADS_TIMEOUT : TIME (4181600 32)
+    Global_Variables.DEFAULT_BACKLASHVALUE : LREAL (8636800 64)
+    Global_Variables.DEFAULT_CSV_FIELD_DOUBLE_QUOTE : BYTE (4382096 8)
+    Global_Variables.DEFAULT_CSV_FIELD_SEP : BYTE (4183336 8)
+    Global_Variables.DEFAULT_CSV_RECORD_SEP_CR : BYTE (4382104 8)
+    Global_Variables.DEFAULT_CSV_RECORD_SEP_LF : BYTE (4383056 8)
+    Global_Variables.DEFAULT_HOME_POSITION : LREAL (8636736 64)
+    Global_Variables.EC_ADS_IGRP_CANOPEN_SDO : UDINT (8638336 32)
+    Global_Variables.EC_ADS_IGRP_CANOPEN_SDO_LASTERROR : UDINT (8638368 32)
+    Global_Variables.EC_ADS_IGRP_ECAT_SOE : UDINT (8637984 32)
+    Global_Variables.EC_ADS_IGRP_ECAT_SOE_LASTERROR : UDINT (8638016 32)
+    Global_Variables.EC_ADS_IGRP_FOE_FCLOSE : UDINT (8638176 32)
+    Global_Variables.EC_ADS_IGRP_FOE_FOPENREAD : UDINT (8638112 32)
+    Global_Variables.EC_ADS_IGRP_FOE_FOPENWRITE : UDINT (8638144 32)
+    Global_Variables.EC_ADS_IGRP_FOE_FREAD : UDINT (8638208 32)
+    Global_Variables.EC_ADS_IGRP_FOE_FWRITE : UDINT (8638240 32)
+    Global_Variables.EC_ADS_IGRP_FOE_LASTERROR : UDINT (8638304 32)
+    Global_Variables.EC_ADS_IGRP_FOE_PROGRESSINFO : UDINT (8638272 32)
+    Global_Variables.EC_ADS_IGRP_MASTER_COUNT_FRAME : UDINT (8637952 32)
+    Global_Variables.EC_ADS_IGRP_MASTER_COUNT_SLAVE : UDINT (8637568 32)
+    Global_Variables.EC_ADS_IGRP_MASTER_DEVICESTATE : UDINT (8637920 32)
+    Global_Variables.EC_ADS_IGRP_MASTER_SENDCMD : UDINT (8637728 32)
+    Global_Variables.EC_ADS_IGRP_MASTER_SLAVE_ABNORMAL_STATE_CHANGES : UDINT (8637856 32)
+    Global_Variables.EC_ADS_IGRP_MASTER_SLAVE_ADDRESSES : UDINT (8637696 32)
+    Global_Variables.EC_ADS_IGRP_MASTER_SLAVE_CRC : UDINT (8637824 32)
+    Global_Variables.EC_ADS_IGRP_MASTER_SLAVE_IDENTITY : UDINT (8637792 32)
+    Global_Variables.EC_ADS_IGRP_MASTER_SLAVE_SETPRESENT_CHANGES : UDINT (8637888 32)
+    Global_Variables.EC_ADS_IGRP_MASTER_STATEMACHINE : UDINT (8637440 32)
+    Global_Variables.EC_ADS_IGRP_SLAVE_STATEMACHINE : UDINT (8637760 32)
+    Global_Variables.EC_ADS_IOFFS_MASTER_COUNT_PORT : UDINT (8637632 32)
+    Global_Variables.EC_ADS_IOFFS_MASTER_COUNT_ROUTER : UDINT (8637664 32)
+    Global_Variables.EC_ADS_IOFFS_MASTER_COUNT_SLAVE : UDINT (8637600 32)
+    Global_Variables.EC_ADS_IOFFS_MASTER_CURSTATE : UDINT (8637472 32)
+    Global_Variables.EC_ADS_IOFFS_MASTER_INTERNALSTATE : UDINT (8637536 32)
+    Global_Variables.EC_ADS_IOFFS_MASTER_REQSTATE : UDINT (8637504 32)
+    Global_Variables.EC_AMSPORT_MASTER : UINT (8637152 16)
+    Global_Variables.EC_CMD_TYPE_APRD : BYTE (4484312 8)
+    Global_Variables.EC_CMD_TYPE_APRW : BYTE (8637192 8)
+    Global_Variables.EC_CMD_TYPE_APWR : BYTE (8637184 8)
+    Global_Variables.EC_CMD_TYPE_BRD : BYTE (8637224 8)
+    Global_Variables.EC_CMD_TYPE_BRW : BYTE (8637240 8)
+    Global_Variables.EC_CMD_TYPE_BWR : BYTE (8637232 8)
+    Global_Variables.EC_CMD_TYPE_FPRD : BYTE (8637200 8)
+    Global_Variables.EC_CMD_TYPE_FPRW : BYTE (8637216 8)
+    Global_Variables.EC_CMD_TYPE_FPWR : BYTE (8637208 8)
+    Global_Variables.EC_CMD_TYPE_LRD : BYTE (8637248 8)
+    Global_Variables.EC_CMD_TYPE_LRW : BYTE (8637264 8)
+    Global_Variables.EC_CMD_TYPE_LWR : BYTE (8637256 8)
+    Global_Variables.EC_COE_PROTERR_ACCESS : UDINT (8638976 32)
+    Global_Variables.EC_COE_PROTERR_BLK_SIZE : UDINT (8638848 32)
+    Global_Variables.EC_COE_PROTERR_CCS_SCS : UDINT (8638816 32)
+    Global_Variables.EC_COE_PROTERR_CRC : UDINT (8638912 32)
+    Global_Variables.EC_COE_PROTERR_DATA_RANGE : UDINT (8639392 32)
+    Global_Variables.EC_COE_PROTERR_DATA_RANGE1 : UDINT (8639424 32)
+    Global_Variables.EC_COE_PROTERR_DATA_RANGE2 : UDINT (8639456 32)
+    Global_Variables.EC_COE_PROTERR_DATA_SIZE : UDINT (8639264 32)
+    Global_Variables.EC_COE_PROTERR_DATA_SIZE1 : UDINT (8639296 32)
+    Global_Variables.EC_COE_PROTERR_DATA_SIZE2 : UDINT (8639328 32)
+    Global_Variables.EC_COE_PROTERR_DICTIONARY : UDINT (8639648 32)
+    Global_Variables.EC_COE_PROTERR_GENERAL : UDINT (8639520 32)
+    Global_Variables.EC_COE_PROTERR_HARDWARE : UDINT (8639232 32)
+    Global_Variables.EC_COE_PROTERR_INDEX : UDINT (8639072 32)
+    Global_Variables.EC_COE_PROTERR_I_INCOMP : UDINT (8639200 32)
+    Global_Variables.EC_COE_PROTERR_MEMORY : UDINT (8638944 32)
+    Global_Variables.EC_COE_PROTERR_MINMAX : UDINT (8639488 32)
+    Global_Variables.EC_COE_PROTERR_OFFSET : UDINT (8639360 32)
+    Global_Variables.EC_COE_PROTERR_PDO_LEN : UDINT (8639136 32)
+    Global_Variables.EC_COE_PROTERR_PDO_MAP : UDINT (8639104 32)
+    Global_Variables.EC_COE_PROTERR_P_INCOMP : UDINT (8639168 32)
+    Global_Variables.EC_COE_PROTERR_READONLY : UDINT (8639040 32)
+    Global_Variables.EC_COE_PROTERR_SEQNO : UDINT (8638880 32)
+    Global_Variables.EC_COE_PROTERR_TIMEOUT : UDINT (8638784 32)
+    Global_Variables.EC_COE_PROTERR_TOGGLE : UDINT (8638752 32)
+    Global_Variables.EC_COE_PROTERR_TRANSFER : UDINT (8639552 32)
+    Global_Variables.EC_COE_PROTERR_TRANSFER1 : UDINT (8639584 32)
+    Global_Variables.EC_COE_PROTERR_TRANSFER2 : UDINT (8639616 32)
+    Global_Variables.EC_COE_PROTERR_WRITEONLY : UDINT (8639008 32)
+    Global_Variables.EC_DCTIME_DATEDELTA_OFFSET : DWORD (8639680 32)
+    Global_Variables.EC_DCTIME_DELTA_OFFSET : Tc2_Utilities.T_ULARGE_INTEGER (8639712 64)
+    Global_Variables.EC_DCTIME_DELTA_OFFSET64 : ULINT (8640000 64)
+    Global_Variables.EC_DCTIME_TICKSPERDAY : Tc2_Utilities.T_ULARGE_INTEGER (8639904 64)
+    Global_Variables.EC_DCTIME_TICKSPERDAY64 : ULINT (8640192 64)
+    Global_Variables.EC_DCTIME_TICKSPERMSEC : Tc2_Utilities.T_ULARGE_INTEGER (8639776 64)
+    Global_Variables.EC_DCTIME_TICKSPERMSEC64 : ULINT (8640064 64)
+    Global_Variables.EC_DCTIME_TICKSPERSEC : Tc2_Utilities.T_ULARGE_INTEGER (8639840 64)
+    Global_Variables.EC_DCTIME_TICKSPERSEC64 : ULINT (8640128 64)
+    Global_Variables.EC_DEVICE_STATE_BOOTSTRAP : BYTE (8637296 8)
+    Global_Variables.EC_DEVICE_STATE_DISABLED : BYTE (8637344 8)
+    Global_Variables.EC_DEVICE_STATE_ERROR : BYTE (8637320 8)
+    Global_Variables.EC_DEVICE_STATE_INIT : BYTE (8637280 8)
+    Global_Variables.EC_DEVICE_STATE_INITCMD_ERROR : BYTE (8637336 8)
+    Global_Variables.EC_DEVICE_STATE_INVALID_VPRS : BYTE (8637328 8)
+    Global_Variables.EC_DEVICE_STATE_MASK : BYTE (8637272 8)
+    Global_Variables.EC_DEVICE_STATE_OP : BYTE (8637312 8)
+    Global_Variables.EC_DEVICE_STATE_PREOP : BYTE (8637288 8)
+    Global_Variables.EC_DEVICE_STATE_SAFEOP : BYTE (8637304 8)
+    Global_Variables.EC_FOE_PROTERR_ACCESS : UDINT (8638464 32)
+    Global_Variables.EC_FOE_PROTERR_BOOTSTRAPONLY : UDINT (8638656 32)
+    Global_Variables.EC_FOE_PROTERR_DISKFULL : UDINT (8638496 32)
+    Global_Variables.EC_FOE_PROTERR_EXISTS : UDINT (8638592 32)
+    Global_Variables.EC_FOE_PROTERR_ILLEAGAL : UDINT (8638528 32)
+    Global_Variables.EC_FOE_PROTERR_INVALIDPASSWORD : UDINT (8638720 32)
+    Global_Variables.EC_FOE_PROTERR_NOTDEFINED : UDINT (8638400 32)
+    Global_Variables.EC_FOE_PROTERR_NOTFOUND : UDINT (8638432 32)
+    Global_Variables.EC_FOE_PROTERR_NOTINBOOTSTRAP : UDINT (8638688 32)
+    Global_Variables.EC_FOE_PROTERR_NOUSER : UDINT (8638624 32)
+    Global_Variables.EC_FOE_PROTERR_PACKENO : UDINT (8638560 32)
+    Global_Variables.EC_LINK_STATE_ADDITIONAL_LINK : BYTE (8637384 8)
+    Global_Variables.EC_LINK_STATE_LINK_WITHOUT_COMM : BYTE (8637368 8)
+    Global_Variables.EC_LINK_STATE_MISSING_LINK : BYTE (8637376 8)
+    Global_Variables.EC_LINK_STATE_NOT_PRESENT : BYTE (8637360 8)
+    Global_Variables.EC_LINK_STATE_OK : BYTE (8637352 8)
+    Global_Variables.EC_LINK_STATE_PORT_A : BYTE (8637392 8)
+    Global_Variables.EC_LINK_STATE_PORT_B : BYTE (8637400 8)
+    Global_Variables.EC_LINK_STATE_PORT_C : BYTE (8637408 8)
+    Global_Variables.EC_LINK_STATE_PORT_D : BYTE (8637416 8)
+    Global_Variables.EC_MAX_SLAVES : UINT (8637168 16)
+    Global_Variables.EC_SOE_ELEMENT_ATTRIBUTE : BYTE (8638048 8)
+    Global_Variables.EC_SOE_ELEMENT_DATASTATE : BYTE (8637424 8)
+    Global_Variables.EC_SOE_ELEMENT_DEFAULT : BYTE (8638088 8)
+    Global_Variables.EC_SOE_ELEMENT_MAX : BYTE (8638072 8)
+    Global_Variables.EC_SOE_ELEMENT_MIN : BYTE (8638064 8)
+    Global_Variables.EC_SOE_ELEMENT_NAME : BYTE (8637432 8)
+    Global_Variables.EC_SOE_ELEMENT_UNIT : BYTE (8638056 8)
+    Global_Variables.EC_SOE_ELEMENT_VALUE : BYTE (8638080 8)
+    Global_Variables.EMPTY_ARG_VALUE : Tc2_Utilities.T_Arg (4247200 96)
+    Global_Variables.EMPTY_GUID_REGSTRING : STRING(38) (4385224 312)
+    Global_Variables.EMPTY_GUID_STRING : STRING(36) (4384928 296)
+    Global_Variables.EMPTY_GUID_STRUCT : GUID (4384800 128)
+    Global_Variables.EMPTY_ROUTE_ENTRY : Tc2_Utilities.ST_AmsRouteEntry (4245312 1184)
+    Global_Variables.FLOATREC_EXP_IS_INF : INT (4246672 16)
+    Global_Variables.FLOATREC_EXP_IS_NAN : INT (4246656 16)
+    Global_Variables.FLOATREC_MAX_DIGITS : INT (4246688 16)
+    Global_Variables.FLOATREC_MAX_PRECISION : INT (4246704 16)
+    Global_Variables.FLOATREC_MIN_PRECISION : INT (4246720 16)
+    Global_Variables.FMTERR_ARGTYPEINVALID : DWORD (4247040 32)
+    Global_Variables.FMTERR_ASTERISKPOSITION : DWORD (4246816 32)
+    Global_Variables.FMTERR_DESTBUFFOVERFLOW : DWORD (4247136 32)
+    Global_Variables.FMTERR_FLAGPOSITION : DWORD (4246912 32)
+    Global_Variables.FMTERR_INSUFFICIENTARGS : DWORD (4247104 32)
+    Global_Variables.FMTERR_INVALIDPOINTERINPUT : DWORD (4247168 32)
+    Global_Variables.FMTERR_NOERROR : DWORD (4246752 32)
+    Global_Variables.FMTERR_PERCENTSIGNPOSITION : DWORD (4246784 32)
+    Global_Variables.FMTERR_PRECISIONDOTPOSITION : DWORD (4246976 32)
+    Global_Variables.FMTERR_PRECISIONVALUE : DWORD (4246880 32)
+    Global_Variables.FMTERR_TYPEFIELDVALUE : DWORD (4247008 32)
+    Global_Variables.FMTERR_UNACCEPTEDPARAMETER : DWORD (4247072 32)
+    Global_Variables.FMTERR_WIDTHPRECISIONVALPOS : DWORD (4246944 32)
+    Global_Variables.FMTERR_WIDTHVALUE : DWORD (4246848 32)
+    Global_Variables.FOPEN_MODEAPPEND : DWORD (4181024 32)
+    Global_Variables.FOPEN_MODEBINARY : DWORD (4181088 32)
+    Global_Variables.FOPEN_MODEPLUS : DWORD (4181056 32)
+    Global_Variables.FOPEN_MODEREAD : DWORD (4180960 32)
+    Global_Variables.FOPEN_MODETEXT : DWORD (4181120 32)
+    Global_Variables.FOPEN_MODEWRITE : DWORD (4180992 32)
+    Global_Variables.FORMAT_DECASC_CODES : ARRAY[0..9] OF BYTE (4247552 80)
+    Global_Variables.FORMAT_HEXASC_CODES : ARRAY[0..1] OF BYTE (4247296 256)
+    Global_Variables.FORMAT_MAX_ARGS : INT (4246640 16)
+    Global_Variables.GLOBAL_DCF77_PULSE_SPLIT : TIME (4183296 32)
+    Global_Variables.GLOBAL_DCF77_SEQUENCE_CHECK : BOOL (4183328 8)
+    Global_Variables.GLOBAL_FORMAT_HASH_PREFIX_TYPE : Tc2_Utilities.E_HashPrefixTypes (4183264 16)
+    Global_Variables.GLOBAL_SBCS_TABLE : Tc2_Utilities.E_SBCSType (4183280 16)
+    Global_Variables.HKEY_MAX_BINARY_DATA_SIZE : UDINT (4246528 32)
+    Global_Variables.IPHELPERAPI_ADAPTERSINFO : UDINT (4244992 32)
+    Global_Variables.IPHELPERAPI_IPADDRBYHOSTNAME : UDINT (4245024 32)
+    Global_Variables.LISTEN_MODE_CLOSEALL : DWORD (4387040 32)
+    Global_Variables.LISTEN_MODE_USEOPENED : DWORD (4387072 32)
+    Global_Variables.MAX_ADAPTER_ADDRESS_LENGTH : UDINT (4244896 32)
+    Global_Variables.MAX_ADAPTER_DESCRIPTION_LENGTH : UDINT (4244864 32)
+    Global_Variables.MAX_ADAPTER_NAME_LENGTH : UDINT (4244832 32)
+    Global_Variables.MAX_AVERAGE_MEASURES : INT (4183184 16)
+    Global_Variables.MAX_LOCAL_ADAPTERS : UDINT (4245056 32)
+    Global_Variables.MAX_REMOTE_PCS : INT (4183344 16)
+    Global_Variables.MAX_ROUTE_ADDR_LEN : BYTE (4245288 8)
+    Global_Variables.MAX_ROUTE_NAME_LEN : BYTE (4245280 8)
+    Global_Variables.MAX_ROUTE_TRANSPORT : BYTE (4245304 8)
+    Global_Variables.MAX_STRING_LENGTH : UDINT (4181696 32)
+    Global_Variables.MAX_THROTTLE_MODE : DWORD (4387136 32)
+    Global_Variables.MIN_ROUTE_TRANSPORT : BYTE (4245296 8)
+    Global_Variables.PI : LREAL (4181632 64)
+    Global_Variables.ROUTE_FLAG_DYNAMIC : DWORD (4245216 32)
+    Global_Variables.ROUTE_FLAG_NOOVERRIDE : DWORD (4245248 32)
+    Global_Variables.ROUTE_FLAG_TEMPORARY : DWORD (4245184 32)
+    Global_Variables.SYSTEMSERVICE_ADDREMOTE : UDINT (4245088 32)
+    Global_Variables.SYSTEMSERVICE_CHANGENETID : UDINT (4180512 32)
+    Global_Variables.SYSTEMSERVICE_CLOSEHANDLE : UDINT (4179872 32)
+    Global_Variables.SYSTEMSERVICE_CREATEFILE : UDINT (4179840 32)
+    Global_Variables.SYSTEMSERVICE_DELREMOTE : UDINT (4245120 32)
+    Global_Variables.SYSTEMSERVICE_ENUMREMOTE : UDINT (4245152 32)
+    Global_Variables.SYSTEMSERVICE_FCLOSE : UDINT (4179936 32)
+    Global_Variables.SYSTEMSERVICE_FDELETE : UDINT (4180256 32)
+    Global_Variables.SYSTEMSERVICE_FEOF : UDINT (4180224 32)
+    Global_Variables.SYSTEMSERVICE_FFILEFIND : UDINT (4246496 32)
+    Global_Variables.SYSTEMSERVICE_FGETS : UDINT (4180096 32)
+    Global_Variables.SYSTEMSERVICE_FOPEN : UDINT (4179904 32)
+    Global_Variables.SYSTEMSERVICE_FPRINTF : UDINT (4180192 32)
+    Global_Variables.SYSTEMSERVICE_FPUTS : UDINT (4180128 32)
+    Global_Variables.SYSTEMSERVICE_FREAD : UDINT (4179968 32)
+    Global_Variables.SYSTEMSERVICE_FRENAME : UDINT (4180288 32)
+    Global_Variables.SYSTEMSERVICE_FSCANF : UDINT (4180160 32)
+    Global_Variables.SYSTEMSERVICE_FSEEK : UDINT (4180032 32)
+    Global_Variables.SYSTEMSERVICE_FTELL : UDINT (4180064 32)
+    Global_Variables.SYSTEMSERVICE_FWRITE : UDINT (4180000 32)
+    Global_Variables.SYSTEMSERVICE_IPHELPERAPI : UDINT (4244928 32)
+    Global_Variables.SYSTEMSERVICE_IPHOSTNAME : UDINT (4244960 32)
+    Global_Variables.SYSTEMSERVICE_MKDIR : UDINT (4180320 32)
+    Global_Variables.SYSTEMSERVICE_OPENCREATE : UDINT (4179744 32)
+    Global_Variables.SYSTEMSERVICE_OPENREAD : UDINT (4179776 32)
+    Global_Variables.SYSTEMSERVICE_OPENWRITE : UDINT (4179808 32)
+    Global_Variables.SYSTEMSERVICE_REG_HKEYLOCALMACHINE : UDINT (4180384 32)
+    Global_Variables.SYSTEMSERVICE_RMDIR : UDINT (4180352 32)
+    Global_Variables.SYSTEMSERVICE_SENDEMAIL : UDINT (4180416 32)
+    Global_Variables.SYSTEMSERVICE_STARTPROCESS : UDINT (4180480 32)
+    Global_Variables.SYSTEMSERVICE_TIMESERVICES : UDINT (4180448 32)
+    Global_Variables.SYSTEMSTATEFLAGS_BSOD : BYTE (4180944 8)
+    Global_Variables.SYSTEMSTATEFLAGS_RTVIOLATION : BYTE (4180952 8)
+    Global_Variables.SYSTEMTIME_DATEDELTA_OFFSET : DWORD (4253888 32)
+    Global_Variables.SYSTEMTIME_DATE_AND_TIME_MAX : Tc2_Utilities.T_ULARGE_INTEGER (4254176 64)
+    Global_Variables.SYSTEMTIME_DATE_AND_TIME_MAX64 : ULINT (4254528 64)
+    Global_Variables.SYSTEMTIME_DATE_AND_TIME_MIN : Tc2_Utilities.T_ULARGE_INTEGER (4254112 64)
+    Global_Variables.SYSTEMTIME_DATE_AND_TIME_MIN64 : ULINT (4254464 64)
+    Global_Variables.SYSTEMTIME_MAX_MONTHDAYS : ARRAY[0..1] OF WORD (4253040 384)
+    Global_Variables.SYSTEMTIME_MAX_YEARSDAY : ARRAY[0..1] OF WORD (4253424 448)
+    Global_Variables.SYSTEMTIME_TICKSPERDAY : Tc2_Utilities.T_ULARGE_INTEGER (4254048 64)
+    Global_Variables.SYSTEMTIME_TICKSPERDAY64 : ULINT (4254400 64)
+    Global_Variables.SYSTEMTIME_TICKSPERMSEC : Tc2_Utilities.T_ULARGE_INTEGER (4253920 64)
+    Global_Variables.SYSTEMTIME_TICKSPERMSEC64 : ULINT (4254272 64)
+    Global_Variables.SYSTEMTIME_TICKSPERSEC : Tc2_Utilities.T_ULARGE_INTEGER (4253984 64)
+    Global_Variables.SYSTEMTIME_TICKSPERSEC64 : ULINT (4254336 64)
+    Global_Variables.TCEVENTFLAG_AUTOFMTALL : WORD (4181456 16)
+    Global_Variables.TCEVENTFLAG_FMTSELF : WORD (4181392 16)
+    Global_Variables.TCEVENTFLAG_LOG : WORD (4181408 16)
+    Global_Variables.TCEVENTFLAG_MSGBOX : WORD (4181424 16)
+    Global_Variables.TCEVENTFLAG_PRIOCLASS : WORD (4181376 16)
+    Global_Variables.TCEVENTFLAG_SRCID : WORD (4181440 16)
+    Global_Variables.TCEVENTSTATE_CONFIRMED : WORD (4181520 16)
+    Global_Variables.TCEVENTSTATE_INVALID : WORD (4181472 16)
+    Global_Variables.TCEVENTSTATE_RESET : WORD (4181504 16)
+    Global_Variables.TCEVENTSTATE_RESETCON : WORD (4181536 16)
+    Global_Variables.TCEVENTSTATE_SIGNALED : WORD (4181488 16)
+    Global_Variables.TCEVENT_FMTPRGSIZE : INT (4181568 16)
+    Global_Variables.TCEVENT_SRCNAMESIZE : INT (4181552 16)
+    Global_Variables.TCPADSCONLST_IOF_ACCEPT : UDINT (4386560 32)
+    Global_Variables.TCPADSCONLST_IOF_CLOSEALL : UDINT (4386528 32)
+    Global_Variables.TCPADSCONLST_IOF_CONNECT : UDINT (4386464 32)
+    Global_Variables.TCPADSCONLST_IOF_GETHNDLBYADDR : UDINT (4386624 32)
+    Global_Variables.TCPADSCONLST_IOF_GETLINKSTATUS : UDINT (4386656 32)
+    Global_Variables.TCPADSCONLST_IOF_LISTEN : UDINT (4386496 32)
+    Global_Variables.TCPADSCONLST_IOF_UDPBIND : UDINT (4386592 32)
+    Global_Variables.TCPADS_IGR_ADAPTER_LINKSTATUS : UDINT (4386432 32)
+    Global_Variables.TCPADS_IGR_CLOSEBYHDL : UDINT (4386176 32)
+    Global_Variables.TCPADS_IGR_CONLIST : UDINT (4386144 32)
+    Global_Variables.TCPADS_IGR_MULTICAST_ADDBYHDL : UDINT (4386368 32)
+    Global_Variables.TCPADS_IGR_MULTICAST_DROPBYHDL : UDINT (4386400 32)
+    Global_Variables.TCPADS_IGR_PEERBYHDL : UDINT (4386240 32)
+    Global_Variables.TCPADS_IGR_RECVBYHDL : UDINT (4386272 32)
+    Global_Variables.TCPADS_IGR_RECVFROMBYHDL : UDINT (4386304 32)
+    Global_Variables.TCPADS_IGR_SENDBYHDL : UDINT (4386208 32)
+    Global_Variables.TCPADS_IGR_SENDTOBYHDL : UDINT (4386336 32)
+    Global_Variables.TCPADS_NULL_HSOCKET : LCLS_General.Tc2_TcpIp.T_HSOCKET (4386688 352)
+    Global_Variables.THROTTLE_MODE_DEFAULT : LCLS_General.Tc2_TcpIp.T_ThrottleTimes (4387584 416)
+    Global_Variables.THROTTLE_MODE_OFF : LCLS_General.Tc2_TcpIp.T_ThrottleTimes (4387168 416)
+    Global_Variables.TIMESERVICE_ADJUSTTIMETORTC : UDINT (4180640 32)
+    Global_Variables.TIMESERVICE_DATEANDTIME : UDINT (4180544 32)
+    Global_Variables.TIMESERVICE_RTCTIMEDIFF : UDINT (4180608 32)
+    Global_Variables.TIMESERVICE_SYSTEMTIMES : UDINT (4180576 32)
+    Global_Variables.TIMESERVICE_TIMEZONINFORMATION : UDINT (4180672 32)
+    Global_Variables.TcMcGlobal : Tc2_MC2._TCMCGLOBAL (8629760 6976)
+    Global_Variables.WEST_EUROPE_TZI : Tc2_Utilities.ST_TimeZoneInformation (4254592 864)
+    Global_Variables.bEcFoeOpenFileNameWithFileExt : BOOL (8638104 8)
+    Global_Variables.bSeqReadDrvAttrAndValue : BOOL (8638096 8)
+    Global_Variables.eWatchdogConfig : Tc2_System.E_WATCHDOG_TIME_CONFIG (4181584 16)
+    Global_Variables.nWatchdogTime : BYTE (4182240 8)
+    Global_Variables_EtherCAT.ESC_MAX_PORTS : UINT (4177952 16)
+    Global_Variables_EtherCAT.iSLAVEADDR_ARR_SIZE : UINT (4096112 16)
+    Global_Version.stLibVersion_Tc2_IoFunctions : ST_LibVersion (4385536 288)
+    Global_Version.stLibVersion_Tc2_MC2 : ST_LibVersion (8629472 288)
+    Global_Version.stLibVersion_Tc2_Math : ST_LibVersion (8636864 288)
+    Global_Version.stLibVersion_Tc2_ModbusSrv : ST_LibVersion (4385824 288)
+    Global_Version.stLibVersion_Tc2_System : ST_LibVersion (4177984 288)
+    Global_Version.stLibVersion_Tc2_Utilities : ST_LibVersion (4182880 288)
+    Global_Version.stLibVersion_Tc3_EventLogger : ST_LibVersion (4388416 288)
+    Global_Version.stLibVersion_Tc3_JsonXml : ST_LibVersion (4388832 288)
+    Global_Version.stLibVersion_Tc3_Module : ST_LibVersion (4182272 288)
+    Global_Version.stLibVersion_TcUnit : ST_LibVersion (8629184 288)
+    LCLS_General.DefaultGlobals.stSys.I_EcatMaster1 : AMSNETID (4096040 48)
+    MAIN.AttemptReset : Tc2_Standard.TON (8671520 224)
+    MAIN.DisplayStats : Tc2_SystemCX.FB_CXSetTextDisplayUSB (8671744 4000)
+    MAIN.Initialize : BOOL (8639968 8)
+    MAIN.bError : BOOL (8639976 8)
+    MAIN.fbEcatDiag : LCLS_General.FB_EcatDiagWrapper (14471104 1095136)
+    MAIN.fbEcatDiag.arrEcMasterNetId : Tc2_System.T_AmsNetIdArr (15553680 48)
+    MAIN.fbEcatDiag.nEcMasterDevState : UINT (15553648 16)
+    MAIN.fbEcatDiag.nEcMasterDeviceId : UINT (15553664 16)
+    MAIN.fbEcatDiag.nEcMasterSlaveCount : UINT (15553632 16)
+    MAIN.fbEcatDiag.nEcMasterSlaveCountCfg : UINT (15553920 16)
+    MAIN.fbEcatDiag.wFrmXWcState : WORD (14471520 16)
+    MAIN.fbFormat : Tc2_Utilities.FB_FormatString (8675744 7840)
+    MAIN.fbHgvpu : FB_Hgvpu (15566272 44608)
+    MAIN.fbLogHandler : LCLS_General.FB_LogHandler (8685696 5785408)
+    MAIN.fbSxu : FB_SXU (15610880 42624)
+    MAIN.nErrID : UDINT (8683584 32)
+    MAIN.sOut : Tc2_System.T_MaxString (8683616 2048)
+    MachineSimulation.fbMachine : PMPS.FB_MachineSimulator (15656384 4352)
+    MachineSimulation.fbeVSimulator : FB_eVSimulator (15660736 9088)
+    PMPS_Arbiter.AttemptReset : Tc2_Standard.TON (15767936 224)
+    PMPS_Arbiter.anothervar : BOOL (8639984 8)
+    PMPS_Arbiter.cycle : INT (8685664 16)
+    PMPS_Arbiter.fPhotonEnergy : REAL (15566240 32)
+    PMPS_Arbiter.fbBPRequestor : PMPS.FB_BPRequestor (15765760 2176)
+    PMPS_Arbiter.fbCuInterface : PMPS.FB_CTLS_Outputs (15701504 2048)
+    PMPS_Arbiter.fbCuInterface.q_CLTS_ASSERTION_LINES : ARRAY[1..16] OF BOOL (15703424 128)
+    PMPS_Arbiter.fbMPSInterface : PMPS.FB_BeamClassOutputs (15701248 224)
+    PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES : ARRAY[1..16] OF BOOL (15701328 128)
+    PMPS_Arbiter.fbPhotonEnergyWatcher : PMPS.FB_PhotonEnergyWatcher (15670400 30848)
+    PMPS_Arbiter.fbSubSys1_PMPS_IO : PMPS.FB_ArbiterToSubSys_IO (15703552 31104)
+    PMPS_Arbiter.fbSubSys1_PMPS_IO.i_Connected : BOOL (15709312 8)
+    PMPS_Arbiter.fbSubSys1_PMPS_IO.i_RequestedBP : ST_BeamParams_IO (15703744 1856)
+    PMPS_Arbiter.fbSubSys1_PMPS_IO.i_TxPDOState : BOOL (15709328 8)
+    PMPS_Arbiter.fbSubSys1_PMPS_IO.i_TxPDOToggle : BOOL (15709336 8)
+    PMPS_Arbiter.fbSubSys1_PMPS_IO.i_WcState : BOOL (15709320 8)
+    PMPS_Arbiter.fbSubSys1_PMPS_IO.o_CurrentBP : ST_BeamParams_IO (15707456 1856)
+    PMPS_Arbiter.fbSubSys2_PMPS_IO : PMPS.FB_ArbiterToSubSys_IO (15734656 31104)
+    PMPS_Arbiter.fbSubSys2_PMPS_IO.i_Connected : BOOL (15740416 8)
+    PMPS_Arbiter.fbSubSys2_PMPS_IO.i_RequestedBP : ST_BeamParams_IO (15734848 1856)
+    PMPS_Arbiter.fbSubSys2_PMPS_IO.i_TxPDOState : BOOL (15740432 8)
+    PMPS_Arbiter.fbSubSys2_PMPS_IO.i_TxPDOToggle : BOOL (15740440 8)
+    PMPS_Arbiter.fbSubSys2_PMPS_IO.i_WcState : BOOL (15740424 8)
+    PMPS_Arbiter.fbSubSys2_PMPS_IO.o_CurrentBP : ST_BeamParams_IO (15738560 1856)
+    PMPS_Arbiter.iPhotonEnergySeverity : INT (8685680 16)
+    PMPS_Arbiter.logging_active : BOOL (8639992 8)
+    PMPS_Arbiter.testFF : PMPS.FB_FastFault (15768160 25088)
+    PMPS_GVL.AUX_ATTENUATORS : INT (4475808 16)
+    PMPS_GVL.AccumulatedFF : ULINT (3072064 64)
+    PMPS_GVL.DUMMY_AUX_ATT_ARRAY : ARRAY[1..32] OF ST_PMPS_Attenuator (4479552 1536)
+    PMPS_GVL.EXCLUDED_ASSERTION_ID : UDINT (4475584 32)
+    PMPS_GVL.FAST_TEST_VELOCITY : LREAL (4475712 64)
+    PMPS_GVL.MAX_ASSERTIONS : UDINT (4481088 32)
+    PMPS_GVL.MAX_DEVICE_STATES : UDINT (4475616 32)
+    PMPS_GVL.MAX_FAST_FAULTS : UINT (4475776 16)
+    PMPS_GVL.SuccessfulPreemption : ULINT (3072000 64)
+    PMPS_GVL.VISIBLE_TEST_VELOCITY : LREAL (4475648 64)
+    PMPS_GVL.cnMaxStateArrayLen : INT (4475792 16)
+    PMPS_GVL.cstFullBeam : ST_BeamParams (4475840 1856)
+    PMPS_GVL.cstSafeBeam : ST_BeamParams (4477696 1856)
+    PMPS_GVL.fbLog : LCLS_General.FB_LogMessage (4394688 80896)
+    PMPS_GVL.g_areVBoundaries : ARRAY[0..15] OF REAL (4481120 512)
+    PMPS_GVL.g_cBoundaries : INT (4475824 16)
+    PMPS_GVL.stCurrentBeamParameters : ST_BeamParams (4392832 1856)
+    PMPS_GVL.stReqFBDBeamParamsSum : ST_BeamParams (4389120 1856)
+    PMPS_GVL.stReqMethBeamParamSum : ST_BeamParams (4390976 1856)
+    ParameterList.cSourceNameSize : UDINT (4388384 32)
+    TC_EVENTS.LCLSGeneralEventClass : ST_LCLSGeneralEventClass (17055680 960)
+    TC_EVENT_CLASSES.LCLSGeneralEventClass : GUID (17025600 128)
+    TC_EVENT_CLASSES.TcGeneralAdsEventClass : GUID (17025088 128)
+    TC_EVENT_CLASSES.TcRTimeEventClass : GUID (17025344 128)
+    TC_EVENT_CLASSES.TcRouterEventClass : GUID (17025216 128)
+    TC_EVENT_CLASSES.TcSystemEventClass : GUID (17024960 128)
+    TC_EVENT_CLASSES.Win32EventClass : GUID (17025472 128)
+    TwinCAT_LicenseInfoVarList._LicenseInfo : ARRAY[1..2] OF PlcLicenseInfo (17004608 2048)
+    TwinCAT_SystemInfoVarList._AppInfo : PlcAppSystemInfo (17006656 2048)
+    TwinCAT_SystemInfoVarList._TaskInfo : ARRAY[1..2] OF PlcTaskSystemInfo (17008704 2048)
+    TwinCAT_SystemInfoVarList._TaskOid_FFOTask : OTCID (17010784 32)
+    TwinCAT_SystemInfoVarList._TaskOid_PlcTask : OTCID (17010848 32)
+    TwinCAT_SystemInfoVarList._TaskPouOid_FFOTask : OTCID (17010752 32)
+    TwinCAT_SystemInfoVarList._TaskPouOid_PlcTask : OTCID (17010816 32)
+    TwinCAT_SystemInfoVarList.__FFOTask : _Implicit_Task_Info (17010880 704)
+    TwinCAT_SystemInfoVarList.__PlcTask : _Implicit_Task_Info (17011584 704)
+
+Boxes
+-----
+
+    1.) Term 1 (EK1200)
+    2.) PMPS_FFO
+    3.) Term 3 (EK1122)
+    4.) CU1 (CU1128)
+    6.) Term 6 (EK1110)
+    7.) PMPS_BC
+    10.) CU2 (CU1128-B)
+    11.) CU3 (CU1128-C)
+    18.) plc-lfe-vac
+    19.) plc-lfe-motion
+    20.) plc-lfe-optics
+NC axes
+-------
+
+Links
+-----
+
+    1.) A ('OutputSrc', 'MachineSimulation.q_SimCurrBP')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC1 (EL6692)', 'IO Outputs^CurrentBP')
+    2.) A ('OutputSrc', 'PMPS_Arbiter.fbMPSInterface.dumb')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 1^Output')
+    3.) A ('InputDst', 'PMPS_Arbiter.fbSubSys1_Requestor.i_RequestedBP')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC1', 'IO Inputs^RequestedBP')
+    4.) A ('InputDst', 'PMPS_Arbiter.fbSubSys2_Requestor.i_RequestedBP')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC2', 'IO Inputs^RequestedBP')
+    5.) A ('OutputSrc', 'PMPS_Arbiter.fbSubSys1_Requestor.o_CurrentBP')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC1', 'IO Outputs^CurrentBP')
+    6.) A ('OutputSrc', 'PMPS_Arbiter.fbSubSys2_Requestor.o_CurrentBP')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC2', 'IO Outputs^CurrentBP')
+    7.) A ('InputDst', 'PMPS_Arbiter.fbSubSys1_Requestor.i_Connected')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC1', 'SYNC Inputs^External device not connected')
+    8.) A ('InputDst', 'PMPS_Arbiter.fbSubSys1_Requestor.i_RequestedBP')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC1', 'IO Inputs^RequestedBP')
+    9.) A ('InputDst', 'PMPS_Arbiter.fbSubSys1_Requestor.i_TxPDOState')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC1', 'SYNC Inputs^TxPDO state')
+    10.) A ('InputDst', 'PMPS_Arbiter.fbSubSys1_Requestor.i_WcState')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC1', 'WcState^WcState')
+    11.) A ('InputDst', 'PMPS_Arbiter.fbSubSys2_Requestor.i_Connected')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC2', 'SYNC Inputs^External device not connected')
+    12.) A ('InputDst', 'PMPS_Arbiter.fbSubSys2_Requestor.i_RequestedBP')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC2', 'IO Inputs^RequestedBP')
+    13.) A ('InputDst', 'PMPS_Arbiter.fbSubSys2_Requestor.i_TxPDOState')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC2', 'SYNC Inputs^TxPDO state')
+    14.) A ('InputDst', 'PMPS_Arbiter.fbSubSys2_Requestor.i_WcState')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC2', 'WcState^WcState')
+    15.) A ('OutputSrc', 'PMPS_Arbiter.fbSubSys1_Requestor.o_CurrentBP')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC1', 'IO Outputs^CurrentBP')
+    16.) A ('OutputSrc', 'PMPS_Arbiter.fbSubSys2_Requestor.o_CurrentBP')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC2', 'IO Outputs^CurrentBP')
+    17.) A ('InputDst', 'PMPS_Arbiter.fbSubSys2_PMPS_IO.i_xNewRequest')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EK1122)^SubSysPLC2', 'IO Inputs^xNewRequest')
+    18.) A ('ArbiterPLC Instance', 'PlcTask Inputs^MAIN.fbEcatDiag.arrEcMasterNetId')
+          B ('TIID^Device 1 (EtherCAT)', 'InfoData^AmsNetId')
+    19.) A ('ArbiterPLC Instance', 'PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterDevState')
+          B ('TIID^Device 1 (EtherCAT)', 'Inputs^DevState')
+    20.) A ('ArbiterPLC Instance', 'PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterDeviceId')
+          B ('TIID^Device 1 (EtherCAT)', 'InfoData^DevId')
+    21.) A ('ArbiterPLC Instance', 'PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterSlaveCount')
+          B ('TIID^Device 1 (EtherCAT)', 'Inputs^SlaveCount')
+    22.) A ('ArbiterPLC Instance', 'PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterSlaveCountCfg')
+          B ('TIID^Device 1 (EtherCAT)', 'InfoData^CfgSlaveCount')
+    23.) A ('ArbiterPLC Instance', 'PlcTask Inputs^MAIN.fbEcatDiag.wFrmXWcState')
+          B ('TIID^Device 1 (EtherCAT)', 'Inputs^Frm1WcState')
+    24.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[10]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 10^Output')
+    25.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[11]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 11^Output')
+    26.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[12]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 12^Output')
+    27.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[13]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 13^Output')
+    28.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[14]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 14^Output')
+    29.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[15]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 15^Output')
+    30.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[16]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 16^Output')
+    31.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[1]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 1^Output')
+    32.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[2]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 2^Output')
+    33.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[3]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 3^Output')
+    34.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[4]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 4^Output')
+    35.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[5]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 5^Output')
+    36.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[6]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 6^Output')
+    37.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[7]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 7^Output')
+    38.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[8]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 8^Output')
+    39.) A ('ArbiterPLC Instance', 'PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[9]')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_BC', 'Channel 9^Output')
+    40.) A ('ArbiterPLC Instance', 'FFOTask Outputs^GVL.g_FastFaultOutput1.q_xFastFaultOut')
+          B ('TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^PMPS_FFO', 'Channel 1^Output')
+
+Pragma lint results
+-------------------
+```
+INFO:pytmc.bin.pragmalint:Total pragmas found: 56 Total linter errors: 0
+PLC Project (1): ArbiterPLC
+===========================
+
+
+GVLs/GVL.TcGVL (TcPlcObject)
+----------------------------
+
+    - GVL: Declaration - 3 pragmas
+
+
+GVLs/GVL_CheckBounds.TcGVL (TcPlcObject)
+----------------------------------------
+
+    - GVL_CheckBounds: Declaration - 1 pragmas
+
+
+POUs/Accelerator/FB_Hgvpu.TcPOU (TcPlcObject)
+---------------------------------------------
+
+    - FB_Hgvpu: Declaration - 22 pragmas
+
+
+POUs/Accelerator/FB_SXU.TcPOU (TcPlcObject)
+-------------------------------------------
+
+    - FB_SXU: Declaration - 21 pragmas
+
+
+POUs/Accelerator/FB_UndulatorSegment.TcPOU (TcPlcObject)
+--------------------------------------------------------
+
+    - FB_UndulatorSegment: Declaration - 2 pragmas
+
+
+POUs/MAIN.TcPOU (TcPlcObject)
+-----------------------------
+
+    - MAIN: Declaration - 3 pragmas
+
+
+POUs/PMPS_Arbiter.TcPOU (TcPlcObject)
+-------------------------------------
+
+    - PMPS_Arbiter: Declaration - 4 pragmas
+
+```
