@@ -5,29 +5,186 @@ Records
 -------
 ```
  "$(PREFIX)AccumulatedFastFaults_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:000:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:001:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:002:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:003:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:004:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:005:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:006:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:007:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:008:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:009:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:010:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:011:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:012:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:013:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:014:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:015:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:016:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:017:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:018:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:019:Key_RBV" (longin)
- "$(PREFIX)Arbiter:01:AssertionPool:Entries:020:Key_RBV" (longin)
- "$(PREFIX)BeamClassOutputs:BeamClassChannel_RBV" (waveform)
- "$(PREFIX)CuRateOutputs:CTLSChannel_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:ActiveInArbitration_RBV" (bi)
+ "$(PREFIX)Arbiter:01:ArbiterID_RBV" (longin)
+ "$(PREFIX)Arbiter:01:ArbitratedBP:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:ArbitratedBP:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:ArbitratedBP:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:ArbitratedBP:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:ArbitratedBP:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:ArbitratedBP:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:ArbitratedBP:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:000:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:001:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:002:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:003:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:004:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:005:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:006:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:007:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:008:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:009:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:010:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:011:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:012:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:013:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:014:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:015:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:016:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:017:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:018:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:019:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:020:Key_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:Attenuation_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:Cohort_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:PhotonEnergyRanges_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:PulseEnergy_RBV" (ai)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:Rate_RBV" (longin)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:Stopper_RBV" (waveform)
+ "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:Valid_RBV" (bi)
+ "$(PREFIX)Arbiter:01:CohortCounter_RBV" (longin)
+ "$(PREFIX)BeamClassOutputs:BeamClassOutputs_RBV" (waveform)
+ "$(PREFIX)CuRateOutputs:CTLSOutputs_RBV" (waveform)
  "$(PREFIX)CurrentBP:Attenuation_RBV" (ai)
  "$(PREFIX)CurrentBP:Cohort_RBV" (longin)
  "$(PREFIX)CurrentBP:PhotonEnergyRanges_RBV" (longin)
@@ -7636,7 +7793,7 @@ record(waveform, "$(PREFIX)eVRangeCnst") {
   info(autosaveFields_pass0, "VAL")
 }
 
-record(waveform, "$(PREFIX)BeamClassOutputs:BeamClassChannel_RBV") {
+record(waveform, "$(PREFIX)BeamClassOutputs:BeamClassOutputs_RBV") {
   field(DESC, "Hardwire channel state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7649,7 +7806,7 @@ record(waveform, "$(PREFIX)BeamClassOutputs:BeamClassChannel_RBV") {
   field(ONAM, "On")
 }
 
-record(waveform, "$(PREFIX)CuRateOutputs:CTLSChannel_RBV") {
+record(waveform, "$(PREFIX)CuRateOutputs:CTLSOutputs_RBV") {
   field(DESC, "CTLS Rate Control hardwire channel state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7878,7 +8035,1657 @@ record(bi, "$(PREFIX)SubSysIO:PLC2:TxPDO_toggle_RBV") {
   field(ONAM, "Error")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:000:Key_RBV") {
+record(ai, "$(PREFIX)Arbiter:01:ArbitratedBP:Attenuation_RBV") {
+  field(DESC, "Arbitrated BP")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.q_stBeamParams.fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:ArbitratedBP:Rate_RBV") {
+  field(DESC, "Arbitrated BP")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.q_stBeamParams.nRate?")
+  field(EGU, "Hz")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:ArbitratedBP:PulseEnergy_RBV") {
+  field(DESC, "Arbitrated BP")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.q_stBeamParams.fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:ArbitratedBP:PhotonEnergyRanges_RBV") {
+  field(DESC, "Arbitrated BP")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.q_stBeamParams.neVRange?")
+  field(EGU, "eV")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:ArbitratedBP:Stopper_RBV") {
+  field(DESC, "Arbitrated BP")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.q_stBeamParams.aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:ArbitratedBP:Valid_RBV") {
+  field(DESC, "Arbitrated BP")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.q_stBeamParams.xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:ArbitratedBP:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.q_stBeamParams.nCohortInt?")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1....dataPool[0].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[0].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1....dataPool[1].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[1].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1....dataPool[2].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[2].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1....dataPool[3].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[3].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1....dataPool[4].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[4].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1....dataPool[5].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[5].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1....dataPool[6].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[6].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1....dataPool[7].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[7].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1....dataPool[8].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[8].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1....dataPool[9].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[9].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[10].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[10].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[11].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[11].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[12].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[12].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[13].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[13].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[14].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[14].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[15].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[15].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[16].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[16].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[17].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[17].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[18].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[18].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[19].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[19].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:Attenuation_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[20].fAtt")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[20].fAtt?")
+  field(PREC, "3")
+  field(EGU, "%")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[0].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[0].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[1].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[1].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[2].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[2].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[3].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[3].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[4].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[4].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[5].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[5].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[6].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[6].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[7].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[7].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[8].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[8].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...dataPool[9].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[9].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[10].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[10].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[11].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[11].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[12].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[12].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[13].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[13].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[14].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[14].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[15].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[15].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[16].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[16].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[17].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[17].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[18].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[18].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[19].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[19].nRate?")
+  field(EGU, "Hz")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:Rate_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[20].nRate")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[20].nRate?")
+  field(EGU, "Hz")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[0].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[0].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[1].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[1].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[2].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[2].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[3].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[3].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[4].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[4].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[5].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[5].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[6].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[6].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[7].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[7].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[8].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[8].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[9].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[9].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[10].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[10].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[11].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[11].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[12].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[12].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[13].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[13].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[14].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[14].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[15].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[15].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[16].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[16].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[17].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[17].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[18].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[18].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[19].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[19].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(ai, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:PulseEnergy_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[20].fPP_mJ")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[20].fPP_mJ?")
+  field(PREC, "3")
+  field(EGU, "mJ")
+  info(autosaveFields_pass0, "PREC")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...aPool[0].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[0].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...aPool[1].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[1].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...aPool[2].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[2].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...aPool[3].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[3].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...aPool[4].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[4].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...aPool[5].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[5].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...aPool[6].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[6].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...aPool[7].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[7].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...aPool[8].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[8].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...aPool[9].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[9].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[10].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[10].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[11].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[11].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[12].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[12].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[13].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[13].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[14].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[14].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[15].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[15].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[16].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[16].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[17].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[17].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[18].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[18].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[19].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[19].neVRange?")
+  field(EGU, "eV")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:PhotonEnergyRanges_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[20].neVRange")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[20].neVRange?")
+  field(EGU, "eV")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[0].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[0].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[1].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[1].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[2].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[2].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[3].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[3].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[4].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[4].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[5].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[5].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[6].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[6].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[7].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[7].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[8].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[8].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...Pool[9].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[9].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[10].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[10].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[11].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[11].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[12].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[12].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[13].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[13].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[14].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[14].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[15].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[15].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[16].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[16].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[17].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[17].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[18].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[18].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[19].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[19].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(waveform, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:Stopper_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ool[20].aStoppers")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[20].aStoppers?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[0].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[0].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[1].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[1].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[2].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[2].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[3].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[3].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[4].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[4].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[5].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[5].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[6].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[6].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[7].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[7].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[8].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[8].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...ataPool[9].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[9].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[10].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[10].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[11].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[11].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[12].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[12].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[13].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[13].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[14].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[14].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[15].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[15].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[16].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[16].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[17].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[17].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[18].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[18].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[19].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[19].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:Valid_RBV") {
+  field(DESC, "ads:GVL.g_fbArbiter1...taPool[20].xValid")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[20].xValid?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:000:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[0].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:001:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[1].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:002:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[2].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:003:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[3].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:004:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[4].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:005:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[5].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:006:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[6].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:007:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[7].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:008:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[8].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:009:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[9].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:010:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[10].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:011:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[11].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:012:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[12].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:013:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[13].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:014:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[14].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:015:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[15].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:016:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[16].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:017:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[17].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:018:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[18].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:019:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[19].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryValue:020:Cohort_RBV") {
+  field(DESC, "Cohort increments on each arbitration cycle")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.dataPool[20].nCohortInt?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:000:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...ol.entries[0].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7887,7 +9694,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:000:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[0].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:001:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:001:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...ol.entries[1].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7896,7 +9703,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:001:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[1].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:002:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:002:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...ol.entries[2].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7905,7 +9712,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:002:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[2].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:003:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:003:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...ol.entries[3].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7914,7 +9721,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:003:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[3].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:004:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:004:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...ol.entries[4].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7923,7 +9730,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:004:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[4].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:005:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:005:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...ol.entries[5].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7932,7 +9739,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:005:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[5].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:006:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:006:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...ol.entries[6].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7941,7 +9748,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:006:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[6].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:007:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:007:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...ol.entries[7].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7950,7 +9757,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:007:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[7].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:008:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:008:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...ol.entries[8].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7959,7 +9766,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:008:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[8].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:009:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:009:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...ol.entries[9].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7968,7 +9775,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:009:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[9].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:010:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:010:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[10].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7977,7 +9784,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:010:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[10].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:011:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:011:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[11].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7986,7 +9793,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:011:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[11].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:012:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:012:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[12].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -7995,7 +9802,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:012:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[12].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:013:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:013:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[13].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -8004,7 +9811,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:013:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[13].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:014:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:014:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[14].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -8013,7 +9820,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:014:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[14].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:015:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:015:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[15].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -8022,7 +9829,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:015:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[15].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:016:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:016:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[16].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -8031,7 +9838,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:016:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[16].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:017:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:017:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[17].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -8040,7 +9847,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:017:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[17].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:018:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:018:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[18].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -8049,7 +9856,7 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:018:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[18].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:019:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:019:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[19].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -8058,13 +9865,42 @@ record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:019:Key_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[19].key?")
 }
 
-record(longin, "$(PREFIX)Arbiter:01:AssertionPool:Entries:020:Key_RBV") {
+record(longin, "$(PREFIX)Arbiter:01:AssertionPool:EntryKey:020:Key_RBV") {
   field(DESC, "ads:GVL.g_fbArbiter1...l.entries[20].key")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
   field(TSE, "-2")
   field(DTYP, "asynInt32")
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.fbBPAssertionPool.entries[20].key?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:ArbiterID_RBV") {
+  field(DESC, "Arbiter ID for elev. req.")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.nArbiterID?")
+}
+
+record(longin, "$(PREFIX)Arbiter:01:CohortCounter_RBV") {
+  field(DESC, "Intrnl cohort counter")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.nArbiterCohort?")
+}
+
+record(bi, "$(PREFIX)Arbiter:01:ActiveInArbitration_RBV") {
+  field(DESC, "True if this arbiter")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.xActiveInArbitration?")
+  field(ZNAM, "Zero")
+  field(ONAM, "One")
 }
 
 record(longin, "$(PREFIX)SuccessfulPreemptions_RBV") {
