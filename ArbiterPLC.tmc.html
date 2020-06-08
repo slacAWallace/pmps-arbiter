@@ -10065,32 +10065,6 @@ record(waveform, &quot;$(PREFIX)eVRangeCnst&quot;) {
   info(autosaveFields_pass0, &quot;VAL&quot;)
 }
 
-record(waveform, &quot;$(PREFIX)BeamClassOutputs:BeamClassOutputs_RBV&quot;) {
-  field(DESC, &quot;Hardwire channel state&quot;)
-  field(SCAN, &quot;I/O Intr&quot;)
-  field(PINI, &quot;1&quot;)
-  field(TSE, &quot;-2&quot;)
-  field(DTYP, &quot;asynInt8ArrayIn&quot;)
-  field(INP, &quot;@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES?&quot;)
-  field(FTVL, &quot;CHAR&quot;)
-  field(NELM, &quot;8&quot;)
-  field(ZNAM, &quot;Off&quot;)
-  field(ONAM, &quot;On&quot;)
-}
-
-record(waveform, &quot;$(PREFIX)CuRateOutputs:CTLSOutputs_RBV&quot;) {
-  field(DESC, &quot;CTLS Rate Control hardwire channel state&quot;)
-  field(SCAN, &quot;I/O Intr&quot;)
-  field(PINI, &quot;1&quot;)
-  field(TSE, &quot;-2&quot;)
-  field(DTYP, &quot;asynInt8ArrayIn&quot;)
-  field(INP, &quot;@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PMPS_Arbiter.fbCuInterface.q_CLTS_ASSERTION_LINES?&quot;)
-  field(FTVL, &quot;CHAR&quot;)
-  field(NELM, &quot;3&quot;)
-  field(ZNAM, &quot;Off&quot;)
-  field(ONAM, &quot;On&quot;)
-}
-
 record(ai, &quot;$(PREFIX)SubSysIO:PLC1:RequestedBP:FromSubSys:Attenuation_RBV&quot;) {
   field(DESC, &quot;ads:PMPS_Arbiter.fbS....RequestedBP.fAtt&quot;)
   field(SCAN, &quot;I/O Intr&quot;)
@@ -20237,6 +20211,28 @@ record(bi, &quot;$(PREFIX)Arbiter:01:ActiveInArbitration_RBV&quot;) {
   field(INP, &quot;@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.xActiveInArbitration?&quot;)
   field(ZNAM, &quot;Zero&quot;)
   field(ONAM, &quot;One&quot;)
+}
+
+record(waveform, &quot;$(PREFIX)BeamClassOutputs:BeamClassOutputs_RBV&quot;) {
+  field(DESC, &quot;Hardwire channel state&quot;)
+  field(SCAN, &quot;I/O Intr&quot;)
+  field(PINI, &quot;1&quot;)
+  field(TSE, &quot;-2&quot;)
+  field(DTYP, &quot;asynInt8ArrayIn&quot;)
+  field(INP, &quot;@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES?&quot;)
+  field(FTVL, &quot;CHAR&quot;)
+  field(NELM, &quot;8&quot;)
+}
+
+record(waveform, &quot;$(PREFIX)CuRateOutputs:CTLSOutputs_RBV&quot;) {
+  field(DESC, &quot;CTLS Rate Control hardwire channel state&quot;)
+  field(SCAN, &quot;I/O Intr&quot;)
+  field(PINI, &quot;1&quot;)
+  field(TSE, &quot;-2&quot;)
+  field(DTYP, &quot;asynInt8ArrayIn&quot;)
+  field(INP, &quot;@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PMPS_Arbiter.fbCuInterface.q_CLTS_ASSERTION_LINES?&quot;)
+  field(FTVL, &quot;CHAR&quot;)
+  field(NELM, &quot;3&quot;)
 }
 
 record(longin, &quot;$(PREFIX)SuccessfulPreemptions_RBV&quot;) {

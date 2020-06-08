@@ -10033,32 +10033,6 @@ record(waveform, "$(PREFIX)eVRangeCnst") {
   info(autosaveFields_pass0, "VAL")
 }
 
-record(waveform, "$(PREFIX)BeamClassOutputs:BeamClassOutputs_RBV") {
-  field(DESC, "Hardwire channel state")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES?")
-  field(FTVL, "CHAR")
-  field(NELM, "8")
-  field(ZNAM, "Off")
-  field(ONAM, "On")
-}
-
-record(waveform, "$(PREFIX)CuRateOutputs:CTLSOutputs_RBV") {
-  field(DESC, "CTLS Rate Control hardwire channel state")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PMPS_Arbiter.fbCuInterface.q_CLTS_ASSERTION_LINES?")
-  field(FTVL, "CHAR")
-  field(NELM, "3")
-  field(ZNAM, "Off")
-  field(ONAM, "On")
-}
-
 record(ai, "$(PREFIX)SubSysIO:PLC1:RequestedBP:FromSubSys:Attenuation_RBV") {
   field(DESC, "ads:PMPS_Arbiter.fbS....RequestedBP.fAtt")
   field(SCAN, "I/O Intr")
@@ -20205,6 +20179,28 @@ record(bi, "$(PREFIX)Arbiter:01:ActiveInArbitration_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/GVL.g_fbArbiter1.xActiveInArbitration?")
   field(ZNAM, "Zero")
   field(ONAM, "One")
+}
+
+record(waveform, "$(PREFIX)BeamClassOutputs:BeamClassOutputs_RBV") {
+  field(DESC, "Hardwire channel state")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES?")
+  field(FTVL, "CHAR")
+  field(NELM, "8")
+}
+
+record(waveform, "$(PREFIX)CuRateOutputs:CTLSOutputs_RBV") {
+  field(DESC, "CTLS Rate Control hardwire channel state")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PMPS_Arbiter.fbCuInterface.q_CLTS_ASSERTION_LINES?")
+  field(FTVL, "CHAR")
+  field(NELM, "3")
 }
 
 record(longin, "$(PREFIX)SuccessfulPreemptions_RBV") {
