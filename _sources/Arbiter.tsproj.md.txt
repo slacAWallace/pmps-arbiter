@@ -816,7 +816,7 @@ Symbols
     GVL.ReqBP : PMPS.ST_BeamParams (15876992 1216)
     GVL.g_FastFaultOutput1 : PMPS.FB_HardwareFFOutput (15878208 461216)
     GVL.g_FastFaultOutput1.q_xFastFaultOut : BOOL (15878288 8)
-    GVL.g_fbArbiter1 : PMPS.FB_Arbiter (15680128 196864)
+    GVL.g_fbArbiter1 : PMPS.FB_Arbiter (19468480 196864)
     GVL.g_rTestingVelocity : LREAL (16339456 64)
     GVL.nLangId_OnlineMonitoring : DINT (4388352 32)
     GVL_CheckBounds.nDivByZero : UDINT (16339520 32)
