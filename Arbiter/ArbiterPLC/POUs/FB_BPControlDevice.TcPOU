@@ -11,25 +11,25 @@ PMPS for a line.
 FUNCTION_BLOCK FB_BPControlDevice
 VAR_INPUT
 		(*  Requested pre-optic attenuation %  *)
-		{attribute 'pytmc' := 'pv: Attenuation
+		{attribute 'pytmc' := 'pv: ReqBP:Attenuation
             io: o
             field: EGU %
         '}
 		fAtt : REAL := 100;
         (* Pulse-rate *)
-        {attribute 'pytmc' := 'pv: Rate
+        {attribute 'pytmc' := 'pv: ReqBP:Rate
             io: o
             field: EGU Hz
         '}
         nRate : UDINT := 10;
         (* Per pulse max energy (mJ) *)
-        {attribute 'pytmc' := 'pv: PulseEnergy
+        {attribute 'pytmc' := 'pv: ReqBP:PulseEnergy
             io: o
             field: EGU mJ
         '}
         fPP_mJ : REAL := 20;
         (* Photon energy ranges *)
-        {attribute 'pytmc' := 'pv: PhotonEnergyRanges
+        {attribute 'pytmc' := 'pv: ReqBP:PhotonEnergyRanges
             io: o
             field: EGU eV'}
         {attribute 'displaymode' := 'binary'}
