@@ -5,7 +5,7 @@
 VAR
     AttemptReset : TON := (PT:=T#1s);
     gAttemptReset : TON := (PT:=T#500ms);
-        
+
     testFF : FB_FastFault;
     cycle : INT;
 END_VAR
