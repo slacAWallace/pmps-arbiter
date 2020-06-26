@@ -3,61 +3,61 @@
   <POU Name="PMPS_Arbiter" Id="{91ae890b-11cc-4d41-83ec-edc5b802c784}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PMPS_Arbiter
 VAR
-    
-	fbBPRequestor : FB_BPRequestor; // Updates global PMPS RequestedBeamParams
-    
-	fbPhotonEnergyWatcher	:	FB_PhotonEnergyWatcher;
-	{attribute 'pytmc' := '
+
+    fbBPRequestor : FB_BPRequestor; // Updates global PMPS RequestedBeamParams
+
+    fbPhotonEnergyWatcher	:	FB_PhotonEnergyWatcher;
+    {attribute 'pytmc' := '
     pv: @(PREFIX)BeamClassOutputs
     '}
-	fbMPSInterface	:	FB_BeamClassOutputs;
+    fbMPSInterface	:	FB_BeamClassOutputs;
     {attribute 'pytmc' := '
     pv: @(PREFIX)CuRateOutputs
     '}
     fbCuInterface	:	FB_CTLS_Outputs;
-	
-	// Stoppers
-	
-	{attribute 'TcLinkTo' := '
-				.i_StopperInLS:=TIIB[PPS_Stoppers]^Channel 1^ST1L0_PPS_IN;
-				.i_StopperOutLS:=TIIB[PPS_Stoppers]^Channel 2^ST1L0_PPS_OUT;
-				.q_StopperOUT_Relay:=TIIB[MPS_Relay]^Channel 1^ST1L0_RELAY_OUT;
-				.q_StopperIN_Relay:=TIIB[MPS_Relay]^Channel 2^ST1L0_RELAY_IN; 
+
+    // Stoppers
+
+    {attribute 'TcLinkTo' := '
+                .i_StopperInLS:=TIIB[PPS_Stoppers]^Channel 1^ST1L0_PPS_IN;
+                .i_StopperOutLS:=TIIB[PPS_Stoppers]^Channel 2^ST1L0_PPS_OUT;
+                .q_StopperOUT_Relay:=TIIB[MPS_Relay]^Channel 1^ST1L0_RELAY_OUT;
+                .q_StopperIN_Relay:=TIIB[MPS_Relay]^Channel 2^ST1L0_RELAY_IN;
                                 '}
-	st1l0Watcher : FB_StopperWatcher(
-		PMPS.L_Stopper.ST1L0,
-		'ST1L0');
-	
-	(* Subsystem requests use this FB and a pragma link to pass their requests to the arbiter.
-	The fb is called on each cycle and updates the arbiter with the current BP set requested 
-	from the subsystem PLC.*)
-	//<TODO> make this so it does input and output to the IF
+    st1l0Watcher : FB_StopperWatcher(
+        PMPS.L_Stopper.ST1L0,
+        'ST1L0');
+
+    (* Subsystem requests use this FB and a pragma link to pass their requests to the arbiter.
+    The fb is called on each cycle and updates the arbiter with the current BP set requested
+    from the subsystem PLC.*)
+    //<TODO> make this so it does input and output to the IF
     (*{attribute 'pytmc' := '
     pv: @(PREFIX):PLC1
     '}*)
-	{attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[plc-lfe-motion]^IO Inputs^RequestedBP; 
+    {attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[plc-lfe-motion]^IO Inputs^RequestedBP;
                                 .o_CurrentBP:=TIIB[plc-lfe-motion]^IO Outputs^CurrentBP;
                                 .i_Connected:=TIIB[plc-lfe-motion]^SYNC Inputs^External device not connected;
                                 .i_WcState:=TIIB[plc-lfe-motion]^WcState^WcState;
                                 .i_TxPDOState:=TIIB[plc-lfe-motion]^SYNC Inputs^TxPDO state;
                                 '}
-	lfe_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF0F);
-    
-	(*{attribute 'pytmc' := '
+    lfe_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF0F);
+
+    (*{attribute 'pytmc' := '
     pv: @(PREFIX)SubSysIO:PLC2
     '}*)
-	{attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[SubSysPLC2]^IO Inputs^RequestedBP;
-                                .i_xNewRequest:=TIIB[SubSysPLC2]^IO Inputs^xNewRequest; 
+    {attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[SubSysPLC2]^IO Inputs^RequestedBP;
+                                .i_xNewRequest:=TIIB[SubSysPLC2]^IO Inputs^xNewRequest;
                                 .o_CurrentBP:=TIIB[SubSysPLC2]^IO Outputs^CurrentBP;
                                 .i_Connected:=TIIB[SubSysPLC2]^SYNC Inputs^External device not connected;
                                 .i_WcState:=TIIB[SubSysPLC2]^WcState^WcState;
                                 .i_TxPDOState:=TIIB[SubSysPLC2]^SYNC Inputs^TxPDO state;
                                 .i_TxPDOToggle:=TIIB[SubSysPLC2]^SYNC Inputs^TxPDO toggle;
                                 '}
-	//fbSubSys2_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF10);
-    
-    
-	
+    //fbSubSys2_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF10);
+
+
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -85,8 +85,8 @@ fbCuInterface(BP := PMPS_GVL.stRequestedBeamParameters);
 
 // Keep an eye on the photon energy
 fbPhotonEnergyWatcher(i_stCurrentBeamParams	:= PMPS_GVL.stCurrentBeamParameters,
-					i_stRequestedBeamParams := PMPS_GVL.stRequestedBeamParameters,
-					io_fbFFHWO:= GVL.g_FastFaultOutput1,
+                    i_stRequestedBeamParams := PMPS_GVL.stRequestedBeamParameters,
+                    io_fbFFHWO:= GVL.g_FastFaultOutput1,
                     i_xReset := GVL.AttemptReset);
 
 // Evaluate fast fault vetos
@@ -98,13 +98,5 @@ g_FastFaultOutput1.ExecuteLogging();
 
 ]]></ST>
     </Implementation>
-    <LineIds Name="PMPS_Arbiter">
-      <LineId Id="145" Count="0" />
-      <LineId Id="143" Count="1" />
-      <LineId Id="3" Count="29" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="79" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

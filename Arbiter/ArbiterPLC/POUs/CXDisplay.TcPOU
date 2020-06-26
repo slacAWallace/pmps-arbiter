@@ -7,7 +7,7 @@ VAR
     fbFormat   : FB_FormatString;
     bError     : BOOL;
     nErrID     : UDINT;
-    sOut       : T_MaxString;   
+    sOut       : T_MaxString;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -16,7 +16,7 @@ DisplayStats.bExecute S= NOT DisplayStats.bBusy AND NOT DisplayStats.bError;
 DisplayStats.bExecute R= DisplayStats.bBusy OR DisplayStats.bError;
 
 DisplayStats.sLine1 := 'PMPS-ARBITER-K';
-fbFormat(sFormat := 'Fast Faults: %d', arg1:=F_ULINT(PMPS_GVL.AccumulatedFF), sOut=>DisplayStats.sLine2, bError => bError, nErrID => nErrID ); 
+fbFormat(sFormat := 'Fast Faults: %d', arg1:=F_ULINT(PMPS_GVL.AccumulatedFF), sOut=>DisplayStats.sLine2, bError => bError, nErrID => nErrID );
 
 DisplayStats(eMode:=E_CX2100_DisplayModesWr.eCX2100_WriteLines);
 *)]]></ST>

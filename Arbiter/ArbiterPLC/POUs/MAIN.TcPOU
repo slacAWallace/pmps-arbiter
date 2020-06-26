@@ -3,27 +3,27 @@
   <POU Name="MAIN" Id="{8a7bcfd2-1a2b-4363-aa47-c19391bf1f9c}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	Initialize	:	BOOL := TRUE;
-    
-	fbLogHandler : FB_LogHandler;
-	fbEcatDiag : FB_EcatDiagWrapper;
+    Initialize	:	BOOL := TRUE;
 
-	{attribute 'pytmc' := '
-		pv: Arbiter:Link:HGVPU
-		link: USEG:UNDH:
-	'}
-	fbHgvpu : FB_Hgvpu;
-	
-	{attribute 'pytmc' := '
-		pv: Arbiter:Link:SXU
-		link: USEG:UNDS:
-	'}
-	fbSxu : FB_SXU;
-	
-	{attribute 'pytmc' := '
+    fbLogHandler : FB_LogHandler;
+    fbEcatDiag : FB_EcatDiagWrapper;
+
+    {attribute 'pytmc' := '
+        pv: Arbiter:Link:HGVPU
+        link: USEG:UNDH:
+    '}
+    fbHgvpu : FB_Hgvpu;
+
+    {attribute 'pytmc' := '
+        pv: Arbiter:Link:SXU
+        link: USEG:UNDS:
+    '}
+    fbSxu : FB_SXU;
+
+    {attribute 'pytmc' := '
     pv: @(PREFIX)BeamParamCntl
     '}
-	fbBPControl : FB_BPControlDevice(nID:=10);
+    fbBPControl : FB_BPControlDevice(nID:=10);
 
 END_VAR
 ]]></Declaration>
@@ -31,7 +31,7 @@ END_VAR
       <ST><![CDATA[//Arbiter PLC
 
 IF Initialize THEN
-	Initialize := FALSE;
+    Initialize := FALSE;
 END_IF
 
 // Ethercat Diagnostics
@@ -42,7 +42,7 @@ fbEcatDiag();
 // Might have a switch to change to simulation mode
 MachineSimulation();
 Testing();
-///////////////////////////////////////////////////	
+///////////////////////////////////////////////////
 
 fbHgvpu();
 fbSxu();
@@ -53,7 +53,7 @@ fbBPControl(Arbiter:=g_fbArbiter1);
 //Update current BP
 CurrentBPUpdate();
 
-// PMPS Functionality	
+// PMPS Functionality
 PMPS_Arbiter();
 
 
@@ -64,18 +64,5 @@ fbLogHandler();]]></ST>
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Action>
-    <LineIds Name="MAIN">
-      <LineId Id="3" Count="14" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="79" Count="0" />
-      <LineId Id="81" Count="0" />
-      <LineId Id="78" Count="0" />
-      <LineId Id="51" Count="1" />
-      <LineId Id="18" Count="7" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MAIN.Initialize">
-      <LineId Id="1" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -4,7 +4,7 @@
     <Declaration><![CDATA[// Implicitly generated code : DO NOT EDIT
 FUNCTION CheckBounds : DINT
 VAR_INPUT
-	index, lower, upper: DINT;
+    index, lower, upper: DINT;
 END_VAR
 // User defined local variables
 VAR
@@ -33,14 +33,10 @@ ELSIF index > upper THEN
                dintArg     := index);
 
 // Index OK
-ELSE 
+ELSE
     CheckBounds := index;
 END_IF
 {flow}]]></ST>
     </Implementation>
-    <LineIds Name="CheckBounds">
-      <LineId Id="3" Count="23" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
