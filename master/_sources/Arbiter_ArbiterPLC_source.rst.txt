@@ -1,0 +1,730 @@
+
+
+DUTs
+----
+
+
+GVLs
+----
+
+
+GVL
+^^^
+
+::
+
+    VAR_GLOBAL
+       {attribute 'pytmc' := '
+        pv: @(PREFIX)Arbiter:01
+        '}
+        g_fbArbiter1	:	FB_Arbiter(25);
+
+        ReqBP	:	ST_BeamParams; //Currently the placeholder for the fully arbitrated BP set
+
+        //Example implementation of the FFO
+
+        {attribute 'pytmc' := '
+        pv: @(PREFIX)FFO:01
+        '}
+        {attribute 'TcLinkTo' := '.q_xFastFaultOut:=TIIB[PMPS_FFO]^Channel 1^Output'}
+        g_FastFaultOutput1	:	FB_HardwareFFOutput;
+
+        g_rTestingVelocity	:	LREAL := PMPS_GVL.VISIBLE_TEST_VELOCITY;
+
+        AttemptReset    :   BOOL; // For testing
+    END_VAR
+
+
+GVL_CheckBounds
+^^^^^^^^^^^^^^^
+
+::
+
+    {attribute 'qualified_only'}
+    VAR_GLOBAL
+        nTooLow : UDINT;
+        nTooHigh : UDINT;
+        nDivByZero : UDINT;
+    END_VAR
+
+
+POUs
+----
+
+
+CheckBounds
+^^^^^^^^^^^
+
+::
+
+    // Implicitly generated code : DO NOT EDIT
+    FUNCTION CheckBounds : DINT
+    VAR_INPUT
+        index, lower, upper: DINT;
+    END_VAR
+    // User defined local variables
+    VAR
+        sMessageLow   : STRING := 'CheckBounds: Index too low (%d)';
+        sMessageHigh  : STRING := 'CheckBounds: Index too high (%d)';
+    END_VAR
+    // Index too low
+    IF index < lower THEN
+        CheckBounds := lower;
+        // Increase global counter
+        GVL_CheckBounds.nTooLow := GVL_CheckBounds.nTooLow + 1;
+        // Log message
+        ADSLOGDINT(msgCtrlMask := ADSLOG_MSGTYPE_WARN,
+                   msgFmtStr   := sMessageLow,
+                   dintArg     := index);
+
+    // Index too high
+    ELSIF index > upper THEN
+        CheckBounds := upper;
+        // Increase global counter
+        GVL_CheckBounds.nTooHigh := GVL_CheckBounds.nTooHigh + 1;
+        // Log message
+        ADSLOGDINT(msgCtrlMask := ADSLOG_MSGTYPE_WARN,
+                   msgFmtStr   := sMessageHigh,
+                   dintArg     := index);
+
+    // Index OK
+    ELSE
+        CheckBounds := index;
+    END_IF
+    {flow}
+
+    END_FUNCTION
+
+
+CheckRangeSigned
+^^^^^^^^^^^^^^^^
+
+::
+
+    // Implicitly generated code : DO NOT EDIT
+    FUNCTION CheckRangeSigned : DINT
+    VAR_INPUT
+        value, lower, upper: DINT;
+    END_VAR
+    // Implicitly generated code : Only an Implementation suggestion
+
+    IF (value < lower) THEN
+        CheckRangeSigned := lower;
+    ELSIF(value > upper) THEN
+        CheckRangeSigned := upper;
+    ELSE
+        CheckRangeSigned := value;
+    END_IF
+    {flow}
+
+    END_FUNCTION
+
+
+CheckRangeUnsigned
+^^^^^^^^^^^^^^^^^^
+
+::
+
+    // Implicitly generated code : DO NOT EDIT
+    FUNCTION CheckRangeUnsigned : UDINT
+    VAR_INPUT
+        value, lower, upper: UDINT;
+    END_VAR
+    // Implicitly generated code : Only an Implementation suggestion
+    {noflow}
+    IF (value < lower) THEN
+        CheckRangeUnsigned := lower;
+    ELSIF(value > upper) THEN
+        CheckRangeUnsigned := upper;
+    ELSE
+        CheckRangeUnsigned := value;
+    END_IF
+    {flow}
+
+    END_FUNCTION
+
+
+CurrentBPUpdate
+^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM CurrentBPUpdate
+    VAR
+    END_VAR
+
+
+    END_PROGRAM
+
+
+CXDisplay
+^^^^^^^^^
+
+::
+
+    PROGRAM CXDisplay
+    VAR
+        DisplayStats : FB_CXSetTextDisplayUSB := (nPort:=28928);
+        fbFormat   : FB_FormatString;
+        bError     : BOOL;
+        nErrID     : UDINT;
+        sOut       : T_MaxString;
+    END_VAR
+    (*
+    DisplayStats.bExecute S= NOT DisplayStats.bBusy AND NOT DisplayStats.bError;
+    DisplayStats.bExecute R= DisplayStats.bBusy OR DisplayStats.bError;
+
+    DisplayStats.sLine1 := 'PMPS-ARBITER-K';
+    fbFormat(sFormat := 'Fast Faults: %d', arg1:=F_ULINT(PMPS_GVL.AccumulatedFF), sOut=>DisplayStats.sLine2, bError => bError, nErrID => nErrID );
+
+    DisplayStats(eMode:=E_CX2100_DisplayModesWr.eCX2100_WriteLines);
+    *)
+
+    END_PROGRAM
+
+
+Fast_Faults_Evaluate
+^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM Fast_Faults_Evaluate
+    VAR
+    END_VAR
+    g_FastFaultOutput1.EvaluateOutput(i_xVeto:=PMPS_GVL.stCurrentBeamParameters.aStoppers[PMPS.L_Stopper.ST1]);
+
+    END_PROGRAM
+
+
+FB_eVSimulator
+^^^^^^^^^^^^^^
+
+::
+
+    (* eV Simulator
+    A. Wallace 2019-8-30
+
+    Adds noise to the eV and changes eV position occasionally.
+    *)
+    FUNCTION_BLOCK FB_eVSimulator
+    VAR_INPUT
+        NoiseLevel	:	REAL	:= 0; // eV Noise
+        ChangeTime : TIME := T#10S;
+    END_VAR
+    VAR_OUTPUT
+        eV	:	REAL := 300;
+    END_VAR
+    VAR
+        eVRange : REAL := 1600;
+        timer: TON;
+        eVRand	:	DRAND :=(Seed:=0);
+        NoiseRand : DRAND := (Seed:=0);
+    END_VAR
+    timer(in:=TRUE, PT:=ChangeTime);
+
+    //Occasionally change eV
+    IF timer.Q THEN
+        timer(in:=FALSE);
+        eVRand();
+        eV := LIMIT(0, eVRange*LREAL_TO_REAL(eVRand.Num), eVRange);
+    END_IF
+
+    // Noise generation
+    NoiseRand();
+    eV := eV + NoiseLevel*LREAL_TO_REAL(NoiseRand.Num);
+    NoiseRand();
+    eV := LIMIT(0, ev - NoiseLevel*LREAL_TO_REAL(NoiseRand.Num), eVRange);
+
+    END_FUNCTION_BLOCK
+
+
+FB_Hgvpu
+^^^^^^^^
+
+::
+
+    FUNCTION_BLOCK FB_Hgvpu
+    VAR_INPUT
+
+    END_VAR
+
+    VAR_OUTPUT
+    END_VAR
+
+
+    VAR
+        // From lcls-srv01: grep -e KDes  /u1/lcls/epics/ioc/data/ioc-undh-uc*/iocInfo/IOC.pvlist |sort
+
+        {attribute 'pytmc' := 'pv: 24; link: 2450:'}
+        fbSegment_24 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 25; link: 2550:'}
+        fbSegment_25 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 26; link: 2650:'}
+        fbSegment_26 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 27; link: 2750:'}
+        fbSegment_27 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 29; link: 2950:'}
+        fbSegment_29 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 30; link: 3050:'}
+        fbSegment_30 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 31; link: 3150:'}
+        fbSegment_31 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 32; link: 3250:'}
+        fbSegment_32 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 33; link: 3350:'}
+        fbSegment_33 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 34; link: 3450:'}
+        fbSegment_34 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 35; link: 3550:'}
+        fbSegment_35 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 36; link: 3650:'}
+        fbSegment_36 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 37; link: 3750:'}
+        fbSegment_37 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 38; link: 3850:'}
+        fbSegment_38 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 39; link: 3950:'}
+        fbSegment_39 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 40; link: 4050:'}
+        fbSegment_40 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 41; link: 4150:'}
+        fbSegment_41 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 42; link: 4250:'}
+        fbSegment_42 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 43; link: 4350:'}
+        fbSegment_43 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 44; link: 4450:'}
+        fbSegment_44 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 45; link: 4550:'}
+        fbSegment_45 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 46; link: 4650:'}
+        fbSegment_46 : FB_UndulatorSegment;
+
+        fbSegment : ARRAY [iLowBound..iHighBound] OF POINTER TO FB_UndulatorSegment;
+        fbCurrentSegment : REFERENCE TO FB_UndulatorSegment;
+
+        iIndex : UDINT;
+
+        bInitialized : BOOL := FALSE;
+
+    END_VAR
+
+    VAR CONSTANT
+        iLowBound  : UDINT := 24;
+        iHighBound : UDINT := 46;
+    END_VAR
+    IF NOT bInitialized THEN
+
+        fbSegment[24] := ADR(fbSegment_24);
+        fbSegment[25] := ADR(fbSegment_25);
+        fbSegment[26] := ADR(fbSegment_26);
+        fbSegment[27] := ADR(fbSegment_27);
+        fbSegment[28] := 0;
+        fbSegment[29] := ADR(fbSegment_29);
+        fbSegment[30] := ADR(fbSegment_30);
+        fbSegment[31] := ADR(fbSegment_31);
+        fbSegment[32] := ADR(fbSegment_32);
+        fbSegment[33] := ADR(fbSegment_33);
+        fbSegment[34] := ADR(fbSegment_34);
+        fbSegment[35] := ADR(fbSegment_35);
+        fbSegment[36] := ADR(fbSegment_36);
+        fbSegment[37] := ADR(fbSegment_37);
+        fbSegment[38] := ADR(fbSegment_38);
+        fbSegment[39] := ADR(fbSegment_39);
+        fbSegment[40] := ADR(fbSegment_40);
+        fbSegment[41] := ADR(fbSegment_41);
+        fbSegment[42] := ADR(fbSegment_42);
+        fbSegment[43] := ADR(fbSegment_43);
+        fbSegment[44] := ADR(fbSegment_44);
+        fbSegment[45] := ADR(fbSegment_45);
+        fbSegment[46] := ADR(fbSegment_46);
+
+        bInitialized := TRUE;
+    END_IF
+
+    FOR iIndex := iLowBound TO iHighBound DO
+        IF fbSegment[iIndex] <> 0 THEN
+            fbCurrentSegment REF= fbSegment[iIndex]^;
+            fbCurrentSegment();
+        END_IF
+    END_FOR
+
+    END_FUNCTION_BLOCK
+
+
+FB_SXU
+^^^^^^
+
+::
+
+    FUNCTION_BLOCK FB_SXU
+    VAR_INPUT
+
+    END_VAR
+
+    VAR_OUTPUT
+    END_VAR
+
+
+
+    VAR
+        // From lcls-srv01: grep -e KDes  /u1/lcls/epics/ioc/data/sioc-unds-uc*/iocInfo/IOC.pvlist |sort
+
+
+        {attribute 'pytmc' := 'pv: 26; link: 2650:'}
+        fbSegment_26 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 27; link: 2750:'}
+        fbSegment_27 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 28; link: 2850:'}
+        fbSegment_28 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 29; link: 2950:'}
+        fbSegment_29 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 30; link: 3050:'}
+        fbSegment_30 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 31; link: 3150:'}
+        fbSegment_31 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 32; link: 3250:'}
+        fbSegment_32 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 33; link: 3350:'}
+        fbSegment_33 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 34; link: 3450:'}
+        fbSegment_34 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 36; link: 3650:'}
+        fbSegment_36 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 37; link: 3750:'}
+        fbSegment_37 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 38; link: 3850:'}
+        fbSegment_38 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 39; link: 3950:'}
+        fbSegment_39 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 40; link: 4050:'}
+        fbSegment_40 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 41; link: 4150:'}
+        fbSegment_41 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 42; link: 4250:'}
+        fbSegment_42 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 43; link: 4350:'}
+        fbSegment_43 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 44; link: 4450:'}
+        fbSegment_44 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 45; link: 4550:'}
+        fbSegment_45 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 46; link: 4650:'}
+        fbSegment_46 : FB_UndulatorSegment;
+
+        {attribute 'pytmc' := 'pv: 47; link: 4750:'}
+        fbSegment_47 : FB_UndulatorSegment;
+
+
+
+        fbSegment : ARRAY [iLowBound..iHighBound] OF POINTER TO FB_UndulatorSegment;
+        fbCurrentSegment : REFERENCE TO FB_UndulatorSegment;
+
+        iIndex : UDINT;
+
+        bInitialized : BOOL := FALSE;
+
+    END_VAR
+
+    VAR CONSTANT
+        iLowBound  : UDINT := 26;
+        iHighBound : UDINT := 47;
+    END_VAR
+    IF NOT bInitialized THEN
+
+        fbSegment[26] := ADR(fbSegment_26);
+        fbSegment[27] := ADR(fbSegment_27);
+        fbSegment[28] := ADR(fbSegment_28);
+        fbSegment[29] := ADR(fbSegment_29);
+        fbSegment[30] := ADR(fbSegment_30);
+        fbSegment[31] := ADR(fbSegment_31);
+        fbSegment[32] := ADR(fbSegment_32);
+        fbSegment[33] := ADR(fbSegment_33);
+        fbSegment[34] := ADR(fbSegment_34);
+        fbSegment[35] := 0;
+        fbSegment[36] := ADR(fbSegment_36);
+        fbSegment[37] := ADR(fbSegment_37);
+        fbSegment[38] := ADR(fbSegment_38);
+        fbSegment[39] := ADR(fbSegment_39);
+        fbSegment[40] := ADR(fbSegment_40);
+        fbSegment[41] := ADR(fbSegment_41);
+        fbSegment[42] := ADR(fbSegment_42);
+        fbSegment[43] := ADR(fbSegment_43);
+        fbSegment[44] := ADR(fbSegment_44);
+        fbSegment[45] := ADR(fbSegment_45);
+        fbSegment[46] := ADR(fbSegment_46);
+        fbSegment[47] := ADR(fbSegment_47);
+
+        bInitialized := TRUE;
+    END_IF
+
+    FOR iIndex := iLowBound TO iHighBound DO
+        IF fbSegment[iIndex] <> 0 THEN
+            fbCurrentSegment REF= fbSegment[iIndex]^;
+            fbCurrentSegment();
+        END_IF
+    END_FOR
+
+    END_FUNCTION_BLOCK
+
+
+FB_UndulatorSegment
+^^^^^^^^^^^^^^^^^^^
+
+::
+
+    FUNCTION_BLOCK FB_UndulatorSegment
+    VAR_INPUT
+    END_VAR
+    VAR_OUTPUT
+    END_VAR
+    VAR
+        {attribute 'pytmc' := '
+            pv: KDes
+            link: KDes
+        '}
+        fbKDesired : FB_LREALFromEPICS;
+
+        {attribute 'pytmc' := '
+            pv: KAct
+            link: KAct
+        '}
+        fbKActual : FB_LREALFromEPICS;
+
+    END_VAR
+    fbKDesired();
+    fbKActual();
+
+    END_FUNCTION_BLOCK
+
+
+MachineSimulation
+^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM MachineSimulation
+    VAR
+        fbMachine	:	FB_MachineSimulator; //Simulates attenuator as well
+        fbeVSimulator : FB_eVSimulator := (NoiseLevel := 1);
+    END_VAR
+    // reV Simulator
+    fbeVSimulator();
+
+    // Machine simulator
+    fbMachine(
+        i_stAssertedParams := PMPS_GVL.stRequestedBeamParameters,
+        q_stMachineParams => PMPS_GVL.stCurrentBeamParameters,
+        i_xFault	:= NOT GVL.g_FastFaultOutput1.q_xFastFaultOut
+        );
+
+    PMPS_GVL.stCurrentBeamParameters.neVRange := F_eVRangeCalculator(fbeVSimulator.eV, PMPS_GVL.stCurrentBeamParameters.neVRange);
+
+    END_PROGRAM
+
+
+MAIN
+^^^^
+
+::
+
+    PROGRAM MAIN
+    VAR
+        Initialize	:	BOOL := TRUE;
+
+        fbLogHandler : FB_LogHandler;
+        fbEcatDiag : FB_EcatDiagWrapper;
+    (*
+        {attribute 'pytmc' := '
+            pv: Arbiter:Link:HGVPU
+            link: USEG:UNDH:
+        '}
+        fbHgvpu : FB_Hgvpu;
+
+        {attribute 'pytmc' := '
+            pv: Arbiter:Link:SXU
+            link: USEG:UNDS:
+        '}
+        fbSxu : FB_SXU;
+    *)
+    END_VAR
+    //Arbiter PLC
+
+    IF Initialize THEN
+        Initialize := FALSE;
+    END_IF
+
+    // Ethercat Diagnostics
+    fbEcatDiag();
+
+    ///////////////////////////////////////////////////
+    // This code should be disabled or removed in deployment
+    // Might have a switch to change to simulation mode
+    MachineSimulation();
+    Testing();
+    ///////////////////////////////////////////////////
+
+    //Update current BP
+    CurrentBPUpdate();
+
+    // PMPS Functionality
+    PMPS_Arbiter();
+
+
+    fbLogHandler();
+
+    END_PROGRAM
+    ACTION Initialize:
+
+    END_ACTION
+
+
+PMPS_Arbiter
+^^^^^^^^^^^^
+
+::
+
+    PROGRAM PMPS_Arbiter
+    VAR
+
+        fbBPRequestor : FB_BPRequestor; // Updates global PMPS RequestedBeamParams
+
+        fbPhotonEnergyWatcher	:	FB_PhotonEnergyWatcher;
+        {attribute 'pytmc' := '
+        pv: @(PREFIX)BeamClassOutputs
+        '}
+        fbMPSInterface	:	FB_BeamClassOutputs;
+        {attribute 'pytmc' := '
+        pv: @(PREFIX)CuRateOutputs
+        '}
+        fbCuInterface	:	FB_CTLS_Outputs;
+
+        (* Subsystem requests use this FB and a pragma link to pass their requests to the arbiter.
+        The fb is called on each cycle and updates the arbiter with the current BP set requested
+        from the subsystem PLC.*)
+        //<TODO> make this so it does input and output to the IF
+        (*{attribute 'pytmc' := '
+        pv: @(PREFIX):PLC1
+        '}*)
+        {attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[SubSysPLC1]^IO Inputs^RequestedBP;
+                                    .o_CurrentBP:=TIIB[SubSysPLC1]^IO Outputs^CurrentBP;
+                                    .i_Connected:=TIIB[SubSysPLC1]^SYNC Inputs^External device not connected;
+                                    .i_WcState:=TIIB[SubSysPLC1]^WcState^WcState;
+                                    .i_TxPDOState:=TIIB[SubSysPLC1]^SYNC Inputs^TxPDO state;
+                                    '}
+        fbSubSys1_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF0F);
+
+        (*{attribute 'pytmc' := '
+        pv: @(PREFIX)SubSysIO:PLC2
+        '}*)
+        {attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[SubSysPLC2]^IO Inputs^RequestedBP;
+                                    .i_xNewRequest:=TIIB[SubSysPLC2]^IO Inputs^xNewRequest;
+                                    .o_CurrentBP:=TIIB[SubSysPLC2]^IO Outputs^CurrentBP;
+                                    .i_Connected:=TIIB[SubSysPLC2]^SYNC Inputs^External device not connected;
+                                    .i_WcState:=TIIB[SubSysPLC2]^WcState^WcState;
+                                    .i_TxPDOState:=TIIB[SubSysPLC2]^SYNC Inputs^TxPDO state;
+                                    .i_TxPDOToggle:=TIIB[SubSysPLC2]^SYNC Inputs^TxPDO toggle;
+                                    '}
+        fbSubSys2_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF10);
+
+
+
+    END_VAR
+    // Updating arbiter with subsystem requests.
+    fbSubSys1_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
+
+    fbSubSys2_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
+
+    // Example with attenuator peel-off
+    //////////////////////////////////
+
+    // Beam parameter requestor
+    fbBPRequestor(Arbiter:=GVL.g_fbArbiter1, q_ReqBP => PMPS_GVL.stRequestedBeamParameters);
+
+    // Request beam class
+    fbMPSInterface(BP := PMPS_GVL.stRequestedBeamParameters);
+
+    // Request Cu beam rate
+    fbCuInterface(BP := PMPS_GVL.stRequestedBeamParameters);
+
+
+    // Keep an eye on the photon energy
+    fbPhotonEnergyWatcher(i_stCurrentBeamParams	:= PMPS_GVL.stCurrentBeamParameters,
+                        i_stRequestedBeamParams := PMPS_GVL.stRequestedBeamParameters,
+                        io_fbFFHWO:= GVL.g_FastFaultOutput1,
+                        i_xReset := GVL.AttemptReset);
+
+    // Evaluate fast fault vetos
+    g_FastFaultOutput1.EvaluateVetos();
+
+    // Send fast fault logs
+    g_FastFaultOutput1.ExecuteLogging();
+
+    END_PROGRAM
+
+
+Testing
+^^^^^^^
+
+::
+
+    PROGRAM Testing
+    VAR
+        AttemptReset : TON := (PT:=T#1s);
+        gAttemptReset : TON := (PT:=T#500ms);
+
+        testFF : FB_FastFault;
+        cycle : INT;
+    END_VAR
+    // Trip a fast fault periodically
+    testFF(io_fbFFHWO:= g_FastFaultOutput1);
+    testFF.i_xOK := (cycle mod 1000) = 0;
+    cycle := cycle + 1;
+
+    //Periodically try to reset the photon energy fault.
+    AttemptReset(IN:=PMPS_Arbiter.fbPhotonEnergyWatcher.xPhotonEnergyWithinBounds, Q=>GVL.AttemptReset);
+
+    gAttemptReset(IN:=GVL.g_FastFaultOutput1.xOK, Q=>GVL.g_FastFaultOutput1.i_xReset);
+
+    END_PROGRAM
+

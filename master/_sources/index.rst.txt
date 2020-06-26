@@ -1,0 +1,29 @@
+pmps-dev-arbiter
+----------------
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Arbiter
+
+    Arbiter_pragmas
+    Arbiter_nc
+    Arbiter_boxes
+    Arbiter_links
+
+
+.. toctree::
+    :maxdepth: 2
+    :caption: ArbiterPLC
+
+    Arbiter_ArbiterPLC_summary
+    Arbiter_ArbiterPLC_epics
+    Arbiter_ArbiterPLC_source
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

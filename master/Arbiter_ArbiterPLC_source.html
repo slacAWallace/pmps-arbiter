@@ -1,0 +1,936 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DUTs &mdash; pcdshub/pmps-dev-arbiter  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/doctr-versions-menu.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Data Types" href="Arbiter_ArbiterPLC_epics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> pcdshub/pmps-dev-arbiter
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Arbiter</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Arbiter_pragmas.html">Pragmas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Arbiter_nc.html">NC Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Arbiter_boxes.html">Boxes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Arbiter_links.html">Links</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ArbiterPLC</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Arbiter_ArbiterPLC_summary.html">Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Arbiter_ArbiterPLC_summary.html#pragmas">Pragmas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Arbiter_ArbiterPLC_summary.html#symbols">Symbols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Arbiter_ArbiterPLC_epics.html">Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Arbiter_ArbiterPLC_epics.html#database-records">Database Records</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DUTs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#gvls">GVLs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gvl">GVL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gvl-checkbounds">GVL_CheckBounds</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#pous">POUs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#checkbounds">CheckBounds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checkrangesigned">CheckRangeSigned</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checkrangeunsigned">CheckRangeUnsigned</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#currentbpupdate">CurrentBPUpdate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cxdisplay">CXDisplay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fast-faults-evaluate">Fast_Faults_Evaluate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fb-evsimulator">FB_eVSimulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fb-hgvpu">FB_Hgvpu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fb-sxu">FB_SXU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fb-undulatorsegment">FB_UndulatorSegment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#machinesimulation">MachineSimulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main">MAIN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pmps-arbiter">PMPS_Arbiter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pcdshub/pmps-dev-arbiter</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>DUTs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Arbiter_ArbiterPLC_source.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="duts">
+<h1>DUTs<a class="headerlink" href="#duts" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="gvls">
+<h1>GVLs<a class="headerlink" href="#gvls" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="gvl">
+<h2>GVL<a class="headerlink" href="#gvl" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VAR_GLOBAL</span>
+   <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;</span>
+    <span class="n">pv</span><span class="p">:</span> <span class="o">@</span><span class="p">(</span><span class="n">PREFIX</span><span class="p">)</span><span class="n">Arbiter</span><span class="p">:</span><span class="mi">01</span>
+    <span class="s1">&#39;}</span>
+    <span class="n">g_fbArbiter1</span>    <span class="p">:</span>       <span class="n">FB_Arbiter</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+
+    <span class="n">ReqBP</span>   <span class="p">:</span>       <span class="n">ST_BeamParams</span><span class="p">;</span> <span class="o">//</span><span class="n">Currently</span> <span class="n">the</span> <span class="n">placeholder</span> <span class="k">for</span> <span class="n">the</span> <span class="n">fully</span> <span class="n">arbitrated</span> <span class="n">BP</span> <span class="nb">set</span>
+
+    <span class="o">//</span><span class="n">Example</span> <span class="n">implementation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">FFO</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;</span>
+    <span class="n">pv</span><span class="p">:</span> <span class="o">@</span><span class="p">(</span><span class="n">PREFIX</span><span class="p">)</span><span class="n">FFO</span><span class="p">:</span><span class="mi">01</span>
+    <span class="s1">&#39;}</span>
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;TcLinkTo&#39;</span> <span class="o">:=</span> <span class="s1">&#39;.q_xFastFaultOut:=TIIB[PMPS_FFO]^Channel 1^Output&#39;</span><span class="p">}</span>
+    <span class="n">g_FastFaultOutput1</span>      <span class="p">:</span>       <span class="n">FB_HardwareFFOutput</span><span class="p">;</span>
+
+    <span class="n">g_rTestingVelocity</span>      <span class="p">:</span>       <span class="n">LREAL</span> <span class="o">:=</span> <span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">VISIBLE_TEST_VELOCITY</span><span class="p">;</span>
+
+    <span class="n">AttemptReset</span>    <span class="p">:</span>   <span class="n">BOOL</span><span class="p">;</span> <span class="o">//</span> <span class="n">For</span> <span class="n">testing</span>
+<span class="n">END_VAR</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gvl-checkbounds">
+<h2>GVL_CheckBounds<a class="headerlink" href="#gvl-checkbounds" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;qualified_only&#39;</span><span class="p">}</span>
+<span class="n">VAR_GLOBAL</span>
+    <span class="n">nTooLow</span> <span class="p">:</span> <span class="n">UDINT</span><span class="p">;</span>
+    <span class="n">nTooHigh</span> <span class="p">:</span> <span class="n">UDINT</span><span class="p">;</span>
+    <span class="n">nDivByZero</span> <span class="p">:</span> <span class="n">UDINT</span><span class="p">;</span>
+<span class="n">END_VAR</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pous">
+<h1>POUs<a class="headerlink" href="#pous" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="checkbounds">
+<h2>CheckBounds<a class="headerlink" href="#checkbounds" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Implicitly</span> <span class="n">generated</span> <span class="n">code</span> <span class="p">:</span> <span class="n">DO</span> <span class="n">NOT</span> <span class="n">EDIT</span>
+<span class="n">FUNCTION</span> <span class="n">CheckBounds</span> <span class="p">:</span> <span class="n">DINT</span>
+<span class="n">VAR_INPUT</span>
+    <span class="n">index</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="n">DINT</span><span class="p">;</span>
+<span class="n">END_VAR</span>
+<span class="o">//</span> <span class="n">User</span> <span class="n">defined</span> <span class="n">local</span> <span class="n">variables</span>
+<span class="n">VAR</span>
+    <span class="n">sMessageLow</span>   <span class="p">:</span> <span class="n">STRING</span> <span class="o">:=</span> <span class="s1">&#39;CheckBounds: Index too low (</span><span class="si">%d</span><span class="s1">)&#39;</span><span class="p">;</span>
+    <span class="n">sMessageHigh</span>  <span class="p">:</span> <span class="n">STRING</span> <span class="o">:=</span> <span class="s1">&#39;CheckBounds: Index too high (</span><span class="si">%d</span><span class="s1">)&#39;</span><span class="p">;</span>
+<span class="n">END_VAR</span>
+<span class="o">//</span> <span class="n">Index</span> <span class="n">too</span> <span class="n">low</span>
+<span class="n">IF</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">lower</span> <span class="n">THEN</span>
+    <span class="n">CheckBounds</span> <span class="o">:=</span> <span class="n">lower</span><span class="p">;</span>
+    <span class="o">//</span> <span class="n">Increase</span> <span class="k">global</span> <span class="n">counter</span>
+    <span class="n">GVL_CheckBounds</span><span class="o">.</span><span class="n">nTooLow</span> <span class="o">:=</span> <span class="n">GVL_CheckBounds</span><span class="o">.</span><span class="n">nTooLow</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="o">//</span> <span class="n">Log</span> <span class="n">message</span>
+    <span class="n">ADSLOGDINT</span><span class="p">(</span><span class="n">msgCtrlMask</span> <span class="o">:=</span> <span class="n">ADSLOG_MSGTYPE_WARN</span><span class="p">,</span>
+               <span class="n">msgFmtStr</span>   <span class="o">:=</span> <span class="n">sMessageLow</span><span class="p">,</span>
+               <span class="n">dintArg</span>     <span class="o">:=</span> <span class="n">index</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Index</span> <span class="n">too</span> <span class="n">high</span>
+<span class="n">ELSIF</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="n">upper</span> <span class="n">THEN</span>
+    <span class="n">CheckBounds</span> <span class="o">:=</span> <span class="n">upper</span><span class="p">;</span>
+    <span class="o">//</span> <span class="n">Increase</span> <span class="k">global</span> <span class="n">counter</span>
+    <span class="n">GVL_CheckBounds</span><span class="o">.</span><span class="n">nTooHigh</span> <span class="o">:=</span> <span class="n">GVL_CheckBounds</span><span class="o">.</span><span class="n">nTooHigh</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="o">//</span> <span class="n">Log</span> <span class="n">message</span>
+    <span class="n">ADSLOGDINT</span><span class="p">(</span><span class="n">msgCtrlMask</span> <span class="o">:=</span> <span class="n">ADSLOG_MSGTYPE_WARN</span><span class="p">,</span>
+               <span class="n">msgFmtStr</span>   <span class="o">:=</span> <span class="n">sMessageHigh</span><span class="p">,</span>
+               <span class="n">dintArg</span>     <span class="o">:=</span> <span class="n">index</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Index</span> <span class="n">OK</span>
+<span class="n">ELSE</span>
+    <span class="n">CheckBounds</span> <span class="o">:=</span> <span class="n">index</span><span class="p">;</span>
+<span class="n">END_IF</span>
+<span class="p">{</span><span class="n">flow</span><span class="p">}</span>
+
+<span class="n">END_FUNCTION</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checkrangesigned">
+<h2>CheckRangeSigned<a class="headerlink" href="#checkrangesigned" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Implicitly</span> <span class="n">generated</span> <span class="n">code</span> <span class="p">:</span> <span class="n">DO</span> <span class="n">NOT</span> <span class="n">EDIT</span>
+<span class="n">FUNCTION</span> <span class="n">CheckRangeSigned</span> <span class="p">:</span> <span class="n">DINT</span>
+<span class="n">VAR_INPUT</span>
+    <span class="n">value</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="n">DINT</span><span class="p">;</span>
+<span class="n">END_VAR</span>
+<span class="o">//</span> <span class="n">Implicitly</span> <span class="n">generated</span> <span class="n">code</span> <span class="p">:</span> <span class="n">Only</span> <span class="n">an</span> <span class="n">Implementation</span> <span class="n">suggestion</span>
+
+<span class="n">IF</span> <span class="p">(</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">lower</span><span class="p">)</span> <span class="n">THEN</span>
+    <span class="n">CheckRangeSigned</span> <span class="o">:=</span> <span class="n">lower</span><span class="p">;</span>
+<span class="n">ELSIF</span><span class="p">(</span><span class="n">value</span> <span class="o">&gt;</span> <span class="n">upper</span><span class="p">)</span> <span class="n">THEN</span>
+    <span class="n">CheckRangeSigned</span> <span class="o">:=</span> <span class="n">upper</span><span class="p">;</span>
+<span class="n">ELSE</span>
+    <span class="n">CheckRangeSigned</span> <span class="o">:=</span> <span class="n">value</span><span class="p">;</span>
+<span class="n">END_IF</span>
+<span class="p">{</span><span class="n">flow</span><span class="p">}</span>
+
+<span class="n">END_FUNCTION</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checkrangeunsigned">
+<h2>CheckRangeUnsigned<a class="headerlink" href="#checkrangeunsigned" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Implicitly</span> <span class="n">generated</span> <span class="n">code</span> <span class="p">:</span> <span class="n">DO</span> <span class="n">NOT</span> <span class="n">EDIT</span>
+<span class="n">FUNCTION</span> <span class="n">CheckRangeUnsigned</span> <span class="p">:</span> <span class="n">UDINT</span>
+<span class="n">VAR_INPUT</span>
+    <span class="n">value</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="n">UDINT</span><span class="p">;</span>
+<span class="n">END_VAR</span>
+<span class="o">//</span> <span class="n">Implicitly</span> <span class="n">generated</span> <span class="n">code</span> <span class="p">:</span> <span class="n">Only</span> <span class="n">an</span> <span class="n">Implementation</span> <span class="n">suggestion</span>
+<span class="p">{</span><span class="n">noflow</span><span class="p">}</span>
+<span class="n">IF</span> <span class="p">(</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">lower</span><span class="p">)</span> <span class="n">THEN</span>
+    <span class="n">CheckRangeUnsigned</span> <span class="o">:=</span> <span class="n">lower</span><span class="p">;</span>
+<span class="n">ELSIF</span><span class="p">(</span><span class="n">value</span> <span class="o">&gt;</span> <span class="n">upper</span><span class="p">)</span> <span class="n">THEN</span>
+    <span class="n">CheckRangeUnsigned</span> <span class="o">:=</span> <span class="n">upper</span><span class="p">;</span>
+<span class="n">ELSE</span>
+    <span class="n">CheckRangeUnsigned</span> <span class="o">:=</span> <span class="n">value</span><span class="p">;</span>
+<span class="n">END_IF</span>
+<span class="p">{</span><span class="n">flow</span><span class="p">}</span>
+
+<span class="n">END_FUNCTION</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="currentbpupdate">
+<h2>CurrentBPUpdate<a class="headerlink" href="#currentbpupdate" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROGRAM</span> <span class="n">CurrentBPUpdate</span>
+<span class="n">VAR</span>
+<span class="n">END_VAR</span>
+
+
+<span class="n">END_PROGRAM</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cxdisplay">
+<h2>CXDisplay<a class="headerlink" href="#cxdisplay" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROGRAM</span> <span class="n">CXDisplay</span>
+<span class="n">VAR</span>
+    <span class="n">DisplayStats</span> <span class="p">:</span> <span class="n">FB_CXSetTextDisplayUSB</span> <span class="o">:=</span> <span class="p">(</span><span class="n">nPort</span><span class="o">:=</span><span class="mi">28928</span><span class="p">);</span>
+    <span class="n">fbFormat</span>   <span class="p">:</span> <span class="n">FB_FormatString</span><span class="p">;</span>
+    <span class="n">bError</span>     <span class="p">:</span> <span class="n">BOOL</span><span class="p">;</span>
+    <span class="n">nErrID</span>     <span class="p">:</span> <span class="n">UDINT</span><span class="p">;</span>
+    <span class="n">sOut</span>       <span class="p">:</span> <span class="n">T_MaxString</span><span class="p">;</span>
+<span class="n">END_VAR</span>
+<span class="p">(</span><span class="o">*</span>
+<span class="n">DisplayStats</span><span class="o">.</span><span class="n">bExecute</span> <span class="n">S</span><span class="o">=</span> <span class="n">NOT</span> <span class="n">DisplayStats</span><span class="o">.</span><span class="n">bBusy</span> <span class="n">AND</span> <span class="n">NOT</span> <span class="n">DisplayStats</span><span class="o">.</span><span class="n">bError</span><span class="p">;</span>
+<span class="n">DisplayStats</span><span class="o">.</span><span class="n">bExecute</span> <span class="n">R</span><span class="o">=</span> <span class="n">DisplayStats</span><span class="o">.</span><span class="n">bBusy</span> <span class="n">OR</span> <span class="n">DisplayStats</span><span class="o">.</span><span class="n">bError</span><span class="p">;</span>
+
+<span class="n">DisplayStats</span><span class="o">.</span><span class="n">sLine1</span> <span class="o">:=</span> <span class="s1">&#39;PMPS-ARBITER-K&#39;</span><span class="p">;</span>
+<span class="n">fbFormat</span><span class="p">(</span><span class="n">sFormat</span> <span class="o">:=</span> <span class="s1">&#39;Fast Faults: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">arg1</span><span class="o">:=</span><span class="n">F_ULINT</span><span class="p">(</span><span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">AccumulatedFF</span><span class="p">),</span> <span class="n">sOut</span><span class="o">=&gt;</span><span class="n">DisplayStats</span><span class="o">.</span><span class="n">sLine2</span><span class="p">,</span> <span class="n">bError</span> <span class="o">=&gt;</span> <span class="n">bError</span><span class="p">,</span> <span class="n">nErrID</span> <span class="o">=&gt;</span> <span class="n">nErrID</span> <span class="p">);</span>
+
+<span class="n">DisplayStats</span><span class="p">(</span><span class="n">eMode</span><span class="o">:=</span><span class="n">E_CX2100_DisplayModesWr</span><span class="o">.</span><span class="n">eCX2100_WriteLines</span><span class="p">);</span>
+<span class="o">*</span><span class="p">)</span>
+
+<span class="n">END_PROGRAM</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fast-faults-evaluate">
+<h2>Fast_Faults_Evaluate<a class="headerlink" href="#fast-faults-evaluate" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROGRAM</span> <span class="n">Fast_Faults_Evaluate</span>
+<span class="n">VAR</span>
+<span class="n">END_VAR</span>
+<span class="n">g_FastFaultOutput1</span><span class="o">.</span><span class="n">EvaluateOutput</span><span class="p">(</span><span class="n">i_xVeto</span><span class="o">:=</span><span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">stCurrentBeamParameters</span><span class="o">.</span><span class="n">aStoppers</span><span class="p">[</span><span class="n">PMPS</span><span class="o">.</span><span class="n">L_Stopper</span><span class="o">.</span><span class="n">ST1</span><span class="p">]);</span>
+
+<span class="n">END_PROGRAM</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fb-evsimulator">
+<h2>FB_eVSimulator<a class="headerlink" href="#fb-evsimulator" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">*</span> <span class="n">eV</span> <span class="n">Simulator</span>
+<span class="n">A</span><span class="o">.</span> <span class="n">Wallace</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">30</span>
+
+<span class="n">Adds</span> <span class="n">noise</span> <span class="n">to</span> <span class="n">the</span> <span class="n">eV</span> <span class="ow">and</span> <span class="n">changes</span> <span class="n">eV</span> <span class="n">position</span> <span class="n">occasionally</span><span class="o">.</span>
+<span class="o">*</span><span class="p">)</span>
+<span class="n">FUNCTION_BLOCK</span> <span class="n">FB_eVSimulator</span>
+<span class="n">VAR_INPUT</span>
+    <span class="n">NoiseLevel</span>      <span class="p">:</span>       <span class="n">REAL</span>    <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">//</span> <span class="n">eV</span> <span class="n">Noise</span>
+    <span class="n">ChangeTime</span> <span class="p">:</span> <span class="n">TIME</span> <span class="o">:=</span> <span class="n">T</span><span class="c1">#10S;</span>
+<span class="n">END_VAR</span>
+<span class="n">VAR_OUTPUT</span>
+    <span class="n">eV</span>      <span class="p">:</span>       <span class="n">REAL</span> <span class="o">:=</span> <span class="mi">300</span><span class="p">;</span>
+<span class="n">END_VAR</span>
+<span class="n">VAR</span>
+    <span class="n">eVRange</span> <span class="p">:</span> <span class="n">REAL</span> <span class="o">:=</span> <span class="mi">1600</span><span class="p">;</span>
+    <span class="n">timer</span><span class="p">:</span> <span class="n">TON</span><span class="p">;</span>
+    <span class="n">eVRand</span>  <span class="p">:</span>       <span class="n">DRAND</span> <span class="o">:=</span><span class="p">(</span><span class="n">Seed</span><span class="o">:=</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">NoiseRand</span> <span class="p">:</span> <span class="n">DRAND</span> <span class="o">:=</span> <span class="p">(</span><span class="n">Seed</span><span class="o">:=</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">END_VAR</span>
+<span class="n">timer</span><span class="p">(</span><span class="ow">in</span><span class="o">:=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">PT</span><span class="o">:=</span><span class="n">ChangeTime</span><span class="p">);</span>
+
+<span class="o">//</span><span class="n">Occasionally</span> <span class="n">change</span> <span class="n">eV</span>
+<span class="n">IF</span> <span class="n">timer</span><span class="o">.</span><span class="n">Q</span> <span class="n">THEN</span>
+    <span class="n">timer</span><span class="p">(</span><span class="ow">in</span><span class="o">:=</span><span class="n">FALSE</span><span class="p">);</span>
+    <span class="n">eVRand</span><span class="p">();</span>
+    <span class="n">eV</span> <span class="o">:=</span> <span class="n">LIMIT</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">eVRange</span><span class="o">*</span><span class="n">LREAL_TO_REAL</span><span class="p">(</span><span class="n">eVRand</span><span class="o">.</span><span class="n">Num</span><span class="p">),</span> <span class="n">eVRange</span><span class="p">);</span>
+<span class="n">END_IF</span>
+
+<span class="o">//</span> <span class="n">Noise</span> <span class="n">generation</span>
+<span class="n">NoiseRand</span><span class="p">();</span>
+<span class="n">eV</span> <span class="o">:=</span> <span class="n">eV</span> <span class="o">+</span> <span class="n">NoiseLevel</span><span class="o">*</span><span class="n">LREAL_TO_REAL</span><span class="p">(</span><span class="n">NoiseRand</span><span class="o">.</span><span class="n">Num</span><span class="p">);</span>
+<span class="n">NoiseRand</span><span class="p">();</span>
+<span class="n">eV</span> <span class="o">:=</span> <span class="n">LIMIT</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ev</span> <span class="o">-</span> <span class="n">NoiseLevel</span><span class="o">*</span><span class="n">LREAL_TO_REAL</span><span class="p">(</span><span class="n">NoiseRand</span><span class="o">.</span><span class="n">Num</span><span class="p">),</span> <span class="n">eVRange</span><span class="p">);</span>
+
+<span class="n">END_FUNCTION_BLOCK</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fb-hgvpu">
+<h2>FB_Hgvpu<a class="headerlink" href="#fb-hgvpu" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FUNCTION_BLOCK</span> <span class="n">FB_Hgvpu</span>
+<span class="n">VAR_INPUT</span>
+
+<span class="n">END_VAR</span>
+
+<span class="n">VAR_OUTPUT</span>
+<span class="n">END_VAR</span>
+
+
+<span class="n">VAR</span>
+    <span class="o">//</span> <span class="n">From</span> <span class="n">lcls</span><span class="o">-</span><span class="n">srv01</span><span class="p">:</span> <span class="n">grep</span> <span class="o">-</span><span class="n">e</span> <span class="n">KDes</span>  <span class="o">/</span><span class="n">u1</span><span class="o">/</span><span class="n">lcls</span><span class="o">/</span><span class="n">epics</span><span class="o">/</span><span class="n">ioc</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">ioc</span><span class="o">-</span><span class="n">undh</span><span class="o">-</span><span class="n">uc</span><span class="o">*/</span><span class="n">iocInfo</span><span class="o">/</span><span class="n">IOC</span><span class="o">.</span><span class="n">pvlist</span> <span class="o">|</span><span class="n">sort</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 24; link: 2450:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_24</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 25; link: 2550:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_25</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 26; link: 2650:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_26</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 27; link: 2750:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_27</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 29; link: 2950:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_29</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 30; link: 3050:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_30</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 31; link: 3150:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_31</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 32; link: 3250:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_32</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 33; link: 3350:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_33</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 34; link: 3450:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_34</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 35; link: 3550:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_35</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 36; link: 3650:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_36</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 37; link: 3750:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_37</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 38; link: 3850:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_38</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 39; link: 3950:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_39</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 40; link: 4050:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_40</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 41; link: 4150:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_41</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 42; link: 4250:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_42</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 43; link: 4350:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_43</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 44; link: 4450:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_44</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 45; link: 4550:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_45</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 46; link: 4650:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_46</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="n">fbSegment</span> <span class="p">:</span> <span class="n">ARRAY</span> <span class="p">[</span><span class="n">iLowBound</span><span class="o">..</span><span class="n">iHighBound</span><span class="p">]</span> <span class="n">OF</span> <span class="n">POINTER</span> <span class="n">TO</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+    <span class="n">fbCurrentSegment</span> <span class="p">:</span> <span class="n">REFERENCE</span> <span class="n">TO</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="n">iIndex</span> <span class="p">:</span> <span class="n">UDINT</span><span class="p">;</span>
+
+    <span class="n">bInitialized</span> <span class="p">:</span> <span class="n">BOOL</span> <span class="o">:=</span> <span class="n">FALSE</span><span class="p">;</span>
+
+<span class="n">END_VAR</span>
+
+<span class="n">VAR</span> <span class="n">CONSTANT</span>
+    <span class="n">iLowBound</span>  <span class="p">:</span> <span class="n">UDINT</span> <span class="o">:=</span> <span class="mi">24</span><span class="p">;</span>
+    <span class="n">iHighBound</span> <span class="p">:</span> <span class="n">UDINT</span> <span class="o">:=</span> <span class="mi">46</span><span class="p">;</span>
+<span class="n">END_VAR</span>
+<span class="n">IF</span> <span class="n">NOT</span> <span class="n">bInitialized</span> <span class="n">THEN</span>
+
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">24</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_24</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">25</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_25</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_26</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">27</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_27</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">28</span><span class="p">]</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">29</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_29</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_30</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">31</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_31</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_32</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">33</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_33</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">34</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_34</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">35</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_35</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">36</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_36</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">37</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_37</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">38</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_38</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">39</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_39</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">40</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_40</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">41</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_41</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">42</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_42</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">43</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_43</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">44</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_44</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">45</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_45</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">46</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_46</span><span class="p">);</span>
+
+    <span class="n">bInitialized</span> <span class="o">:=</span> <span class="n">TRUE</span><span class="p">;</span>
+<span class="n">END_IF</span>
+
+<span class="n">FOR</span> <span class="n">iIndex</span> <span class="o">:=</span> <span class="n">iLowBound</span> <span class="n">TO</span> <span class="n">iHighBound</span> <span class="n">DO</span>
+    <span class="n">IF</span> <span class="n">fbSegment</span><span class="p">[</span><span class="n">iIndex</span><span class="p">]</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span> <span class="n">THEN</span>
+        <span class="n">fbCurrentSegment</span> <span class="n">REF</span><span class="o">=</span> <span class="n">fbSegment</span><span class="p">[</span><span class="n">iIndex</span><span class="p">]</span><span class="o">^</span><span class="p">;</span>
+        <span class="n">fbCurrentSegment</span><span class="p">();</span>
+    <span class="n">END_IF</span>
+<span class="n">END_FOR</span>
+
+<span class="n">END_FUNCTION_BLOCK</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fb-sxu">
+<h2>FB_SXU<a class="headerlink" href="#fb-sxu" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FUNCTION_BLOCK</span> <span class="n">FB_SXU</span>
+<span class="n">VAR_INPUT</span>
+
+<span class="n">END_VAR</span>
+
+<span class="n">VAR_OUTPUT</span>
+<span class="n">END_VAR</span>
+
+
+
+<span class="n">VAR</span>
+    <span class="o">//</span> <span class="n">From</span> <span class="n">lcls</span><span class="o">-</span><span class="n">srv01</span><span class="p">:</span> <span class="n">grep</span> <span class="o">-</span><span class="n">e</span> <span class="n">KDes</span>  <span class="o">/</span><span class="n">u1</span><span class="o">/</span><span class="n">lcls</span><span class="o">/</span><span class="n">epics</span><span class="o">/</span><span class="n">ioc</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sioc</span><span class="o">-</span><span class="n">unds</span><span class="o">-</span><span class="n">uc</span><span class="o">*/</span><span class="n">iocInfo</span><span class="o">/</span><span class="n">IOC</span><span class="o">.</span><span class="n">pvlist</span> <span class="o">|</span><span class="n">sort</span>
+
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 26; link: 2650:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_26</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 27; link: 2750:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_27</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 28; link: 2850:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_28</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 29; link: 2950:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_29</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 30; link: 3050:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_30</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 31; link: 3150:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_31</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 32; link: 3250:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_32</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 33; link: 3350:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_33</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 34; link: 3450:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_34</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 36; link: 3650:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_36</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 37; link: 3750:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_37</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 38; link: 3850:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_38</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 39; link: 3950:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_39</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 40; link: 4050:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_40</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 41; link: 4150:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_41</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 42; link: 4250:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_42</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 43; link: 4350:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_43</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 44; link: 4450:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_44</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 45; link: 4550:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_45</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 46; link: 4650:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_46</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;pv: 47; link: 4750:&#39;</span><span class="p">}</span>
+    <span class="n">fbSegment_47</span> <span class="p">:</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+
+
+    <span class="n">fbSegment</span> <span class="p">:</span> <span class="n">ARRAY</span> <span class="p">[</span><span class="n">iLowBound</span><span class="o">..</span><span class="n">iHighBound</span><span class="p">]</span> <span class="n">OF</span> <span class="n">POINTER</span> <span class="n">TO</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+    <span class="n">fbCurrentSegment</span> <span class="p">:</span> <span class="n">REFERENCE</span> <span class="n">TO</span> <span class="n">FB_UndulatorSegment</span><span class="p">;</span>
+
+    <span class="n">iIndex</span> <span class="p">:</span> <span class="n">UDINT</span><span class="p">;</span>
+
+    <span class="n">bInitialized</span> <span class="p">:</span> <span class="n">BOOL</span> <span class="o">:=</span> <span class="n">FALSE</span><span class="p">;</span>
+
+<span class="n">END_VAR</span>
+
+<span class="n">VAR</span> <span class="n">CONSTANT</span>
+    <span class="n">iLowBound</span>  <span class="p">:</span> <span class="n">UDINT</span> <span class="o">:=</span> <span class="mi">26</span><span class="p">;</span>
+    <span class="n">iHighBound</span> <span class="p">:</span> <span class="n">UDINT</span> <span class="o">:=</span> <span class="mi">47</span><span class="p">;</span>
+<span class="n">END_VAR</span>
+<span class="n">IF</span> <span class="n">NOT</span> <span class="n">bInitialized</span> <span class="n">THEN</span>
+
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_26</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">27</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_27</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">28</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_28</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">29</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_29</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_30</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">31</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_31</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_32</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">33</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_33</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">34</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_34</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">35</span><span class="p">]</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">36</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_36</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">37</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_37</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">38</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_38</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">39</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_39</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">40</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_40</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">41</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_41</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">42</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_42</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">43</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_43</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">44</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_44</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">45</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_45</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">46</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_46</span><span class="p">);</span>
+    <span class="n">fbSegment</span><span class="p">[</span><span class="mi">47</span><span class="p">]</span> <span class="o">:=</span> <span class="n">ADR</span><span class="p">(</span><span class="n">fbSegment_47</span><span class="p">);</span>
+
+    <span class="n">bInitialized</span> <span class="o">:=</span> <span class="n">TRUE</span><span class="p">;</span>
+<span class="n">END_IF</span>
+
+<span class="n">FOR</span> <span class="n">iIndex</span> <span class="o">:=</span> <span class="n">iLowBound</span> <span class="n">TO</span> <span class="n">iHighBound</span> <span class="n">DO</span>
+    <span class="n">IF</span> <span class="n">fbSegment</span><span class="p">[</span><span class="n">iIndex</span><span class="p">]</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span> <span class="n">THEN</span>
+        <span class="n">fbCurrentSegment</span> <span class="n">REF</span><span class="o">=</span> <span class="n">fbSegment</span><span class="p">[</span><span class="n">iIndex</span><span class="p">]</span><span class="o">^</span><span class="p">;</span>
+        <span class="n">fbCurrentSegment</span><span class="p">();</span>
+    <span class="n">END_IF</span>
+<span class="n">END_FOR</span>
+
+<span class="n">END_FUNCTION_BLOCK</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fb-undulatorsegment">
+<h2>FB_UndulatorSegment<a class="headerlink" href="#fb-undulatorsegment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FUNCTION_BLOCK</span> <span class="n">FB_UndulatorSegment</span>
+<span class="n">VAR_INPUT</span>
+<span class="n">END_VAR</span>
+<span class="n">VAR_OUTPUT</span>
+<span class="n">END_VAR</span>
+<span class="n">VAR</span>
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;</span>
+        <span class="n">pv</span><span class="p">:</span> <span class="n">KDes</span>
+        <span class="n">link</span><span class="p">:</span> <span class="n">KDes</span>
+    <span class="s1">&#39;}</span>
+    <span class="n">fbKDesired</span> <span class="p">:</span> <span class="n">FB_LREALFromEPICS</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;</span>
+        <span class="n">pv</span><span class="p">:</span> <span class="n">KAct</span>
+        <span class="n">link</span><span class="p">:</span> <span class="n">KAct</span>
+    <span class="s1">&#39;}</span>
+    <span class="n">fbKActual</span> <span class="p">:</span> <span class="n">FB_LREALFromEPICS</span><span class="p">;</span>
+
+<span class="n">END_VAR</span>
+<span class="n">fbKDesired</span><span class="p">();</span>
+<span class="n">fbKActual</span><span class="p">();</span>
+
+<span class="n">END_FUNCTION_BLOCK</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="machinesimulation">
+<h2>MachineSimulation<a class="headerlink" href="#machinesimulation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROGRAM</span> <span class="n">MachineSimulation</span>
+<span class="n">VAR</span>
+    <span class="n">fbMachine</span>       <span class="p">:</span>       <span class="n">FB_MachineSimulator</span><span class="p">;</span> <span class="o">//</span><span class="n">Simulates</span> <span class="n">attenuator</span> <span class="k">as</span> <span class="n">well</span>
+    <span class="n">fbeVSimulator</span> <span class="p">:</span> <span class="n">FB_eVSimulator</span> <span class="o">:=</span> <span class="p">(</span><span class="n">NoiseLevel</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">END_VAR</span>
+<span class="o">//</span> <span class="n">reV</span> <span class="n">Simulator</span>
+<span class="n">fbeVSimulator</span><span class="p">();</span>
+
+<span class="o">//</span> <span class="n">Machine</span> <span class="n">simulator</span>
+<span class="n">fbMachine</span><span class="p">(</span>
+    <span class="n">i_stAssertedParams</span> <span class="o">:=</span> <span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">stRequestedBeamParameters</span><span class="p">,</span>
+    <span class="n">q_stMachineParams</span> <span class="o">=&gt;</span> <span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">stCurrentBeamParameters</span><span class="p">,</span>
+    <span class="n">i_xFault</span>        <span class="o">:=</span> <span class="n">NOT</span> <span class="n">GVL</span><span class="o">.</span><span class="n">g_FastFaultOutput1</span><span class="o">.</span><span class="n">q_xFastFaultOut</span>
+    <span class="p">);</span>
+
+<span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">stCurrentBeamParameters</span><span class="o">.</span><span class="n">neVRange</span> <span class="o">:=</span> <span class="n">F_eVRangeCalculator</span><span class="p">(</span><span class="n">fbeVSimulator</span><span class="o">.</span><span class="n">eV</span><span class="p">,</span> <span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">stCurrentBeamParameters</span><span class="o">.</span><span class="n">neVRange</span><span class="p">);</span>
+
+<span class="n">END_PROGRAM</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="main">
+<h2>MAIN<a class="headerlink" href="#main" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROGRAM</span> <span class="n">MAIN</span>
+<span class="n">VAR</span>
+    <span class="n">Initialize</span>      <span class="p">:</span>       <span class="n">BOOL</span> <span class="o">:=</span> <span class="n">TRUE</span><span class="p">;</span>
+
+    <span class="n">fbLogHandler</span> <span class="p">:</span> <span class="n">FB_LogHandler</span><span class="p">;</span>
+    <span class="n">fbEcatDiag</span> <span class="p">:</span> <span class="n">FB_EcatDiagWrapper</span><span class="p">;</span>
+<span class="p">(</span><span class="o">*</span>
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;</span>
+        <span class="n">pv</span><span class="p">:</span> <span class="n">Arbiter</span><span class="p">:</span><span class="n">Link</span><span class="p">:</span><span class="n">HGVPU</span>
+        <span class="n">link</span><span class="p">:</span> <span class="n">USEG</span><span class="p">:</span><span class="n">UNDH</span><span class="p">:</span>
+    <span class="s1">&#39;}</span>
+    <span class="n">fbHgvpu</span> <span class="p">:</span> <span class="n">FB_Hgvpu</span><span class="p">;</span>
+
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;</span>
+        <span class="n">pv</span><span class="p">:</span> <span class="n">Arbiter</span><span class="p">:</span><span class="n">Link</span><span class="p">:</span><span class="n">SXU</span>
+        <span class="n">link</span><span class="p">:</span> <span class="n">USEG</span><span class="p">:</span><span class="n">UNDS</span><span class="p">:</span>
+    <span class="s1">&#39;}</span>
+    <span class="n">fbSxu</span> <span class="p">:</span> <span class="n">FB_SXU</span><span class="p">;</span>
+<span class="o">*</span><span class="p">)</span>
+<span class="n">END_VAR</span>
+<span class="o">//</span><span class="n">Arbiter</span> <span class="n">PLC</span>
+
+<span class="n">IF</span> <span class="n">Initialize</span> <span class="n">THEN</span>
+    <span class="n">Initialize</span> <span class="o">:=</span> <span class="n">FALSE</span><span class="p">;</span>
+<span class="n">END_IF</span>
+
+<span class="o">//</span> <span class="n">Ethercat</span> <span class="n">Diagnostics</span>
+<span class="n">fbEcatDiag</span><span class="p">();</span>
+
+<span class="o">///////////////////////////////////////////////////</span>
+<span class="o">//</span> <span class="n">This</span> <span class="n">code</span> <span class="n">should</span> <span class="n">be</span> <span class="n">disabled</span> <span class="ow">or</span> <span class="n">removed</span> <span class="ow">in</span> <span class="n">deployment</span>
+<span class="o">//</span> <span class="n">Might</span> <span class="n">have</span> <span class="n">a</span> <span class="n">switch</span> <span class="n">to</span> <span class="n">change</span> <span class="n">to</span> <span class="n">simulation</span> <span class="n">mode</span>
+<span class="n">MachineSimulation</span><span class="p">();</span>
+<span class="n">Testing</span><span class="p">();</span>
+<span class="o">///////////////////////////////////////////////////</span>
+
+<span class="o">//</span><span class="n">Update</span> <span class="n">current</span> <span class="n">BP</span>
+<span class="n">CurrentBPUpdate</span><span class="p">();</span>
+
+<span class="o">//</span> <span class="n">PMPS</span> <span class="n">Functionality</span>
+<span class="n">PMPS_Arbiter</span><span class="p">();</span>
+
+
+<span class="n">fbLogHandler</span><span class="p">();</span>
+
+<span class="n">END_PROGRAM</span>
+<span class="n">ACTION</span> <span class="n">Initialize</span><span class="p">:</span>
+
+<span class="n">END_ACTION</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pmps-arbiter">
+<h2>PMPS_Arbiter<a class="headerlink" href="#pmps-arbiter" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROGRAM</span> <span class="n">PMPS_Arbiter</span>
+<span class="n">VAR</span>
+
+    <span class="n">fbBPRequestor</span> <span class="p">:</span> <span class="n">FB_BPRequestor</span><span class="p">;</span> <span class="o">//</span> <span class="n">Updates</span> <span class="k">global</span> <span class="n">PMPS</span> <span class="n">RequestedBeamParams</span>
+
+    <span class="n">fbPhotonEnergyWatcher</span>   <span class="p">:</span>       <span class="n">FB_PhotonEnergyWatcher</span><span class="p">;</span>
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;</span>
+    <span class="n">pv</span><span class="p">:</span> <span class="o">@</span><span class="p">(</span><span class="n">PREFIX</span><span class="p">)</span><span class="n">BeamClassOutputs</span>
+    <span class="s1">&#39;}</span>
+    <span class="n">fbMPSInterface</span>  <span class="p">:</span>       <span class="n">FB_BeamClassOutputs</span><span class="p">;</span>
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;</span>
+    <span class="n">pv</span><span class="p">:</span> <span class="o">@</span><span class="p">(</span><span class="n">PREFIX</span><span class="p">)</span><span class="n">CuRateOutputs</span>
+    <span class="s1">&#39;}</span>
+    <span class="n">fbCuInterface</span>   <span class="p">:</span>       <span class="n">FB_CTLS_Outputs</span><span class="p">;</span>
+
+    <span class="p">(</span><span class="o">*</span> <span class="n">Subsystem</span> <span class="n">requests</span> <span class="n">use</span> <span class="n">this</span> <span class="n">FB</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">pragma</span> <span class="n">link</span> <span class="n">to</span> <span class="k">pass</span> <span class="n">their</span> <span class="n">requests</span> <span class="n">to</span> <span class="n">the</span> <span class="n">arbiter</span><span class="o">.</span>
+    <span class="n">The</span> <span class="n">fb</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">on</span> <span class="n">each</span> <span class="n">cycle</span> <span class="ow">and</span> <span class="n">updates</span> <span class="n">the</span> <span class="n">arbiter</span> <span class="k">with</span> <span class="n">the</span> <span class="n">current</span> <span class="n">BP</span> <span class="nb">set</span> <span class="n">requested</span>
+    <span class="kn">from</span> <span class="nn">the</span> <span class="n">subsystem</span> <span class="n">PLC</span><span class="o">.*</span><span class="p">)</span>
+    <span class="o">//&lt;</span><span class="n">TODO</span><span class="o">&gt;</span> <span class="n">make</span> <span class="n">this</span> <span class="n">so</span> <span class="n">it</span> <span class="n">does</span> <span class="nb">input</span> <span class="ow">and</span> <span class="n">output</span> <span class="n">to</span> <span class="n">the</span> <span class="n">IF</span>
+    <span class="p">(</span><span class="o">*</span><span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;</span>
+    <span class="n">pv</span><span class="p">:</span> <span class="o">@</span><span class="p">(</span><span class="n">PREFIX</span><span class="p">):</span><span class="n">PLC1</span>
+    <span class="s1">&#39;}*)</span>
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;TcLinkTo&#39;</span> <span class="o">:=</span> <span class="s1">&#39;.i_RequestedBP:=TIIB[SubSysPLC1]^IO Inputs^RequestedBP;</span>
+                                <span class="o">.</span><span class="n">o_CurrentBP</span><span class="o">:=</span><span class="n">TIIB</span><span class="p">[</span><span class="n">SubSysPLC1</span><span class="p">]</span><span class="o">^</span><span class="n">IO</span> <span class="n">Outputs</span><span class="o">^</span><span class="n">CurrentBP</span><span class="p">;</span>
+                                <span class="o">.</span><span class="n">i_Connected</span><span class="o">:=</span><span class="n">TIIB</span><span class="p">[</span><span class="n">SubSysPLC1</span><span class="p">]</span><span class="o">^</span><span class="n">SYNC</span> <span class="n">Inputs</span><span class="o">^</span><span class="n">External</span> <span class="n">device</span> <span class="ow">not</span> <span class="n">connected</span><span class="p">;</span>
+                                <span class="o">.</span><span class="n">i_WcState</span><span class="o">:=</span><span class="n">TIIB</span><span class="p">[</span><span class="n">SubSysPLC1</span><span class="p">]</span><span class="o">^</span><span class="n">WcState</span><span class="o">^</span><span class="n">WcState</span><span class="p">;</span>
+                                <span class="o">.</span><span class="n">i_TxPDOState</span><span class="o">:=</span><span class="n">TIIB</span><span class="p">[</span><span class="n">SubSysPLC1</span><span class="p">]</span><span class="o">^</span><span class="n">SYNC</span> <span class="n">Inputs</span><span class="o">^</span><span class="n">TxPDO</span> <span class="n">state</span><span class="p">;</span>
+                                <span class="s1">&#39;}</span>
+    <span class="n">fbSubSys1_PMPS_IO</span> <span class="p">:</span> <span class="n">FB_ArbiterToSubSys_IO</span> <span class="o">:=</span> <span class="p">(</span><span class="n">RequestingSystemID</span> <span class="o">:=</span> <span class="mi">16</span><span class="c1">#FF0F);</span>
+
+    <span class="p">(</span><span class="o">*</span><span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;pytmc&#39;</span> <span class="o">:=</span> <span class="s1">&#39;</span>
+    <span class="n">pv</span><span class="p">:</span> <span class="o">@</span><span class="p">(</span><span class="n">PREFIX</span><span class="p">)</span><span class="n">SubSysIO</span><span class="p">:</span><span class="n">PLC2</span>
+    <span class="s1">&#39;}*)</span>
+    <span class="p">{</span><span class="n">attribute</span> <span class="s1">&#39;TcLinkTo&#39;</span> <span class="o">:=</span> <span class="s1">&#39;.i_RequestedBP:=TIIB[SubSysPLC2]^IO Inputs^RequestedBP;</span>
+                                <span class="o">.</span><span class="n">i_xNewRequest</span><span class="o">:=</span><span class="n">TIIB</span><span class="p">[</span><span class="n">SubSysPLC2</span><span class="p">]</span><span class="o">^</span><span class="n">IO</span> <span class="n">Inputs</span><span class="o">^</span><span class="n">xNewRequest</span><span class="p">;</span>
+                                <span class="o">.</span><span class="n">o_CurrentBP</span><span class="o">:=</span><span class="n">TIIB</span><span class="p">[</span><span class="n">SubSysPLC2</span><span class="p">]</span><span class="o">^</span><span class="n">IO</span> <span class="n">Outputs</span><span class="o">^</span><span class="n">CurrentBP</span><span class="p">;</span>
+                                <span class="o">.</span><span class="n">i_Connected</span><span class="o">:=</span><span class="n">TIIB</span><span class="p">[</span><span class="n">SubSysPLC2</span><span class="p">]</span><span class="o">^</span><span class="n">SYNC</span> <span class="n">Inputs</span><span class="o">^</span><span class="n">External</span> <span class="n">device</span> <span class="ow">not</span> <span class="n">connected</span><span class="p">;</span>
+                                <span class="o">.</span><span class="n">i_WcState</span><span class="o">:=</span><span class="n">TIIB</span><span class="p">[</span><span class="n">SubSysPLC2</span><span class="p">]</span><span class="o">^</span><span class="n">WcState</span><span class="o">^</span><span class="n">WcState</span><span class="p">;</span>
+                                <span class="o">.</span><span class="n">i_TxPDOState</span><span class="o">:=</span><span class="n">TIIB</span><span class="p">[</span><span class="n">SubSysPLC2</span><span class="p">]</span><span class="o">^</span><span class="n">SYNC</span> <span class="n">Inputs</span><span class="o">^</span><span class="n">TxPDO</span> <span class="n">state</span><span class="p">;</span>
+                                <span class="o">.</span><span class="n">i_TxPDOToggle</span><span class="o">:=</span><span class="n">TIIB</span><span class="p">[</span><span class="n">SubSysPLC2</span><span class="p">]</span><span class="o">^</span><span class="n">SYNC</span> <span class="n">Inputs</span><span class="o">^</span><span class="n">TxPDO</span> <span class="n">toggle</span><span class="p">;</span>
+                                <span class="s1">&#39;}</span>
+    <span class="n">fbSubSys2_PMPS_IO</span> <span class="p">:</span> <span class="n">FB_ArbiterToSubSys_IO</span> <span class="o">:=</span> <span class="p">(</span><span class="n">RequestingSystemID</span> <span class="o">:=</span> <span class="mi">16</span><span class="c1">#FF10);</span>
+
+
+
+<span class="n">END_VAR</span>
+<span class="o">//</span> <span class="n">Updating</span> <span class="n">arbiter</span> <span class="k">with</span> <span class="n">subsystem</span> <span class="n">requests</span><span class="o">.</span>
+<span class="n">fbSubSys1_PMPS_IO</span><span class="p">(</span><span class="n">Arbiter</span><span class="o">:=</span><span class="n">GVL</span><span class="o">.</span><span class="n">g_fbArbiter1</span><span class="p">,</span> <span class="n">fbFFHWO</span><span class="o">:=</span><span class="n">GVL</span><span class="o">.</span><span class="n">g_FastFaultOutput1</span><span class="p">,</span> <span class="n">Reset</span><span class="o">:=</span><span class="n">GVL</span><span class="o">.</span><span class="n">AttemptReset</span><span class="p">);</span>
+
+<span class="n">fbSubSys2_PMPS_IO</span><span class="p">(</span><span class="n">Arbiter</span><span class="o">:=</span><span class="n">GVL</span><span class="o">.</span><span class="n">g_fbArbiter1</span><span class="p">,</span> <span class="n">fbFFHWO</span><span class="o">:=</span><span class="n">GVL</span><span class="o">.</span><span class="n">g_FastFaultOutput1</span><span class="p">,</span> <span class="n">Reset</span><span class="o">:=</span><span class="n">GVL</span><span class="o">.</span><span class="n">AttemptReset</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Example</span> <span class="k">with</span> <span class="n">attenuator</span> <span class="n">peel</span><span class="o">-</span><span class="n">off</span>
+<span class="o">//////////////////////////////////</span>
+
+<span class="o">//</span> <span class="n">Beam</span> <span class="n">parameter</span> <span class="n">requestor</span>
+<span class="n">fbBPRequestor</span><span class="p">(</span><span class="n">Arbiter</span><span class="o">:=</span><span class="n">GVL</span><span class="o">.</span><span class="n">g_fbArbiter1</span><span class="p">,</span> <span class="n">q_ReqBP</span> <span class="o">=&gt;</span> <span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">stRequestedBeamParameters</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Request</span> <span class="n">beam</span> <span class="k">class</span>
+<span class="nc">fbMPSInterface</span><span class="p">(</span><span class="n">BP</span> <span class="o">:=</span> <span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">stRequestedBeamParameters</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Request</span> <span class="n">Cu</span> <span class="n">beam</span> <span class="n">rate</span>
+<span class="n">fbCuInterface</span><span class="p">(</span><span class="n">BP</span> <span class="o">:=</span> <span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">stRequestedBeamParameters</span><span class="p">);</span>
+
+
+<span class="o">//</span> <span class="n">Keep</span> <span class="n">an</span> <span class="n">eye</span> <span class="n">on</span> <span class="n">the</span> <span class="n">photon</span> <span class="n">energy</span>
+<span class="n">fbPhotonEnergyWatcher</span><span class="p">(</span><span class="n">i_stCurrentBeamParams</span> <span class="o">:=</span> <span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">stCurrentBeamParameters</span><span class="p">,</span>
+                    <span class="n">i_stRequestedBeamParams</span> <span class="o">:=</span> <span class="n">PMPS_GVL</span><span class="o">.</span><span class="n">stRequestedBeamParameters</span><span class="p">,</span>
+                    <span class="n">io_fbFFHWO</span><span class="o">:=</span> <span class="n">GVL</span><span class="o">.</span><span class="n">g_FastFaultOutput1</span><span class="p">,</span>
+                    <span class="n">i_xReset</span> <span class="o">:=</span> <span class="n">GVL</span><span class="o">.</span><span class="n">AttemptReset</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Evaluate</span> <span class="n">fast</span> <span class="n">fault</span> <span class="n">vetos</span>
+<span class="n">g_FastFaultOutput1</span><span class="o">.</span><span class="n">EvaluateVetos</span><span class="p">();</span>
+
+<span class="o">//</span> <span class="n">Send</span> <span class="n">fast</span> <span class="n">fault</span> <span class="n">logs</span>
+<span class="n">g_FastFaultOutput1</span><span class="o">.</span><span class="n">ExecuteLogging</span><span class="p">();</span>
+
+<span class="n">END_PROGRAM</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROGRAM</span> <span class="n">Testing</span>
+<span class="n">VAR</span>
+    <span class="n">AttemptReset</span> <span class="p">:</span> <span class="n">TON</span> <span class="o">:=</span> <span class="p">(</span><span class="n">PT</span><span class="o">:=</span><span class="n">T</span><span class="c1">#1s);</span>
+    <span class="n">gAttemptReset</span> <span class="p">:</span> <span class="n">TON</span> <span class="o">:=</span> <span class="p">(</span><span class="n">PT</span><span class="o">:=</span><span class="n">T</span><span class="c1">#500ms);</span>
+
+    <span class="n">testFF</span> <span class="p">:</span> <span class="n">FB_FastFault</span><span class="p">;</span>
+    <span class="n">cycle</span> <span class="p">:</span> <span class="n">INT</span><span class="p">;</span>
+<span class="n">END_VAR</span>
+<span class="o">//</span> <span class="n">Trip</span> <span class="n">a</span> <span class="n">fast</span> <span class="n">fault</span> <span class="n">periodically</span>
+<span class="n">testFF</span><span class="p">(</span><span class="n">io_fbFFHWO</span><span class="o">:=</span> <span class="n">g_FastFaultOutput1</span><span class="p">);</span>
+<span class="n">testFF</span><span class="o">.</span><span class="n">i_xOK</span> <span class="o">:=</span> <span class="p">(</span><span class="n">cycle</span> <span class="n">mod</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">cycle</span> <span class="o">:=</span> <span class="n">cycle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="o">//</span><span class="n">Periodically</span> <span class="k">try</span> <span class="n">to</span> <span class="n">reset</span> <span class="n">the</span> <span class="n">photon</span> <span class="n">energy</span> <span class="n">fault</span><span class="o">.</span>
+<span class="n">AttemptReset</span><span class="p">(</span><span class="n">IN</span><span class="o">:=</span><span class="n">PMPS_Arbiter</span><span class="o">.</span><span class="n">fbPhotonEnergyWatcher</span><span class="o">.</span><span class="n">xPhotonEnergyWithinBounds</span><span class="p">,</span> <span class="n">Q</span><span class="o">=&gt;</span><span class="n">GVL</span><span class="o">.</span><span class="n">AttemptReset</span><span class="p">);</span>
+
+<span class="n">gAttemptReset</span><span class="p">(</span><span class="n">IN</span><span class="o">:=</span><span class="n">GVL</span><span class="o">.</span><span class="n">g_FastFaultOutput1</span><span class="o">.</span><span class="n">xOK</span><span class="p">,</span> <span class="n">Q</span><span class="o">=&gt;</span><span class="n">GVL</span><span class="o">.</span><span class="n">g_FastFaultOutput1</span><span class="o">.</span><span class="n">i_xReset</span><span class="p">);</span>
+
+<span class="n">END_PROGRAM</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="Arbiter_ArbiterPLC_epics.html" class="btn btn-neutral float-left" title="Data Types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, SLAC National Accelerator Laboratory
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
