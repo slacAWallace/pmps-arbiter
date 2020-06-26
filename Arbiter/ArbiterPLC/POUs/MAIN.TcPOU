@@ -3,30 +3,30 @@
   <POU Name="MAIN" Id="{8a7bcfd2-1a2b-4363-aa47-c19391bf1f9c}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	Initialize	:	BOOL := TRUE;
-    
-	fbLogHandler : FB_LogHandler;
-	fbEcatDiag : FB_EcatDiagWrapper;
+    Initialize	:	BOOL := TRUE;
+
+    fbLogHandler : FB_LogHandler;
+    fbEcatDiag : FB_EcatDiagWrapper;
 (*
-	{attribute 'pytmc' := '
-		pv: Arbiter:Link:HGVPU
-		link: USEG:UNDH:
-	'}
-	fbHgvpu : FB_Hgvpu;
-	
-	{attribute 'pytmc' := '
-		pv: Arbiter:Link:SXU
-		link: USEG:UNDS:
-	'}
-	fbSxu : FB_SXU;
-*)	
+    {attribute 'pytmc' := '
+        pv: Arbiter:Link:HGVPU
+        link: USEG:UNDH:
+    '}
+    fbHgvpu : FB_Hgvpu;
+
+    {attribute 'pytmc' := '
+        pv: Arbiter:Link:SXU
+        link: USEG:UNDS:
+    '}
+    fbSxu : FB_SXU;
+*)
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//Arbiter PLC
 
 IF Initialize THEN
-	Initialize := FALSE;
+    Initialize := FALSE;
 END_IF
 
 // Ethercat Diagnostics
@@ -37,12 +37,12 @@ fbEcatDiag();
 // Might have a switch to change to simulation mode
 MachineSimulation();
 Testing();
-///////////////////////////////////////////////////	
+///////////////////////////////////////////////////
 
 //Update current BP
 CurrentBPUpdate();
 
-// PMPS Functionality	
+// PMPS Functionality
 PMPS_Arbiter();
 
 

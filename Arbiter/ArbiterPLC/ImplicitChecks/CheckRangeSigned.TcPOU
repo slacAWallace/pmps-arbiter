@@ -4,23 +4,19 @@
     <Declaration><![CDATA[// Implicitly generated code : DO NOT EDIT
 FUNCTION CheckRangeSigned : DINT
 VAR_INPUT
-	value, lower, upper: DINT;
+    value, lower, upper: DINT;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[// Implicitly generated code : Only an Implementation suggestion
 
 IF (value < lower) THEN
-	CheckRangeSigned := lower;
+    CheckRangeSigned := lower;
 ELSIF(value > upper) THEN
-	CheckRangeSigned := upper;
+    CheckRangeSigned := upper;
 ELSE
-	CheckRangeSigned := value;
+    CheckRangeSigned := value;
 END_IF
 {flow}]]></ST>
     </Implementation>
-    <LineIds Name="CheckRangeSigned">
-      <LineId Id="3" Count="8" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
