@@ -43,7 +43,7 @@ END_VAR
 VAR
     EpicsReqBP : ST_BeamParams;
     {attribute 'pytmc' := '
-        pv: Apply
+        pv: ReqBP:Apply
         io: o
     '}
     bApply : BOOL;
