@@ -13,7 +13,7 @@
 		<Box File="PMPS_Premp.xti" Id="9">
 			<EtherCAT PortABoxInfo="#x01000008"/>
 		</Box>
-		<Box File="Term 12 (EK1122).xti" Id="12">
+		<Box File="E3 (EK1122).xti" Id="12">
 			<EtherCAT PortABoxInfo="#x01000009"/>
 		</Box>
 		<Box File="Term 22 (EK1110).xti" Id="22">

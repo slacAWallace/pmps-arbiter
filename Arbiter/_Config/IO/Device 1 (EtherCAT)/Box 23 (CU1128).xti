@@ -15,10 +15,10 @@
 		<Box File="plc-lfe-motion.xti" Id="25">
 			<EtherCAT PortABoxInfo="#x01000018"/>
 		</Box>
-		<Box File="Box 26 (EL6692).xti" Id="26">
+		<Box File="plc-lfe-vacuum.xti" Id="26">
 			<EtherCAT PortABoxInfo="#x01000019"/>
 		</Box>
-		<Box File="Box 27 (EL6692).xti" Id="27">
+		<Box File="plc-lfe-gatt.xti" Id="27">
 			<EtherCAT PortABoxInfo="#x0100001a"/>
 		</Box>
 		<Box BoxType="9099" Id="28">

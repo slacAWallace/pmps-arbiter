@@ -803,6 +803,14 @@
 				<Link VarA="PlcTask Inputs^PMPS_Arbiter.lfe_PMPS_IO.i_TxPDOState" VarB="SYNC Inputs^TxPDO state" AutoLink="true"/>
 				<Link VarA="PlcTask Outputs^PMPS_Arbiter.lfe_PMPS_IO.o_CurrentBP" VarB="IO Outputs^CurrentBP" AutoLink="true"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 12 (EK1200)^E3 (EK1122)^950-101W-R4-MPS-1^MPS_Relay">
+				<Link VarA="PlcTask Outputs^PMPS_Arbiter.st1l0Watcher.q_StopperIN_Relay" VarB="Channel 2^ST1L0_RELAY_IN" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PMPS_Arbiter.st1l0Watcher.q_StopperOUT_Relay" VarB="Channel 1^ST1L0_RELAY_OUT" AutoLink="true"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 12 (EK1200)^E3 (EK1122)^950-101W-R4-MPS-1^PPS_Stoppers">
+				<Link VarA="PlcTask Inputs^PMPS_Arbiter.st1l0Watcher.i_StopperInLS" VarB="Channel 1^ST1L0_PPS_IN" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PMPS_Arbiter.st1l0Watcher.i_StopperOutLS" VarB="Channel 2^ST1L0_PPS_OUT" AutoLink="true"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 12 (EK1200)^PMPS_Premp">
 				<Link VarA="PlcTask Outputs^PMPS_Arbiter.fbCuInterface.q_CLTS_ASSERTION_LINES[1]" VarB="Channel 9^Output" AutoLink="true"/>
 				<Link VarA="PlcTask Outputs^PMPS_Arbiter.fbCuInterface.q_CLTS_ASSERTION_LINES[2]" VarB="Channel 10^Output" AutoLink="true"/>
@@ -815,14 +823,6 @@
 				<Link VarA="PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[6]" VarB="Channel 6^Output" AutoLink="true"/>
 				<Link VarA="PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[7]" VarB="Channel 7^Output" AutoLink="true"/>
 				<Link VarA="PlcTask Outputs^PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES[8]" VarB="Channel 8^Output" AutoLink="true"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 12 (EK1200)^Term 12 (EK1122)^Term 13 (EK1100)^MPS_Relay">
-				<Link VarA="PlcTask Outputs^PMPS_Arbiter.st1l0Watcher.q_StopperIN_Relay" VarB="Channel 2^ST1L0_RELAY_IN" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^PMPS_Arbiter.st1l0Watcher.q_StopperOUT_Relay" VarB="Channel 1^ST1L0_RELAY_OUT" AutoLink="true"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 12 (EK1200)^Term 12 (EK1122)^Term 13 (EK1100)^PPS_Stoppers">
-				<Link VarA="PlcTask Inputs^PMPS_Arbiter.st1l0Watcher.i_StopperInLS" VarB="Channel 1^ST1L0_PPS_IN" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PMPS_Arbiter.st1l0Watcher.i_StopperOutLS" VarB="Channel 2^ST1L0_PPS_OUT" AutoLink="true"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>
