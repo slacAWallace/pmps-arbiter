@@ -61,6 +61,12 @@
     <Compile Include="POUs\FB_eVSimulator.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FB_LStopper.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FB_KStopper.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FB_StopperWatcher.TcPOU">
       <SubType>Code</SubType>
     </Compile>
