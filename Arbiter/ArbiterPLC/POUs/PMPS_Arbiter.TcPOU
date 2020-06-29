@@ -64,7 +64,8 @@ VAR
                                 '}
     //fbSubSys2_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF10);
 
-
+(* caget IOC:BSY0:MP01:BYKIK_RATE
+IOC:BSY0:MP01:BYKIK_RATE       10 Hz *)
 
 END_VAR
 ]]></Declaration>

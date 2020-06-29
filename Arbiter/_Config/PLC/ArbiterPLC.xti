@@ -305,6 +305,10 @@
 					<Name>GVL.g_FastFaultOutput1.q_xFastFaultOut</Name>
 					<Type>BOOL</Type>
 				</Var>
+				<Var>
+					<Name>GVL.g_FastFaultOutput2.q_xFastFaultOut</Name>
+					<Type>BOOL</Type>
+				</Var>
 			</Vars>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
@@ -1104,6 +1108,7 @@
 				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterDeviceId" VarB="InfoData^DevId" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterSlaveCount" VarB="Inputs^SlaveCount" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterSlaveCountCfg" VarB="InfoData^CfgSlaveCount" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.wFrmXWcState" VarB="Inputs^Frm1WcState" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 23 (CU1128)^plc-lfe-motion">
 				<Link VarA="PlcTask Inputs^PMPS_Arbiter.plc_lfe_motion_PMPS_IO.i_Connected" VarB="SYNC Inputs^External device not connected" AutoLink="true"/>
@@ -1126,6 +1131,10 @@
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 12 (EK1200)^E3 (EK1122)^950-101W-R4-MPS-1^PPS_Stoppers">
 				<Link VarA="PlcTask Inputs^PMPS_Arbiter.st1l0Watcher.i_StopperInLS" VarB="Channel 1^ST1L0_PPS_IN" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^PMPS_Arbiter.st1l0Watcher.i_StopperOutLS" VarB="Channel 2^ST1L0_PPS_OUT" AutoLink="true"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 12 (EK1200)^FFO">
+				<Link VarA="FFOTask Outputs^GVL.g_FastFaultOutput1.q_xFastFaultOut" VarB="Channel 1^Output" AutoLink="true"/>
+				<Link VarA="FFOTask Outputs^GVL.g_FastFaultOutput2.q_xFastFaultOut" VarB="Channel 2^Output" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 12 (EK1200)^PMPS_Premp">
 				<Link VarA="PlcTask Outputs^PMPS_Arbiter.fbCuInterface.q_CLTS_ASSERTION_LINES[1]" VarB="Channel 9^Output" AutoLink="true"/>

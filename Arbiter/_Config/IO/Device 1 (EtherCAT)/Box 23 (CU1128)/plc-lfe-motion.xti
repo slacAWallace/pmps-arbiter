@@ -276,10 +276,6 @@
 					</Property>
 				</Properties>
 			</SubItem>
-			<Hides>
-				<Hide GUID="{ADE62DDD-CAE3-4FE3-BE11-F358D7D0CDD8}"/>
-				<Hide GUID="{729DFDAA-EB68-494E-B247-D86DA3C0AE5E}"/>
-			</Hides>
 		</DataType>
 	</DataTypes>
 	<ImageDatas>
