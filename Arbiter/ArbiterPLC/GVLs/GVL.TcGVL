@@ -21,6 +21,10 @@ VAR_GLOBAL
     g_rTestingVelocity	:	LREAL := PMPS_GVL.VISIBLE_TEST_VELOCITY;
 
     AttemptReset    :   BOOL; // For testing
+END_VAR
+
+VAR_GLOBAL CONSTANT
+	MAX_FAST_FAULTS : UINT := 100;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
