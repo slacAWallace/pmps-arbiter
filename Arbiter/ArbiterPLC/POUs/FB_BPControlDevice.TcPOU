@@ -10,12 +10,12 @@ PMPS for a line.
 *)
 FUNCTION_BLOCK FB_BPControlDevice
 VAR_INPUT
-		(*  Requested pre-optic attenuation %  *)
-		{attribute 'pytmc' := 'pv: ReqBP:Attenuation
+        (*  Requested pre-optic attenuation %  *)
+        {attribute 'pytmc' := 'pv: ReqBP:Attenuation
             io: o
             field: EGU %
         '}
-		fAtt : REAL := 100;
+        fAtt : REAL := 100;
         (* Pulse-rate *)
         {attribute 'pytmc' := 'pv: ReqBP:Rate
             io: o
@@ -71,22 +71,14 @@ END_IF]]></ST>
     <Method Name="FB_init" Id="{d7dd8caa-2a9b-478e-8c53-254b06d26293}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
 VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	nID : DWORD := PMPS_GVL.EXCLUDED_ASSERTION_ID;
+    bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+    bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+    nID : DWORD := PMPS_GVL.EXCLUDED_ASSERTION_ID;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[nControlDeviceID:= nID;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_BPControlDevice">
-      <LineId Id="89" Count="4" />
-      <LineId Id="3" Count="5" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_BPControlDevice.FB_init">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
