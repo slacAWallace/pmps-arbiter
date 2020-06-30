@@ -19,7 +19,7 @@ VAR_GLOBAL
     g_FastFaultOutput1	:	FB_HardwareFFOutput;
 	
 	{attribute 'pytmc' := '
-    pv: @(PREFIX)FFO:01
+    pv: @(PREFIX)FFO:02
     '}
     {attribute 'TcLinkTo' := '.q_xFastFaultOut:=TIIB[FFO]^Channel 2^Output'}
     g_FastFaultOutput2	:	FB_HardwareFFOutput;
