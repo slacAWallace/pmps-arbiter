@@ -388,7 +388,7 @@ Controls auxiliary beam class outputs.
 
 Maps beam rate requests to 1, 10, or full rate beam for Cu linac.
 
-]]></Comment><BitSize>1312</BitSize><SubItem><Name>BP</Name><Type Decoration="100A91BC">PMPS.ST_BeamParams</Type><BitSize>1216</BitSize><BitOffs>32</BitOffs><Properties><Property><Name>ItemType</Name><Value>Input</Value></Property></Properties></SubItem><SubItem><Name>epicsBitmap</Name><Type>WORD</Type><BitSize>16</BitSize><BitOffs>1248</BitOffs><Properties><Property><Name>pytmc</Name><Value>pv: CTLSOutputs
+]]></Comment><BitSize>1312</BitSize><SubItem><Name>BP</Name><Type Decoration="100A91BC">PMPS.ST_BeamParams</Type><BitSize>1216</BitSize><BitOffs>32</BitOffs><Properties><Property><Name>ItemType</Name><Value>Input</Value></Property></Properties></SubItem><SubItem><Name>epicsBitmap</Name><Type>WORD</Type><BitSize>16</BitSize><BitOffs>1248</BitOffs><Properties><Property><Name>pytmc</Name><Value>pv: CTLSChannel
         io: i
         field: DESC CTLS Rate Control hardwire channel state</Value></Property></Properties></SubItem><SubItem><Name>q_CLTS_ASSERTION_LINES</Name><Type Decoration="2001030C">ARRAY [1..3] OF BOOL</Type><BitSize>24</BitSize><BitOffs>1264</BitOffs><Properties><Property><Name>TcLinkTo</Name><Value>[1] := TIIB[PMPS_Premp]^Channel 9^Output;
                               [2] := TIIB[PMPS_Premp]^Channel 10^Output;
