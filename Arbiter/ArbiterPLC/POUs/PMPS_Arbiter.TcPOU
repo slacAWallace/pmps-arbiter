@@ -67,6 +67,11 @@ VAR
 (* caget IOC:BSY0:MP01:BYKIK_RATE
 IOC:BSY0:MP01:BYKIK_RATE       10 Hz *)
 
+    {attribute 'pytmc' := '
+        pv: KDes
+        link: KDes
+    '}
+
 END_VAR
 ]]></Declaration>
     <Implementation>
