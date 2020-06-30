@@ -3,7 +3,7 @@
   <POU Name="FB_SXU" Id="{23188e56-6a28-4c8b-9089-611f5a306284}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SXU
 VAR_INPUT
-
+    fbElectronEnergy : REFERENCE TO FB_LREALFromEPICS;
 END_VAR
 
 VAR_OUTPUT
@@ -92,6 +92,7 @@ END_VAR
 VAR CONSTANT
     iLowBound  : UDINT := 26;
     iHighBound : UDINT := 47;
+    fPeriod_mm : LREAL := 39.0;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -122,13 +123,19 @@ IF NOT bInitialized THEN
     fbSegment[46] := ADR(fbSegment_46);
     fbSegment[47] := ADR(fbSegment_47);
 
+    FOR iIndex := iLowBound TO iHighBound DO
+            IF fbSegment[iIndex] <> 0 THEN
+            fbCurrentSegment REF= fbSegment[iIndex]^;
+            fbCurrentSegment.fPeriod_mm := fPeriod_mm;
+        END_IF
+    END_FOR
     bInitialized := TRUE;
 END_IF
 
 FOR iIndex := iLowBound TO iHighBound DO
     IF fbSegment[iIndex] <> 0 THEN
         fbCurrentSegment REF= fbSegment[iIndex]^;
-        fbCurrentSegment();
+        fbCurrentSegment(fbElectronEnergy:=fbElectronEnergy);
     END_IF
 END_FOR]]></ST>
     </Implementation>

@@ -46,7 +46,7 @@ q_StopperOUT_Relay := i_StopperOutLS;
 q_StopperIN_Relay := i_StopperInLS;
 
 // Update current beam parameters
-stCurrentBP.aStoppers[]]></ST>
+//stCurrentBP.aStoppers[]]></ST>
     </Implementation>
     <Method Name="FB_init" Id="{811d265a-04cc-487e-95f6-4c1212df17e0}">
       <Declaration><![CDATA[METHOD FB_init : BOOL

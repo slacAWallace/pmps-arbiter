@@ -3,7 +3,7 @@
   <POU Name="FB_Hgvpu" Id="{8947838d-e4b5-4cb8-b661-9299e64a0856}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Hgvpu
 VAR_INPUT
-
+    fbElectronEnergy : REFERENCE TO FB_LREALFromEPICS;
 END_VAR
 
 VAR_OUTPUT
@@ -91,6 +91,7 @@ END_VAR
 VAR CONSTANT
     iLowBound  : UDINT := 24;
     iHighBound : UDINT := 46;
+    fPeriod_mm : LREAL := 26.0;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -120,13 +121,21 @@ END_VAR
     fbSegment[45] := ADR(fbSegment_45);
     fbSegment[46] := ADR(fbSegment_46);
 
+
+    FOR iIndex := iLowBound TO iHighBound DO
+            IF fbSegment[iIndex] <> 0 THEN
+            fbCurrentSegment REF= fbSegment[iIndex]^;
+            fbCurrentSegment.fPeriod_mm := fPeriod_mm;
+        END_IF
+    END_FOR
+
     bInitialized := TRUE;
 END_IF
 
 FOR iIndex := iLowBound TO iHighBound DO
     IF fbSegment[iIndex] <> 0 THEN
         fbCurrentSegment REF= fbSegment[iIndex]^;
-        fbCurrentSegment();
+        fbCurrentSegment(fbElectronEnergy:=fbElectronEnergy);
     END_IF
 END_FOR
 
