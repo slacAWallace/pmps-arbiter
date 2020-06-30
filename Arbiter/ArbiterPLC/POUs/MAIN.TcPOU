@@ -41,7 +41,7 @@ fbEcatDiag();
 // This code should be disabled or removed in deployment
 // Might have a switch to change to simulation mode
 MachineSimulation();
-Testing();
+//Testing();
 ///////////////////////////////////////////////////
 
 fbHgvpu();
