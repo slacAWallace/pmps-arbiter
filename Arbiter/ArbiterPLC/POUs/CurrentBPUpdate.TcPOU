@@ -4,10 +4,10 @@
     <Declaration><![CDATA[PROGRAM CurrentBPUpdate
 VAR
 	{attribute 'pytmc' := '
-		pv: INTERNAL:RECORD
-		link: PV:NAME:TO:LINK:TO
+		pv: @(PREFIX)MPS:KickerPermRate
+		link: IOC:BSY0:MP01:BYKIK_RATE
 	'}
-	
+	nBeamRate : INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
