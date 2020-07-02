@@ -60,6 +60,14 @@ VAR
 								'}
     plc_lfe_vac_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF11);
 	
+		{attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[plc-lfe-gatt]^IO Inputs^RequestedBP;
+								.o_CurrentBP:=TIIB[plc-lfe-gatt]^IO Outputs^CurrentBP;
+								.i_Connected:=TIIB[plc-lfe-gatt]^SYNC Inputs^External device not connected;
+								.i_WcState:=TIIB[plc-lfe-gatt]^WcState^WcStateIn;
+								.i_TxPDOState:=TIIB[plc-lfe-gatt]^SYNC Inputs^TxPDO state;
+								'}
+    plc_lfe_gatt_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF12);
+	
     (*{attribute 'pytmc' := '
     pv: @(PREFIX)SubSysIO:PLC2
     '}*)
@@ -92,6 +100,7 @@ st1l0Watcher(stCurrentBP := PMPS_GVL.stCurrentBeamParameters);
 plc_lfe_motion_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
 plc_lfe_optics_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
 plc_lfe_vac_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
+plc_lfe_gatt_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
 
 
 // Beam parameter requestor
@@ -123,6 +132,7 @@ g_FastFaultOutput1.ExecuteLogging();
       <LineId Id="3" Count="5" />
       <LineId Id="104" Count="0" />
       <LineId Id="192" Count="0" />
+      <LineId Id="201" Count="0" />
       <LineId Id="13" Count="17" />
       <LineId Id="107" Count="3" />
       <LineId Id="35" Count="2" />
