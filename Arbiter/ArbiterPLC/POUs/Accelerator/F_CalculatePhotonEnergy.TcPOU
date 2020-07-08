@@ -34,7 +34,7 @@ Reference Python implementation
 
 def calculate_photon_energy(electron_energy, period, k):
     '''
-    Calculate photon energy.
+    Calculate photon energy, in eV.
 
     Parameters
     ----------
