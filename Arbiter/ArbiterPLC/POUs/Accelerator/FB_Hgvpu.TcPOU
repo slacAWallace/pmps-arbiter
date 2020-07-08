@@ -89,8 +89,15 @@ VAR
 END_VAR
 
 VAR CONSTANT
+    {attribute 'pytmc' := 'pv: FirstSegment; io: i'}
     iLowBound  : UDINT := 24;
+    {attribute 'pytmc' := 'pv: LastSegment; io: i'}
     iHighBound : UDINT := 46;
+    {attribute 'pytmc' := '
+        pv: Period
+        io: i
+        field: EGU mm
+    '}
     fPeriod_mm : LREAL := 26.0;
 END_VAR
 ]]></Declaration>
