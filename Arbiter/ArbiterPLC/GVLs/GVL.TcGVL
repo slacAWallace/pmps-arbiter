@@ -15,12 +15,22 @@ VAR_GLOBAL
     {attribute 'pytmc' := '
     pv: @(PREFIX)FFO:01
     '}
-    {attribute 'TcLinkTo' := '.q_xFastFaultOut:=TIIB[PMPS_FFO]^Channel 1^Output'}
+    {attribute 'TcLinkTo' := '.q_xFastFaultOut:=TIIB[FFO]^Channel 1^Output'}
     g_FastFaultOutput1	:	FB_HardwareFFOutput;
+	
+	{attribute 'pytmc' := '
+    pv: @(PREFIX)FFO:02
+    '}
+    {attribute 'TcLinkTo' := '.q_xFastFaultOut:=TIIB[FFO]^Channel 2^Output'}
+    g_FastFaultOutput2	:	FB_HardwareFFOutput;
 
     g_rTestingVelocity	:	LREAL := PMPS_GVL.VISIBLE_TEST_VELOCITY;
 
     AttemptReset    :   BOOL; // For testing
+END_VAR
+
+VAR_GLOBAL CONSTANT
+	MAX_FAST_FAULTS : UINT := 100;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
