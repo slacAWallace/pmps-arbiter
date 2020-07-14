@@ -12,11 +12,11 @@
 		<Box File="plc-lfe-optics.xti" Id="24">
 			<EtherCAT PortABoxInfo="#x03000017"/>
 		</Box>
-		<Box File="plc-lfe-motion.xti" Id="25">
+		<Box File="plc-lfe-motion.xti" Id="2">
 			<EtherCAT PortABoxInfo="#x01000018"/>
 		</Box>
 		<Box File="plc-lfe-vacuum.xti" Id="26">
-			<EtherCAT PortABoxInfo="#x01000019"/>
+			<EtherCAT PortABoxInfo="#x01000002"/>
 		</Box>
 		<Box File="plc-lfe-gatt.xti" Id="27">
 			<EtherCAT PortABoxInfo="#x0100001a"/>
