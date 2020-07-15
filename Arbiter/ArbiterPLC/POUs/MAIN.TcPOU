@@ -9,16 +9,21 @@ VAR
     fbEcatDiag : FB_EcatDiagWrapper;
 
     {attribute 'pytmc' := '
-        pv: Arbiter:Link:HGVPU
+        pv: @(PREFIX)Link:HGVPU
         link: USEG:UNDH:
     '}
     fbHgvpu : FB_Hgvpu;
 
     {attribute 'pytmc' := '
-        pv: Arbiter:Link:SXU
+        pv: @(PREFIX)Link:SXU
         link: USEG:UNDS:
     '}
     fbSxu : FB_SXU;
+
+    {attribute 'pytmc' := '
+        pv: @(PREFIX)Link
+    '}
+    fbAcceleratorLinks : FB_AcceleratorLinks;
 
     {attribute 'pytmc' := '
     pv: @(PREFIX)BeamParamCntl
@@ -44,8 +49,10 @@ MachineSimulation();
 //Testing();
 ///////////////////////////////////////////////////
 
-fbHgvpu();
-fbSxu();
+fbAcceleratorLinks();
+
+fbHgvpu(fbElectronEnergy:=fbAcceleratorLinks.fbHgvpuElectronEnergy);
+fbSxu(fbElectronEnergy:=fbAcceleratorLinks.fbSxuElectronEnergy);
 
 // Dummy device for controling pmps beam parameters
 fbBPControl(Arbiter:=g_fbArbiter1);

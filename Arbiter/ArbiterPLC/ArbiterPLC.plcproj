@@ -37,6 +37,9 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Accelerator\FB_AcceleratorLinks.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Accelerator\FB_Hgvpu.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -44,6 +47,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Accelerator\FB_UndulatorSegment.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Accelerator\F_CalculatePhotonEnergy.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\CurrentBPUpdate.TcPOU">
