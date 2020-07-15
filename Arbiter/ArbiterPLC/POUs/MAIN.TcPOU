@@ -46,7 +46,7 @@ fbEcatDiag();
 // This code should be disabled or removed in deployment
 // Might have a switch to change to simulation mode
 MachineSimulation();
-Testing();
+//Testing();
 ///////////////////////////////////////////////////
 
 fbAcceleratorLinks();
@@ -61,6 +61,7 @@ fbBPControl(Arbiter:=g_fbArbiter1);
 CurrentBPUpdate();
 
 // PMPS Functionality
+CurrentBPUpdate();
 PMPS_Arbiter();
 
 
@@ -71,5 +72,14 @@ fbLogHandler();]]></ST>
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Action>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="25" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="29" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.Initialize">
+      <LineId Id="1" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

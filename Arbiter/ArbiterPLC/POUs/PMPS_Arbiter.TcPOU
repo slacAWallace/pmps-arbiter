@@ -24,8 +24,8 @@ VAR
                 .q_StopperOUT_Relay:=TIIB[MPS_Relay]^Channel 1^ST1L0_RELAY_OUT;
                 .q_StopperIN_Relay:=TIIB[MPS_Relay]^Channel 2^ST1L0_RELAY_IN;
                                 '}
-    st1l0Watcher : FB_StopperWatcher(
-        PMPS.L_Stopper.ST1L0,
+    st1l0Watcher : FB_LStopper(
+        PMPS.K_Stopper.ST1,
         'ST1L0');
 
     (* Subsystem requests use this FB and a pragma link to pass their requests to the arbiter.
@@ -38,11 +38,36 @@ VAR
     {attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[plc-lfe-motion]^IO Inputs^RequestedBP;
                                 .o_CurrentBP:=TIIB[plc-lfe-motion]^IO Outputs^CurrentBP;
                                 .i_Connected:=TIIB[plc-lfe-motion]^SYNC Inputs^External device not connected;
-                                .i_WcState:=TIIB[plc-lfe-motion]^WcState^WcState;
+                                .i_WcState:=TIIB[plc-lfe-motion]^WcState^WcStateIn;
                                 .i_TxPDOState:=TIIB[plc-lfe-motion]^SYNC Inputs^TxPDO state;
                                 '}
-    lfe_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF0F);
+    plc_lfe_motion_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF0F);
+	
+	    {attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[plc-lfe-optics]^IO Inputs^RequestedBP;
+                                .o_CurrentBP:=TIIB[plc-lfe-optics]^IO Outputs^CurrentBP;
+                                .i_Connected:=TIIB[plc-lfe-optics]^SYNC Inputs^External device not connected;
+                                .i_WcState:=TIIB[plc-lfe-optics]^WcState^WcStateIn;
+                                .i_TxPDOState:=TIIB[plc-lfe-optics]^SYNC Inputs^TxPDO state;
+                                '}
+    plc_lfe_optics_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF10);
 
+	
+	{attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[plc-lfe-vacuum]^IO Inputs^RequestedBP;
+								.o_CurrentBP:=TIIB[plc-lfe-vacuum]^IO Outputs^CurrentBP;
+								.i_Connected:=TIIB[plc-lfe-vacuum]^SYNC Inputs^External device not connected;
+								.i_WcState:=TIIB[plc-lfe-vacuum]^WcState^WcStateIn;
+								.i_TxPDOState:=TIIB[plc-lfe-vacuum]^SYNC Inputs^TxPDO state;
+								'}
+    plc_lfe_vac_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF11);
+	
+		{attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[plc-lfe-gatt]^IO Inputs^RequestedBP;
+								.o_CurrentBP:=TIIB[plc-lfe-gatt]^IO Outputs^CurrentBP;
+								.i_Connected:=TIIB[plc-lfe-gatt]^SYNC Inputs^External device not connected;
+								.i_WcState:=TIIB[plc-lfe-gatt]^WcState^WcStateIn;
+								.i_TxPDOState:=TIIB[plc-lfe-gatt]^SYNC Inputs^TxPDO state;
+								'}
+    plc_lfe_gatt_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF12);
+	
     (*{attribute 'pytmc' := '
     pv: @(PREFIX)SubSysIO:PLC2
     '}*)
@@ -56,22 +81,27 @@ VAR
                                 '}
     //fbSubSys2_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF10);
 
+(* caget IOC:BSY0:MP01:BYKIK_RATE
+IOC:BSY0:MP01:BYKIK_RATE       10 Hz *)
 
+    {attribute 'pytmc' := '
+        pv: KDes
+        link: KDes
+    '}
 
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-// Watching stopper statuses
-st1l0Watcher();
+// Watching and relaying stopper statuses
+st1l0Watcher(stCurrentBP := PMPS_GVL.stCurrentBeamParameters);
 
 // Updating arbiter with subsystem requests.
-lfe_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
+plc_lfe_motion_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
+plc_lfe_optics_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
+plc_lfe_vac_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
+plc_lfe_gatt_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
 
-//fbSubSys2_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
-
-// Example with attenuator peel-off
-//////////////////////////////////
 
 // Beam parameter requestor
 fbBPRequestor(Arbiter:=GVL.g_fbArbiter1, q_ReqBP => PMPS_GVL.stRequestedBeamParameters);
@@ -98,5 +128,15 @@ g_FastFaultOutput1.ExecuteLogging();
 
 ]]></ST>
     </Implementation>
+    <LineIds Name="PMPS_Arbiter">
+      <LineId Id="3" Count="5" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="201" Count="0" />
+      <LineId Id="13" Count="17" />
+      <LineId Id="107" Count="3" />
+      <LineId Id="35" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

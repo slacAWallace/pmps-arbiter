@@ -8,7 +8,7 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR_IN_OUT
-    stCurrentBP : ST_BeamParams;
+	stCurrentBP : ST_BeamParams;
 END_VAR
 VAR
     i_StopperOutLS AT %I* : BOOL;
@@ -17,7 +17,7 @@ VAR
     q_StopperOUT_Relay AT %Q* : BOOL;
     q_StopperIN_Relay AT %Q* : BOOL;
 
-    eStopper : PMPS.L_Stopper;
+    Stopper : UINT;
     StopperName : STRING;
 
     // Logging
@@ -46,21 +46,14 @@ q_StopperOUT_Relay := i_StopperOutLS;
 q_StopperIN_Relay := i_StopperInLS;
 
 // Update current beam parameters
-//stCurrentBP.aStoppers[]]></ST>
+stCurrentBP.aStoppers[Stopper] := i_StopperInLS;]]></ST>
     </Implementation>
-    <Method Name="FB_init" Id="{811d265a-04cc-487e-95f6-4c1212df17e0}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-    bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-    bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-    Stopper : PMPS.L_Stopper;
-    sStopperName : STRING;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[eStopper := Stopper;
-StopperName := sStopperName;]]></ST>
-      </Implementation>
-    </Method>
+    <LineIds Name="FB_StopperWatcher">
+      <LineId Id="3" Count="12" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="45" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
