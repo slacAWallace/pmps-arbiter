@@ -102,6 +102,8 @@ plc_lfe_optics_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput
 plc_lfe_vac_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
 plc_lfe_gatt_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
 
+//Overriding the preemptive requests from the optics systems until they are valid
+GVL.g_fbArbiter1.RemoveRequest(nReqId:=plc_lfe_optics_PMPS_IO.RequestingSystemID);
 
 // Beam parameter requestor
 fbBPRequestor(Arbiter:=GVL.g_fbArbiter1, q_ReqBP => PMPS_GVL.stRequestedBeamParameters);
@@ -133,6 +135,8 @@ g_FastFaultOutput1.ExecuteLogging();
       <LineId Id="104" Count="0" />
       <LineId Id="192" Count="0" />
       <LineId Id="201" Count="0" />
+      <LineId Id="292" Count="0" />
+      <LineId Id="291" Count="0" />
       <LineId Id="13" Count="17" />
       <LineId Id="107" Count="3" />
       <LineId Id="35" Count="2" />

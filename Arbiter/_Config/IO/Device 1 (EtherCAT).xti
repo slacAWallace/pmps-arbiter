@@ -47,7 +47,7 @@
 		<Box File="Box 23 (CU1128).xti" Id="23">
 			<EtherCAT PortABoxInfo="#x01000016"/>
 		</Box>
-		<EtherCAT EnableVirtualSwitch="true" MaxSwitchPorts="5" MaxSwitchFrames="180">
+		<EtherCAT EnableVirtualSwitch="true" MaxSwitchPorts="7" MaxSwitchFrames="220">
 			<Redundancy Mode="2" AdapterReference="true" PreviousPort="33554461"/>
 			<SyncUnit Name="alt" NoDeleteIfUnused="true"/>
 			<SyncUnit Name="lfe" NoDeleteIfUnused="true"/>

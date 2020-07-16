@@ -15,7 +15,7 @@ VAR_INPUT
             io: o
             field: EGU %
         '}
-        fAtt : REAL := 100;
+        nTran : UINT := 100;
         (* Pulse-rate *)
         {attribute 'pytmc' := 'pv: ReqBP:Rate
             io: o
@@ -56,7 +56,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-EpicsReqBP.fAtt := fAtt;
+EpicsReqBP.nTran := nTran;
 EpicsReqBP.neVRange := neVRange;
 EpicsReqBP.nRate := nRate;
 EpicsReqBP.fPP_mJ := fPP_mJ;
@@ -80,5 +80,12 @@ END_VAR
         <ST><![CDATA[nControlDeviceID:= nID;]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="FB_BPControlDevice">
+      <LineId Id="3" Count="10" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BPControlDevice.FB_init">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
