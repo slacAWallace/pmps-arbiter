@@ -20,7 +20,7 @@ VAR
                 .i_StopperOutLS:=TIIB[PPS_Stoppers]^Channel 2^ST1L0_PPS_OUT;
                 .q_StopperOUT_Relay:=TIIB[MPS_Relay]^Channel 1^ST1L0_RELAY_OUT;
                 .q_StopperIN_Relay:=TIIB[MPS_Relay]^Channel 2^ST1L0_RELAY_IN;
-                                '}
+	'}
     st1l0Watcher : FB_LStopper(
         PMPS.K_Stopper.ST1,
         'ST1L0');
