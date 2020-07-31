@@ -20,17 +20,18 @@ END_IF
 // Ethercat Diagnostics
 fbEcatDiag();
 
+
+
+// PMPS Functionality
+CurrentBPUpdate();
+PMPS_Arbiter();
+
 ///////////////////////////////////////////////////
 // This code should be disabled or removed in deployment
 // Might have a switch to change to simulation mode
 MachineSimulation();
 //Testing();
 ///////////////////////////////////////////////////
-
-// PMPS Functionality
-CurrentBPUpdate();
-PMPS_Arbiter();
-
 
 fbLogHandler();]]></ST>
     </Implementation>
