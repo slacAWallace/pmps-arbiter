@@ -21,7 +21,8 @@ fbMachine(
 	xEnablePE := TRUE
     );
 
-PMPS_GVL.stCurrentBeamParameters.neVRange := F_eVRangeCalculator(fbeVSimulator.eV, PMPS_GVL.stCurrentBeamParameters.neVRange);]]></ST>
+//PMPS_GVL.stCurrentBeamParameters.neVRange := F_eVRangeCalculator(fbeVSimulator.eV, PMPS_GVL.stCurrentBeamParameters.neVRange);
+PMPS_GVL.stCurrentBeamParameters.neVRange := 0;]]></ST>
     </Implementation>
     <LineIds Name="MachineSimulation">
       <LineId Id="3" Count="7" />
@@ -29,6 +30,7 @@ PMPS_GVL.stCurrentBeamParameters.neVRange := F_eVRangeCalculator(fbeVSimulator.e
       <LineId Id="25" Count="1" />
       <LineId Id="11" Count="1" />
       <LineId Id="2" Count="0" />
+      <LineId Id="32" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

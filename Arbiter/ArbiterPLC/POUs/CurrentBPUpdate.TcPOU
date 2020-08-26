@@ -3,18 +3,38 @@
   <POU Name="CurrentBPUpdate" Id="{8b324aa8-068c-4257-be00-af3f86b96ed0}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM CurrentBPUpdate
 VAR
+    {attribute 'pytmc' := '
+        pv: @(PREFIX)PE
+    '}
+	fbLPhotonEnergy : FB_LPhotonEnergy;
+	
 	{attribute 'pytmc' := '
-		pv: @(PREFIX)MPS:KickerPermRate
-		link: IOC:BSY0:MP01:BYKIK_RATE
+        pv: @(PREFIX)
+    '}
+	fbEPICSLRate : FB_LRateFromEPICS;
+
+	// Stoppers
+
+    {attribute 'TcLinkTo' := '
+                .i_StopperInLS:=TIIB[PPS_Stoppers]^Channel 1^ST1L0_PPS_IN;
+                .i_StopperOutLS:=TIIB[PPS_Stoppers]^Channel 2^ST1L0_PPS_OUT;
+                .q_StopperOUT_Relay:=TIIB[MPS_Relay]^Channel 1^ST1L0_RELAY_OUT;
+                .q_StopperIN_Relay:=TIIB[MPS_Relay]^Channel 2^ST1L0_RELAY_IN;
 	'}
-	nBeamRate : INT;
+    st1l0Watcher : FB_LStopper(
+        PMPS.K_Stopper.ST1,
+        'ST1L0');
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[// Acquiring photon energy
+fbLPhotonEnergy(BP:=PMPS_GVL.stCurrentBeamParameters);
+
+// Acquiring L-line rate
+fbEPICSLRate(BP:=PMPS_GVL.stCurrentBeamParameters);
+
+// Watching and relaying stopper statuses
+st1l0Watcher(stCurrentBP := PMPS_GVL.stCurrentBeamParameters);]]></ST>
     </Implementation>
-    <LineIds Name="CurrentBPUpdate">
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
