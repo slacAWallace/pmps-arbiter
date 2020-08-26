@@ -76,7 +76,7 @@ VAR
 
 
 
-
+	fbSetPE	:	PE_Ranges;
 
 END_VAR
 ]]></Declaration>
@@ -113,11 +113,9 @@ fbPhotonEnergyWatcher(i_stCurrentBeamParams	:= PMPS_GVL.stCurrentBeamParameters,
                     io_fbFFHWO:= GVL.g_FastFaultOutput1,
                     i_xReset := GVL.AttemptReset);
 
-// Evaluate fast fault vetos
-g_FastFaultOutput1.EvaluateOverrides();
-
-// Send fast fault logs
-g_FastFaultOutput1.ExecuteLogging();
+// FF
+g_FastFaultOutput1.Execute();
+g_FastFaultOutput2.Execute();
 
 
 ]]></ST>

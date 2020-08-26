@@ -369,6 +369,14 @@
 					<Type>UINT</Type>
 				</Var>
 				<Var>
+					<Name>CurrentBPUpdate.st1l0Watcher.i_StopperOutLS</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>CurrentBPUpdate.st1l0Watcher.i_StopperInLS</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
 					<Name>PMPS_Arbiter.plc_lfe_motion_PMPS_IO.i_RequestedBP</Name>
 					<Comment>
 						<![CDATA[ Requested BP from subsystem]]>
@@ -1012,17 +1020,17 @@
 					</Comment>
 					<Type>BOOL</Type>
 				</Var>
-				<Var>
-					<Name>CurrentBPUpdate.st1l0Watcher.i_StopperOutLS</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>CurrentBPUpdate.st1l0Watcher.i_StopperInLS</Name>
-					<Type>BOOL</Type>
-				</Var>
 			</Vars>
 			<Vars VarGrpType="2">
 				<Name>PlcTask Outputs</Name>
+				<Var>
+					<Name>CurrentBPUpdate.st1l0Watcher.q_StopperOUT_Relay</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>CurrentBPUpdate.st1l0Watcher.q_StopperIN_Relay</Name>
+					<Type>BOOL</Type>
+				</Var>
 				<Var>
 					<Name>PMPS_Arbiter.fbMPSInterface.q_BC_ASSERTION_LINES</Name>
 					<Comment>
@@ -1566,14 +1574,6 @@
 						</Comment>
 					</SubVar>
 				</Var>
-				<Var>
-					<Name>CurrentBPUpdate.st1l0Watcher.q_StopperOUT_Relay</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>CurrentBPUpdate.st1l0Watcher.q_StopperIN_Relay</Name>
-					<Type>BOOL</Type>
-				</Var>
 			</Vars>
 			<Vars VarGrpType="8">
 				<Name>PlcTask Retains</Name>
@@ -1713,7 +1713,6 @@
 				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterDeviceId" VarB="InfoData^DevId" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterSlaveCount" VarB="Inputs^SlaveCount" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterSlaveCountCfg" VarB="InfoData^CfgSlaveCount" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.wFrmXWcState" VarB="Inputs^Frm1WcState" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 23 (CU1128)^plc-lfe-gatt">
 				<Link VarA="PlcTask Inputs^PMPS_Arbiter.plc_lfe_gatt_PMPS_IO.i_Connected" VarB="SYNC Inputs^External device not connected" AutoLink="true"/>
