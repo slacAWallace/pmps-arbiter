@@ -302,7 +302,7 @@
 			</ArrayInfo>
 		</DataType>
 	</DataTypes>
-	<Project GUID="{4BCB16EF-5D13-4917-90A8-513A58E8B784}" Name="ArbiterPLC" PrjFilePath="..\..\ArbiterPLC\ArbiterPLC.plcproj" TmcFilePath="..\..\ArbiterPLC\ArbiterPLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e">
+	<Project GUID="{4BCB16EF-5D13-4917-90A8-513A58E8B784}" Name="ArbiterPLC" PrjFilePath="..\..\ArbiterPLC\ArbiterPLC.plcproj" TmcFilePath="..\..\ArbiterPLC\ArbiterPLC.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" FileArchiveSettings="#x000e">
 		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="ArbiterPLC\ArbiterPLC.tmc">
 			<Name>ArbiterPLC Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
