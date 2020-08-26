@@ -5,7 +5,9 @@
 VAR
 
     fbBPRequestor : FB_BPRequestor; // Updates global PMPS RequestedBeamParams
-
+    {attribute 'pytmc' := '
+    pv: @(PREFIX)PhotonEnergyWatcher
+    '}
     fbPhotonEnergyWatcher	:	FB_PhotonEnergyWatcher;
     {attribute 'pytmc' := '
     pv: @(PREFIX)BeamClassOutputs
