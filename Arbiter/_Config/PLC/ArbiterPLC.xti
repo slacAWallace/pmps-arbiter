@@ -302,21 +302,10 @@
 			</ArrayInfo>
 		</DataType>
 	</DataTypes>
-	<Project GUID="{4BCB16EF-5D13-4917-90A8-513A58E8B784}" Name="ArbiterPLC" PrjFilePath="..\..\ArbiterPLC\ArbiterPLC.plcproj" TmcFilePath="..\..\ArbiterPLC\ArbiterPLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e">
+	<Project GUID="{4BCB16EF-5D13-4917-90A8-513A58E8B784}" Name="ArbiterPLC" PrjFilePath="..\..\ArbiterPLC\ArbiterPLC.plcproj" TmcFilePath="..\..\ArbiterPLC\ArbiterPLC.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" FileArchiveSettings="#x000e">
 		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="ArbiterPLC\ArbiterPLC.tmc">
 			<Name>ArbiterPLC Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
-			<Vars VarGrpType="2">
-				<Name>FFOTask Outputs</Name>
-				<Var>
-					<Name>GVL.g_FastFaultOutput1.q_xFastFaultOut</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL.g_FastFaultOutput2.q_xFastFaultOut</Name>
-					<Type>BOOL</Type>
-				</Var>
-			</Vars>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
@@ -1574,6 +1563,14 @@
 						</Comment>
 					</SubVar>
 				</Var>
+				<Var>
+					<Name>GVL.g_FastFaultOutput1.q_xFastFaultOut</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL.g_FastFaultOutput2.q_xFastFaultOut</Name>
+					<Type>BOOL</Type>
+				</Var>
 			</Vars>
 			<Vars VarGrpType="8">
 				<Name>PlcTask Retains</Name>
@@ -1713,7 +1710,6 @@
 				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterDeviceId" VarB="InfoData^DevId" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterSlaveCount" VarB="Inputs^SlaveCount" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.nEcMasterSlaveCountCfg" VarB="InfoData^CfgSlaveCount" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^MAIN.fbEcatDiag.wFrmXWcState" VarB="Inputs^Frm1WcState" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 23 (CU1128)^plc-lfe-gatt">
 				<Link VarA="PlcTask Inputs^PMPS_Arbiter.plc_lfe_gatt_PMPS_IO.i_Connected" VarB="SYNC Inputs^External device not connected" AutoLink="true"/>
@@ -1752,8 +1748,8 @@
 				<Link VarA="PlcTask Inputs^CurrentBPUpdate.st1l0Watcher.i_StopperOutLS" VarB="Channel 2^ST1L0_PPS_OUT" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 12 (EK1200)^FFO">
-				<Link VarA="FFOTask Outputs^GVL.g_FastFaultOutput1.q_xFastFaultOut" VarB="Channel 1^Output" AutoLink="true"/>
-				<Link VarA="FFOTask Outputs^GVL.g_FastFaultOutput2.q_xFastFaultOut" VarB="Channel 2^Output" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^GVL.g_FastFaultOutput1.q_xFastFaultOut" VarB="Channel 1^Output" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^GVL.g_FastFaultOutput2.q_xFastFaultOut" VarB="Channel 2^Output" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 12 (EK1200)^PMPS_Premp">
 				<Link VarA="PlcTask Outputs^PMPS_Arbiter.fbCuInterface.q_CLTS_ASSERTION_LINES[1]" VarB="Channel 9^Output" AutoLink="true"/>
