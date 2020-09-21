@@ -22,7 +22,7 @@ VAR
                 .q_StopperIN_Relay:=TIIB[MPS_Relay]^Channel 2^ST1L0_RELAY_IN;
 	'}
     st1l0Watcher : FB_LStopper(
-        PMPS.K_Stopper.ST1,
+        PMPS.L_Stopper.ST1L0,
         'ST1L0');
 END_VAR
 ]]></Declaration>
