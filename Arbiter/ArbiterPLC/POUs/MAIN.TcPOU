@@ -8,6 +8,7 @@ VAR
     fbLogHandler : FB_LogHandler;
     fbEcatDiag : FB_EcatDiagWrapper;
 
+	idx: UINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -15,6 +16,12 @@ END_VAR
 
 IF Initialize THEN
     Initialize := FALSE;
+	
+	// Setting apertures to zero for now
+	FOR idx := 1 TO PMPS_GVL.MAX_APERTURES DO
+		PMPS_GVL.stCurrentBeamParameters.astApertures[idx].Height := 0;
+		PMPS_GVL.stCurrentBeamParameters.astApertures[idx].Width := 0;
+	END_FOR
 END_IF
 
 // Ethercat Diagnostics
