@@ -9,9 +9,16 @@ VAR
 	fbLPhotonEnergy : FB_LPhotonEnergy;
 	
 	{attribute 'pytmc' := '
+        pv: @(PREFIX)L:Rate
+        link: IOC:BSY0:MP01:BYKIK_RATE
+        field: EGU RateEnum
+    '}
+    fbBYKIK_Rate : FB_LREALFromEPICS;
+	
+	{attribute 'pytmc' := '
         pv: @(PREFIX)
     '}
-	fbEPICSLRate : FB_LRateFromEPICS;
+	fbEPICSLRate : FB_RateFromEPICS;
 
 	// Stoppers
 
@@ -24,14 +31,18 @@ VAR
     st1l0Watcher : FB_LStopper(
         PMPS.L_Stopper.ST1L0,
         'ST1L0');
+
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// Acquiring photon energy
 fbLPhotonEnergy(BP:=PMPS_GVL.stCurrentBeamParameters);
 
+
+
 // Acquiring L-line rate
-fbEPICSLRate(BP:=PMPS_GVL.stCurrentBeamParameters);
+fbEPICSLRate(BP:=PMPS_GVL.stCurrentBeamParameters, fbBYKIK_Rate:=fbBYKIK_Rate, FFO:=GVL.g_FastFaultOutput1);
+
 
 // Watching and relaying stopper statuses
 st1l0Watcher(stCurrentBP := PMPS_GVL.stCurrentBeamParameters);]]></ST>
