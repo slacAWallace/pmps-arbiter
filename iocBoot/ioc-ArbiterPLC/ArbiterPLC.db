@@ -5455,54 +5455,54 @@ record(ai, "$(PREFIX)PE:UND:HiK_RBV") {
   info(archive, "VAL")
 }
 
-record(ai, "$(PREFIX):L:Rate:EPICSLink_RBV") {
+record(ai, "$(PREFIX)L:Rate:EPICSLink_RBV") {
   # Internal variable used to monitor EPICS PV in PLC
   field(DESC, "Internal variable us...r EPICS PV in PLC")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
   field(TSE, "-2")
   field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/CurrentBPUpdate.fbEPICSLRate.fbBYKIK_Rate.fPLCInternalValue?")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/CurrentBPUpdate.fbBYKIK_Rate.fPLCInternalValue?")
   field(PREC, "3")
   field(EGU, "RateEnum")
   info(autosaveFields_pass0, "PREC")
   info(archive, "VAL")
 }
 
-record(ao, "$(PREFIX):L:Rate:EPICSLink") {
+record(ao, "$(PREFIX)L:Rate:EPICSLink") {
   # Internal variable used to monitor EPICS PV in PLC
   field(DESC, "Internal variable us...r EPICS PV in PLC")
   field(SCAN, ".5 second")
   field(DTYP, "asynFloat64")
   field(DOL, "IOC:BSY0:MP01:BYKIK_RATE CPP MS")
   field(OMSL, "closed_loop")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/CurrentBPUpdate.fbEPICSLRate.fbBYKIK_Rate.fPLCInternalValue=")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/CurrentBPUpdate.fbBYKIK_Rate.fPLCInternalValue=")
   field(PREC, "3")
   field(EGU, "RateEnum")
   info(autosaveFields_pass0, "PREC VAL")
   info(archive, "VAL")
 }
 
-record(longin, "$(PREFIX):L:Rate:EPICSLink:LinkSeverity_RBV") {
+record(longin, "$(PREFIX)L:Rate:EPICSLink:LinkSeverity_RBV") {
   # Internal variable used to monitor EPICS PV severity in PLC
   field(DESC, "Internal variable us...V severity in PLC")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
   field(TSE, "-2")
   field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/CurrentBPUpdate.fbEPICSLRate.fbBYKIK_Rate.iPLCInternalSeverity?")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/CurrentBPUpdate.fbBYKIK_Rate.iPLCInternalSeverity?")
   field(EGU, "RateEnum")
   info(archive, "VAL")
 }
 
-record(longout, "$(PREFIX):L:Rate:EPICSLink:LinkSeverity") {
+record(longout, "$(PREFIX)L:Rate:EPICSLink:LinkSeverity") {
   # Internal variable used to monitor EPICS PV severity in PLC
   field(DESC, "Internal variable us...V severity in PLC")
   field(SCAN, ".5 second")
   field(DTYP, "asynInt32")
-  field(DOL, "$(PREFIX):L:Rate:EPICSLink.SEVR CPP MS")
+  field(DOL, "$(PREFIX)L:Rate:EPICSLink.SEVR CPP MS")
   field(OMSL, "closed_loop")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/CurrentBPUpdate.fbEPICSLRate.fbBYKIK_Rate.iPLCInternalSeverity=")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/CurrentBPUpdate.fbBYKIK_Rate.iPLCInternalSeverity=")
   field(EGU, "RateEnum")
   info(autosaveFields_pass0, "VAL")
   info(archive, "VAL")
