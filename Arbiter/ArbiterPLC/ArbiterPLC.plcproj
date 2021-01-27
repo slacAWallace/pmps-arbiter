@@ -97,7 +97,7 @@
     <LibraryReference Include="LCLS General,2.4.2,SLAC">
       <Namespace>LCLS_General</Namespace>
     </LibraryReference>
-    <LibraryReference Include="PMPS,0.14.0,SLAC - LCLS">
+    <LibraryReference Include="PMPS,0.17.0,SLAC - LCLS">
       <Namespace>PMPS</Namespace>
     </LibraryReference>
   </ItemGroup>

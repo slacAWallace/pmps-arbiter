@@ -13,7 +13,8 @@ VAR
         link: IOC:BSY0:MP01:BYKIK_RATE
         field: EGU RateEnum
     '}
-    fbBYKIK_Rate : FB_LREALFromEPICS;
+    fbBYKIK_Rate : FB_LREALFromEPICS := (
+		iMaximumValidSeverity := 2);
 	
 	{attribute 'pytmc' := '
         pv: @(PREFIX)
