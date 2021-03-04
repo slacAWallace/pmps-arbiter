@@ -30,6 +30,9 @@
 			<Name>Term 29 (CU1128-C)</Name>
 			<ImageId>1002</ImageId>
 			<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04685432" RevisionNo="#x00010002" PortPhys="4371" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="CU1128 6x EtherCAT junction - Dev B" Desc="CU1128-C" PortABoxInfo="#x0200001c"/>
+			<Box File="plc-xrt-homs.xti" Id="1">
+				<EtherCAT PortABoxInfo="#x0100001d"/>
+			</Box>
 		</Box>
 		<Box File="Term 31 (EL9010).xti" Id="31">
 			<EtherCAT/>

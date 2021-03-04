@@ -46,6 +46,14 @@ VAR
                                 '}
     plc_lfe_optics_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF10);
 
+	    {attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[plc-xrt-homs]^IO Inputs^RequestedBP;
+                                .o_CurrentBP:=TIIB[plc-xrt-homs]^IO Outputs^CurrentBP;
+                                .i_Connected:=TIIB[plc-xrt-homs]^SYNC Inputs^External device not connected;
+                                .i_WcState:=TIIB[plc-xrt-homs]^WcState^WcStateIn;
+                                .i_TxPDOState:=TIIB[plc-xrt-homs]^SYNC Inputs^TxPDO state;
+                                '}
+    plc_xrt_homs_PMPS_IO : FB_ArbiterToSubSys_IO := (RequestingSystemID := 16#FF13);
+
 	
 	{attribute 'TcLinkTo' := '.i_RequestedBP:=TIIB[plc-lfe-vacuum]^IO Inputs^RequestedBP;
 								.o_CurrentBP:=TIIB[plc-lfe-vacuum]^IO Outputs^CurrentBP;
@@ -79,6 +87,16 @@ VAR
 
 
 	fbSetPE	:	PE_Ranges;
+	
+	// plc-xrt-homs Fast Fault Link
+	    {attribute 'TcLinkTo' := 'TIIB[plc-xrt-homs]^IO Inputs^FFO1'}
+	i_bFastFaultOutput_plc_xrt_homs AT %I* : BOOL;
+	
+	ffPLC_XRT_HOMS : FB_FastFault := (
+		i_DevName := 'plc-xrt-homs FFO1',
+		i_Desc := 'Fast fault output link',
+		i_TypeCode := 16#C,
+		i_xAutoReset := TRUE);
 
 END_VAR
 ]]></Declaration>
@@ -95,6 +113,7 @@ plc_lfe_motion_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput
 plc_lfe_optics_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
 plc_lfe_vac_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
 plc_lfe_gatt_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
+plc_xrt_homs_PMPS_IO(Arbiter:=GVL.g_fbArbiter1, fbFFHWO:=GVL.g_FastFaultOutput1, Reset:=GVL.AttemptReset);
 
 //Overriding the preemptive requests from the optics systems until they are valid
 //GVL.g_fbArbiter1.RemoveRequest(nReqId:=plc_lfe_optics_PMPS_IO.RequestingSystemID);
@@ -114,6 +133,10 @@ fbPhotonEnergyWatcher(i_stCurrentBeamParams	:= PMPS_GVL.stCurrentBeamParameters,
                     i_stRequestedBeamParams := PMPS_GVL.stRequestedBeamParameters,
                     io_fbFFHWO:= GVL.g_FastFaultOutput1,
                     i_xReset := GVL.AttemptReset);
+
+// FFO from plc-xrt-homs
+ffPLC_XRT_HOMS(i_xOK := i_bFastFaultOutput_plc_xrt_homs,
+	io_fbFFHWO := g_FastFaultOutput1);
 
 // FF
 g_FastFaultOutput1.Execute();
